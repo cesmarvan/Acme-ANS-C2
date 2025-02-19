@@ -20,7 +20,7 @@
 	<acme:menu-left>
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link" action="http://www.example.com/"/>
-			<acme:menu-suboption code="77214048N: Martínez Van der Looven, César" action="https://www.youtube.com"/>
+			<acme:menu-suboption code="master.menu.anonymous.cesmarvan" action="https://www.youtube.com"/>
 			<acme:menu-suboption code="master.menu.anonymous.gerojegar" action="https://www.github.com"/>
 		</acme:menu-option>
 	
