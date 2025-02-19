@@ -21,7 +21,7 @@
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link" action="http://www.example.com/"/>
 			<acme:menu-suboption code="77214048N: Martínez Van der Looven, César" action="https://www.youtube.com"/>
-			<acme:menu-suboption code="master.menu.anonymous.show-info-company" action="/any/system/company-info"/>
+			<acme:menu-suboption code="master.menu.anonymous.gerojegar" action="https://www.github.com"/>
 		</acme:menu-option>
 	
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
