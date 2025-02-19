@@ -24,7 +24,7 @@
   <name>Acme-ANS-D00-25.1.0</name>
     <description>Acme-ANS Project - Deliverable 00 for DP2</description>
 	
-    <artifactId>Acme-ANS-D00</artifactId>
+    <artifactId>Acme-ANS-D01</artifactId>
 	<!-- <version>X.Y.Z</version> --> <!-- Omit the version tag unless it's different from the parent version -->
 	<packaging>war</packaging>
 	
