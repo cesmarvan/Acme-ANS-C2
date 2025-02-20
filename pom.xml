@@ -20,12 +20,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	
-  <name>Acme-ANS-D00-25.1.0</name>
-    <description>Acme-ANS Project - Deliverable 00 for DP2</description>
-	
-    <artifactId>Acme-ANS-D01</artifactId>
-	<!-- <version>X.Y.Z</version> --> <!-- Omit the version tag unless it's different from the parent version -->
+    <artifactId>Acme-ANS</artifactId>
+	<version>D01</version>
 	<packaging>war</packaging>
 	
 	<parent>
