@@ -8,4 +8,5 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-25.1.0	This is the initial release of Acme One, introducing core features and functionalities for the first time.
+25.1.0	This is the initial release of Acme-ANS, introducing core features and functionalities for the first time.
+25.2.0	Updated scripts and functionalities of the Framework.
