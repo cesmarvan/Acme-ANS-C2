@@ -21,7 +21,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
     <artifactId>Acme-ANS</artifactId>
-	<!-- <version>X.Y.></version> --> <!-- Omit the version tag unless it's different from the parent version -->
+	 <version>D02</version>
 	<packaging>war</packaging>
 	
 	<parent>
