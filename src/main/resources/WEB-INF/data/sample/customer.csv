@@ -1,0 +1,4 @@
+key,identifier,phoneNumber,address,city,country,earnedPoints
+customer1,CU123456,+123456789,123 Example St,Madrid,Spain,100
+customer2,CU654321,+987654321,456 Another St,Barcelona,Spain,200
+customer3,CU777777,+1122334455,789 Empty St,Valencia,Spain,null
