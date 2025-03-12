@@ -1,9 +1,12 @@
 
-package acme.entities;
+package acme.entities.flightAssignment;
 
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -13,49 +16,51 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
-import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import acme.entities.crewMember.FlightCrewMember;
+import acme.entities.leg.Leg;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Review extends AbstractEntity {
+public class FlightAssignment extends AbstractEntity {
 
-	// Version 
+	// Serialisation version --------------------------------------------------
+
 	private static final long	serialVersionUID	= 1L;
 
-	// Attributes
+	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidString(max = 50)
+	@Enumerated(EnumType.STRING)
 	@Automapped
-	private String				name;
+	private CrewDuties			duty;
 
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				moment;
-
-	@Mandatory
-	@ValidString(max = 50)
 	@Automapped
-	private String				subject;
+	private Date				lastUpdate;
 
 	@Mandatory
+	@Enumerated(EnumType.STRING)
+	@Automapped
+	private AssignmentStatus	status;
+
+	@Optional
 	@ValidString(max = 255)
 	@Automapped
-	private String				text;
+	private String				remarks;
 
-	@Optional
-	@ValidNumber(min = 0, max = 10)
-	@Automapped
-	private Double				score;
-
-	@Optional
+	@Mandatory
 	@Valid
-	@Automapped
-	private Boolean				recommended;
+	@OneToOne
+	private FlightCrewMember	crewMember;
 
+	@Mandatory
+	@Valid
+	@OneToOne
+	private Leg					leg;
 }

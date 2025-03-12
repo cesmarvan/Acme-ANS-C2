@@ -1,10 +1,10 @@
 
-package acme.entities;
+package acme.entities.crewMember;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
@@ -14,7 +14,6 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import acme.entities.airline.Airline;
-import acme.entities.enums.AvailabilityStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,7 +25,7 @@ public class FlightCrewMember extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{2-3}\\d{6}$")
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
 	@Automapped
 	private String				employeeCode;
 
@@ -46,11 +45,6 @@ public class FlightCrewMember extends AbstractEntity {
 	private AvailabilityStatus	status;
 
 	@Mandatory
-	@Valid
-	@OneToOne
-	private Airline				airline;
-
-	@Mandatory
 	@ValidNumber
 	@Automapped
 	private Integer				salary;
@@ -59,5 +53,10 @@ public class FlightCrewMember extends AbstractEntity {
 	@ValidNumber(min = 0)
 	@Automapped
 	private Integer				yearsOfExperience;
+
+	@Mandatory
+	@Valid
+	@ManyToOne
+	private Airline				airline;
 
 }
