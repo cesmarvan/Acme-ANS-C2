@@ -1,0 +1,5 @@
+key,name,iata-code,operational-scope,city,country,web,email-address,contact-phone-number
+airport-01,Airport1,FIR,INTERNATIONAL,City1,Country1,http://airport1.com,airport1@acme.com,1234567890
+airport-02,Airport2,SEC,INTERNATIONAL,City2,Country2,http://airport2.com,airport2@acme.com,1234567890
+airport-03,Airport3,THI,INTERNATIONAL,City3,Country3,http://airport3.com,airport3@acme.com,1234567890
+airport-04,Airport4,FOU,INTERNATIONAL,City4,Country4,http://airport4.com,airport4@acme.com,1234567890
