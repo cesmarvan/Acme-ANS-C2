@@ -1,5 +1,5 @@
 
-package acme.entities;
+package acme.entities.booking;
 
 import java.util.Date;
 
@@ -17,6 +17,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
+import acme.entities.customer.Customer;
 import acme.entities.enums.TravelClass;
 import lombok.Getter;
 import lombok.Setter;

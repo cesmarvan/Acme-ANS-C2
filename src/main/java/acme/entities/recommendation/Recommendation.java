@@ -1,5 +1,5 @@
 
-package acme.entities;
+package acme.entities.recommendation;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
