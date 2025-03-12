@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
@@ -18,26 +19,31 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class ActivityLog {
+public class ActivityLog extends AbstractEntity {
+
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date	registrationMoment;
+	private Date				registrationMoment;
 
 	@Mandatory
 	@ValidString(max = 50)
 	@Automapped
-	private String	typeOfIncident;
+	private String				typeOfIncident;
 
 	@Mandatory
 	@ValidString(max = 255)
 	@Automapped
-	private String	description;
+	private String				description;
 
 	@Mandatory
 	@ValidNumber(min = 0, max = 10)
 	@Automapped
-	private Integer	severity;
+	private Integer				severity;
 
 }
