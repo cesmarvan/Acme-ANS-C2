@@ -1,9 +1,10 @@
 
-package acme.entities;
+package acme.entities.trackingLog;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -11,9 +12,8 @@ import javax.validation.Valid;
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
-import acme.client.components.validation.ValidNumber;
+import acme.client.components.validation.ValidScore;
 import acme.client.components.validation.ValidString;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,41 +21,42 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Review extends AbstractEntity {
+public class TrackingLog extends AbstractEntity {
 
-	// Version 
+	// Version
 	private static final long	serialVersionUID	= 1L;
 
 	// Attributes
-
-	@Mandatory
-	@ValidString(max = 50)
-	@Automapped
-	private String				name;
-
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				moment;
+	private Date				updateMoment;
 
 	@Mandatory
 	@ValidString(max = 50)
 	@Automapped
-	private String				subject;
+	private String				step;
+
+	@Mandatory
+	@ValidScore
+	@Automapped
+	private Integer				resolutionPorcentage;
+
+	@Mandatory
+	@Valid
+	@Automapped
+	private Boolean				indicator;
 
 	@Mandatory
 	@ValidString(max = 255)
 	@Automapped
-	private String				text;
+	private String				resolution;
 
-	@Optional
-	@ValidNumber(min = 0, max = 10)
-	@Automapped
-	private Double				score;
+	// Relationships
 
-	@Optional
+	@Mandatory
 	@Valid
-	@Automapped
-	private Boolean				recommended;
+	@ManyToOne(optional = false)
+	private Claim				claim;
 
 }
