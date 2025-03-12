@@ -48,4 +48,5 @@ public class Customer extends AbstractEntity {
 	@ValidNumber(min = 0, max = 500000)
 	@Automapped
 	private Integer				earnedPoints;
+
 }

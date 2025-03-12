@@ -3,8 +3,7 @@ package acme.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
@@ -35,7 +34,7 @@ public class Airport extends AbstractEntity {
 	private String				iataCode;
 
 	@Mandatory
-	@Enumerated(EnumType.STRING)
+	@Valid
 	@Automapped
 	private OperationalScope	operationalScope;
 

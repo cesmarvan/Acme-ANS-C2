@@ -4,8 +4,6 @@ package acme.entities;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -41,7 +39,7 @@ public class Booking extends AbstractEntity {
 	private Date				purchaseMoment;
 
 	@Mandatory
-	@Enumerated(EnumType.STRING)
+	@Valid
 	@Automapped
 	private TravelClass			travelClass;
 

@@ -55,4 +55,5 @@ public class Passenger extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private Booking				booking;
+
 }
