@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>102</x>
-      <y>168</y>
+      <x>18</x>
+      <y>180</y>
       <w>372</w>
       <h>72</h>
     </coordinates>
@@ -22,8 +22,8 @@ Manager
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>102</x>
-      <y>354</y>
+      <x>18</x>
+      <y>366</y>
       <w>372</w>
       <h>120</h>
     </coordinates>
@@ -45,8 +45,8 @@ Flight
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>276</x>
-      <y>234</y>
+      <x>192</x>
+      <y>246</y>
       <w>24</w>
       <h>132</h>
     </coordinates>
@@ -58,8 +58,8 @@ m2=x*</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>282</x>
-      <y>288</y>
+      <x>198</x>
+      <y>300</y>
       <w>60</w>
       <h>18</h>
     </coordinates>
@@ -70,8 +70,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>570</x>
-      <y>354</y>
+      <x>486</x>
+      <y>366</y>
       <w>420</w>
       <h>84</h>
     </coordinates>
@@ -89,8 +89,8 @@ Leg
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>468</x>
-      <y>390</y>
+      <x>384</x>
+      <y>402</y>
       <w>114</w>
       <h>24</h>
     </coordinates>
@@ -102,8 +102,8 @@ m2=x*</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>492</x>
-      <y>378</y>
+      <x>408</x>
+      <y>390</y>
       <w>60</w>
       <h>18</h>
     </coordinates>
@@ -114,8 +114,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>996</x>
-      <y>366</y>
+      <x>912</x>
+      <y>378</y>
       <w>60</w>
       <h>60</h>
     </coordinates>
@@ -130,8 +130,8 @@ LegStatus
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>702</x>
-      <y>492</y>
+      <x>618</x>
+      <y>504</y>
       <w>138</w>
       <h>84</h>
     </coordinates>
@@ -144,8 +144,8 @@ Airport
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>714</x>
-      <y>432</y>
+      <x>630</x>
+      <y>444</y>
       <w>24</w>
       <h>72</h>
     </coordinates>
@@ -157,8 +157,8 @@ m2=x*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>810</x>
-      <y>432</y>
+      <x>726</x>
+      <y>444</y>
       <w>24</w>
       <h>72</h>
     </coordinates>
@@ -170,8 +170,8 @@ m2=x*</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>822</x>
-      <y>468</y>
+      <x>738</x>
+      <y>480</y>
       <w>66</w>
       <h>18</h>
     </coordinates>
@@ -182,8 +182,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>726</x>
-      <y>468</y>
+      <x>642</x>
+      <y>480</y>
       <w>84</w>
       <h>18</h>
     </coordinates>
@@ -194,13 +194,13 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>702</x>
-      <y>204</y>
+      <x>618</x>
+      <y>216</y>
       <w>138</w>
       <h>84</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
-Airport
+Aircraft
 --
 </panel_attributes>
     <additional_attributes/>
@@ -208,8 +208,8 @@ Airport
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>762</x>
-      <y>282</y>
+      <x>678</x>
+      <y>294</y>
       <w>24</w>
       <h>84</h>
     </coordinates>
@@ -221,8 +221,8 @@ m2=x*</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>768</x>
-      <y>312</y>
+      <x>684</x>
+      <y>324</y>
       <w>60</w>
       <h>18</h>
     </coordinates>
