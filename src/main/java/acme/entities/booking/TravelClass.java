@@ -1,5 +1,5 @@
 
-package acme.entities.enums;
+package acme.entities.booking;
 
 public enum TravelClass {
 	ECONOMY, BUSINESS

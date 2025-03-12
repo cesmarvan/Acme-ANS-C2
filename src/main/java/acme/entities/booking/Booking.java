@@ -1,11 +1,9 @@
 
-package acme.entities;
+package acme.entities.booking;
 
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,7 +17,8 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
-import acme.entities.enums.TravelClass;
+import acme.entities.customer.Customer;
+import acme.entities.flight.Flight;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -41,7 +40,7 @@ public class Booking extends AbstractEntity {
 	private Date				purchaseMoment;
 
 	@Mandatory
-	@Enumerated(EnumType.STRING)
+	@Valid
 	@Automapped
 	private TravelClass			travelClass;
 
@@ -59,5 +58,10 @@ public class Booking extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private Customer			customer;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Flight				flight;
 
 }
