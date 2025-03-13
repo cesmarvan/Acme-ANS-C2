@@ -14,7 +14,7 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
-import acme.client.components.validation.ValidString;
+import acme.constraints.ValidLongText;
 import acme.entities.enums.ClaimType;
 import acme.entities.leg.Leg;
 import acme.realms.AssistanceAgent;
@@ -41,7 +41,7 @@ public class Claim extends AbstractEntity {
 	private String				passengerEmail;
 
 	@Mandatory
-	@ValidString(max = 255)
+	@ValidLongText
 	@Automapped
 	private String				description;
 
