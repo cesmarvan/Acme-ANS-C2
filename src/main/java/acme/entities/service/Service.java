@@ -21,29 +21,34 @@ import lombok.Setter;
 @Setter
 public class Service extends AbstractEntity {
 
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
+
 	@Mandatory
 	@ValidString(max = 50)
 	@Column(unique = true)
-	private String	name;
+	private String				name;
 
 	@Mandatory
 	@ValidUrl
 	@Automapped
-	private String	pictureLink;
+	private String				pictureLink;
 
 	@Mandatory
 	@ValidNumber(min = 0)
 	@Automapped
-	private Double	avgDwellTime;
+	private Double				avgDwellTime;
 
 	@Optional
 	@ValidString(pattern = "^[A-Z]{4}-[0-9]{2}$")
 	@Automapped
-	private String	promoCode;
+	private String				promoCode;
 
-	@Mandatory
+	@Optional
 	@ValidMoney
 	@Automapped
-	private Money	discount;
+	private Money				discount;
 
 }
