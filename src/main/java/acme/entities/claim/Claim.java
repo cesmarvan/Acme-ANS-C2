@@ -15,7 +15,6 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
-import acme.entities.enums.ClaimType;
 import acme.entities.leg.Leg;
 import acme.realms.AssistanceAgent;
 import lombok.Getter;
@@ -38,7 +37,7 @@ public class Claim extends AbstractEntity {
 	@Mandatory
 	@ValidEmail
 	@Automapped
-	private String				passengerEmail;
+	private String				email;
 
 	@Mandatory
 	@ValidString(max = 255)
@@ -53,7 +52,7 @@ public class Claim extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@Automapped
-	private Boolean				indicador;
+	private Boolean				indicator;
 
 	// Relationships
 	@Mandatory

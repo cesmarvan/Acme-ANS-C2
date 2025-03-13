@@ -1,5 +1,6 @@
 key,enabled,identity,password,username
 user-account-manager-01,true,"UserIdentity{name: 'Manager1', surname: 'Man1', email: 'manager1@acme.com'}",manager1,manager1
 user-account-manager-02,true,"UserIdentity{name: 'Manager2', surname: 'Man2', email: 'manager2@acme.com'}",manager2,manager2
-user-account-manager-03,true,"UserIdentity{name: 'Manager3', surname: 'Man3', email: 'manager3@acme.com'}",manager3,manager3
-
+user-account-manager-03,true,"UserIdentity{name: 'Manager3', surname: 'Man3', email: 'manager@acme.com'}",manager3,manager3
+user-account-agent-01,true,"UserIdentity{name: 'Agent1', surname: 'Agn1', email: 'agent1@acme.com'}",agent1,agent1
+user-account-agent-02,true,"UserIdentity{name: 'Agent2', surname: 'Agn2', email: 'agent2@acme.com'}",agent2,agent2
