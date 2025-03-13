@@ -1,4 +1,4 @@
 ﻿key,manager-id,age-of-experience,date-of-birth,image-url,key:user-account
-manager-01,MAN000001,10,2000/01/01 10:00,http://image1.com,user-account-manager-01
-manager-02,MAN000002,20,2000/01/01 10:00,http://image2.com,user-account-manager-02
-manager-03,MAN000003,23,2000/01/01 10:00,http://image3.com,user-account-manager-03
+manager-01,MM000001,10,2000/01/01 10:00,http://image1.com,user-account-manager-01
+manager-02,MM000002,20,2000/01/01 10:00,http://image2.com,user-account-manager-02
+manager-03,MM000003,23,2000/01/01 10:00,http://image3.com,user-account-manager-03
