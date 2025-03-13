@@ -1,0 +1,17 @@
+﻿key,registrationMoment,email,description,type,indicator,key:assistanceAgent,key:leg
+claim-00,2012/07/02 00:00,acme@lorem-ipsum.org,test description for claim,FLIGHT_ISSUE,false,agent-01,leg-01
+claim-01,2000/01/01 00:00,acme@lorem-ipsum.org,test description for claim,FLIGHT_ISSUE,false,agent-01,leg-02
+claim-02,2019/12/31 23:59,acme@lorem-ipsum.org,test description for claim,FLIGHT_ISSUE,false,agent-01,leg-03
+claim-03,2019/01/01 00:00,acme@lorem-ipsum.org,test description for claim,FLIGHT_ISSUE,false,agent-01,leg-04
+claim-04,2000/01/01 00:01,acme@lorem-ipsum.org,test description for claim,FLIGHT_ISSUE,false,agent-01,leg-04
+claim-05,2012/07/02 00:00,acme-password@lorem-ipsum.org,test description for claim,FLIGHT_ISSUE,false,agent-01,leg-01
+claim-06,2012/07/02 00:00,test@domain.com,test description for claim,FLIGHT_ISSUE,false,agent-01,leg-02
+claim-07,2012/07/02 00:00,user@example.org,test description for claim,FLIGHT_ISSUE,false,agent-01,leg-03
+claim-08,2012/07/02 00:00,longemail@sub.example.com,test description for claim,FLIGHT_ISSUE,false,agent-01,leg-04
+claim-09,2012/07/02 00:00,acme@lorem-ipsum.org,Short desc,FLIGHT_ISSUE,false,agent-01,leg-01
+claim-10,2012/07/02 00:00,acme@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",FLIGHT_ISSUE,false,agent-01,leg-02
+claim-11,2012/07/02 00:00,acme@lorem-ipsum.org,test description for claim,LUGGAGE_ISSUE,false,agent-01,leg-03
+claim-12,2012/07/02 00:00,acme@lorem-ipsum.org,test description for claim,SECURITY_ISSUE,false,agent-01,leg-04
+claim-13,2012/07/02 00:00,acme@lorem-ipsum.org,test description for claim,OTHER_ISSUE,false,agent-01,leg-01
+claim-14,2012/07/02 00:00,acme@lorem-ipsum.org,test description for claim,OTHER_ISSUE,true,agent-01,leg-02
+claim-15,2012/07/02 00:00,acme@lorem-ipsum.org,test description for claim,OTHER_ISSUE,false,agent-01,leg-03
