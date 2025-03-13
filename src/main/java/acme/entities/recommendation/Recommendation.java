@@ -11,6 +11,8 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
+import acme.constraints.ValidLongText;
+import acme.constraints.ValidShortText;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,12 +30,12 @@ public class Recommendation extends AbstractEntity {
 	private String					airportCode;
 
 	@Mandatory
-	@ValidString(min = 2, max = 50)
+	@ValidShortText
 	@Automapped
 	private String					city;
 
 	@Mandatory
-	@ValidString(min = 2, max = 50)
+	@ValidShortText
 	@Automapped
 	private String					country;
 
@@ -43,11 +45,11 @@ public class Recommendation extends AbstractEntity {
 	private RecommendationCategory	category;
 
 	@Mandatory
-	@ValidString(min = 5, max = 100)
+	@ValidShortText
 	private String					name;
 
 	@Mandatory
-	@ValidString(min = 10, max = 255)
+	@ValidLongText
 	@Automapped
 	private String					description;
 
