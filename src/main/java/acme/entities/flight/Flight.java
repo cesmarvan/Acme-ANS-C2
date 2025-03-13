@@ -14,8 +14,9 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
-import acme.client.components.validation.ValidString;
 import acme.client.helpers.SpringHelper;
+import acme.constraints.ValidLongText;
+import acme.constraints.ValidShortText;
 import acme.entities.leg.Leg;
 import acme.realms.Manager;
 import lombok.Getter;
@@ -29,7 +30,7 @@ public class Flight extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@ValidString(max = 50)
+	@ValidShortText
 	@Automapped
 	private String				tag;
 
@@ -44,7 +45,7 @@ public class Flight extends AbstractEntity {
 	private Money				cost;
 
 	@Optional
-	@ValidString(max = 255)
+	@ValidLongText
 	@Automapped
 	private String				description;
 

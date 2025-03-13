@@ -18,5 +18,8 @@ To get this project up and running, please follow the guideline in the theory/la
 taking into account that you must link the appropriate version of the Acme-Framework excluding 
 the following resources:
 
-Link to D01 dashboard: [https://github.com/users/cesmarvan/projects/1/views/1](https://github.com/users/cesmarvan/projects/1/views/1)
+Link to D01 dashboard: [https://github.com/users/cesmarvan/projects/1](https://github.com/users/cesmarvan/projects/1)
+
+
+Link to D02 dashboard: [https://github.com/users/cesmarvan/projects/2](https://github.com/users/cesmarvan/projects/2)
  

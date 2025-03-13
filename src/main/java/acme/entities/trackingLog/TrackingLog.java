@@ -14,7 +14,8 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidScore;
-import acme.client.components.validation.ValidString;
+import acme.constraints.ValidLongText;
+import acme.constraints.ValidShortText;
 import acme.entities.claim.Claim;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,14 +35,14 @@ public class TrackingLog extends AbstractEntity {
 	private Date				updateMoment;
 
 	@Mandatory
-	@ValidString(max = 50)
+	@ValidShortText
 	@Automapped
 	private String				step;
 
 	@Mandatory
 	@ValidScore
 	@Automapped
-	private Integer				resolutionPorcentage;
+	private Double				resolutionPercentage;
 
 	@Mandatory
 	@Valid
@@ -49,7 +50,7 @@ public class TrackingLog extends AbstractEntity {
 	private Boolean				indicator;
 
 	@Mandatory
-	@ValidString(max = 255)
+	@ValidLongText
 	@Automapped
 	private String				resolution;
 
