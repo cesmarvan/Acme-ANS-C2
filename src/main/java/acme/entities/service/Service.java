@@ -37,6 +37,7 @@ public class Service extends AbstractEntity {
 	@Automapped
 	private String				pictureLink;
 
+	// Poner maximo
 	@Mandatory
 	@ValidNumber(min = 0)
 	@Automapped

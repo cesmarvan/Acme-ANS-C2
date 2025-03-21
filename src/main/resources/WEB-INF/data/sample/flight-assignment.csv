@@ -1,5 +1,5 @@
 key,duty,lastUpdate,status,remarks,key:flight-crew-member,key:leg
-assigned-flight-01,PILOT,2020/01/01 14:30,CONFIRMED,,member1,leg-01
-assigned-flight-02,COPILOT,2020/01/01 10:00,CONFIRMED,,member2,leg-01
-assigned-flight-03,LEAD_ATTENDANT,2020/01/01 20:10,PENDING,,member3,leg-02
-assigned-flight-04,CABIN_ATTENDANT,2020/01/01 16:00,CANCELLED,,member4,leg-03
+assigned-flight-01,PILOT,2020/01/01 14:30,CONFIRMED,aaaaa,member1,leg-01
+assigned-flight-02,COPILOT,2020/01/01 10:00,CONFIRMED,aaaaa,member2,leg-01
+assigned-flight-03,LEAD_ATTENDANT,2020/01/01 20:10,PENDING,aaaa,member3,leg-02
+assigned-flight-04,CABIN_ATTENDANT,2020/01/01 16:00,CANCELLED,aaa,member4,leg-03
