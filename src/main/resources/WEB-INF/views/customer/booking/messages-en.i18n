@@ -1,0 +1,24 @@
+# messages-en.i18n
+
+customer.booking.form.title = Booking form 
+customer.booking.list.title = Listing of bookings
+
+customer.booking.form.label.locatorCode = Locator Code
+customer.booking.form.label.purchaseMoment = Purchase moment
+customer.booking.form.label.travelClass = Travel class
+customer.booking.form.label.price = Price
+customer.booking.form.label.lastCreditCardNibble = Last Credit Card Nible
+
+customer.booking.form.button.duties = Duties
+customer.booking.form.button.update = Update
+customer.booking.form.button.delete = Delete
+customer.booking.form.button.publish = Publish
+customer.booking.form.button.create = Create
+
+customer.booking.list.label.locatorCode =  Locator Code
+customer.booking.list.label.purchaseMoment = Purchase moment
+customer.booking.list.label.travelClass = Travel class
+customer.booking.list.label.price = Price
+customer.booking.list.label.lastCreditCardNibble = Last Credit Card Nible
+
+customer.booking.list.button.create = Create

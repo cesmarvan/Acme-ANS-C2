@@ -1,0 +1,24 @@
+# messages-fr.i18n
+
+customer.booking.form.title = Formulaire de réservation
+customer.booking.list.title = Liste des réservations
+
+customer.booking.form.label.locatorCode = Code de localisation
+customer.booking.form.label.purchaseMoment = Moment d'achat
+customer.booking.form.label.travelClass = Classe de voyage
+customer.booking.form.label.price = Prix
+customer.booking.form.label.lastCreditCardNibble = Derniers chiffres de la carte de crédit
+
+customer.booking.form.button.duties = Devoirs
+customer.booking.form.button.update = Mettre à jour
+customer.booking.form.button.delete = Supprimer
+customer.booking.form.button.publish = Publier
+customer.booking.form.button.create = Créer
+
+customer.booking.list.label.locatorCode = Code de localisation
+customer.booking.list.label.purchaseMoment = Moment d'achat
+customer.booking.list.label.travelClass = Classe de voyage
+customer.booking.list.label.price = Prix
+customer.booking.list.label.lastCreditCardNibble = Derniers chiffres de la carte de crédit
+
+customer.booking.list.button.create = Créer
