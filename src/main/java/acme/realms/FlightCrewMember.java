@@ -1,5 +1,5 @@
 
-package acme.entities.crewMember;
+package acme.realms;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -18,6 +18,7 @@ import acme.constraints.ValidIdentifier;
 import acme.constraints.ValidLongText;
 import acme.constraints.ValidPhoneNumber;
 import acme.entities.airline.Airline;
+import acme.entities.crewMember.AvailabilityStatus;
 import lombok.Getter;
 import lombok.Setter;
 

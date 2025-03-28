@@ -1,14 +1,16 @@
 
-package acme.features.authenticated.crew_member;
+package acme.features.crewMember;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
-import acme.entities.crewMember.FlightCrewMember;
+import acme.client.services.GuiService;
 import acme.entities.flightAssignment.FlightAssignment;
+import acme.realms.FlightCrewMember;
 
-public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrewMember, FlightAssignment> {
+@GuiService
+public class FlightAssignmentPublishService extends AbstractGuiService<FlightCrewMember, FlightAssignment> {
 
 	@Autowired
 	private FlightAssignmentRepository flightAssignmentRepository;
@@ -44,11 +46,6 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 
 		super.bindObject(flightAssignment, "duty", "lastUpdate", "status", "remarks", "flightCrewMember", "leg");
 
-	}
-
-	@Override
-	public void perform(final FlightAssignment flightAssignment) {
-		this.flightAssignmentRepository.save(flightAssignment);
 	}
 
 	@Override

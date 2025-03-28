@@ -1,5 +1,5 @@
 /*
- * AuthenticatedProviderUpdateService.java
+ * AuthenticatedConsumerUpdateService.java
  *
  * Copyright (C) 2012-2025 Rafael Corchuelo.
  *
@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.authenticated.provider;
+package acme.features.consumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,15 +19,15 @@ import acme.client.components.principals.Authenticated;
 import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.realms.Provider;
+import acme.realms.Consumer;
 
 @GuiService
-public class AuthenticatedProviderUpdateService extends AbstractGuiService<Authenticated, Provider> {
+public class AuthenticatedConsumerUpdateService extends AbstractGuiService<Authenticated, Consumer> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuthenticatedProviderRepository repository;
+	private AuthenticatedConsumerRepository repository;
 
 	// AbstractService interface ----------------------------------------------ç
 
@@ -36,43 +36,43 @@ public class AuthenticatedProviderUpdateService extends AbstractGuiService<Authe
 	public void authorise() {
 		boolean status;
 
-		status = super.getRequest().getPrincipal().hasRealmOfType(Provider.class);
+		status = super.getRequest().getPrincipal().hasRealmOfType(Consumer.class);
 
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		Provider object;
+		Consumer object;
 		int userAccountId;
 
 		userAccountId = super.getRequest().getPrincipal().getAccountId();
-		object = this.repository.findProviderByUserAccountId(userAccountId);
+		object = this.repository.findConsumerByUserAccountId(userAccountId);
 
 		super.getBuffer().addData(object);
 	}
 
 	@Override
-	public void bind(final Provider object) {
+	public void bind(final Consumer object) {
 		assert object != null;
 
 		super.bindObject(object, "company", "sector");
 	}
 
 	@Override
-	public void validate(final Provider object) {
+	public void validate(final Consumer object) {
 		assert object != null;
 	}
 
 	@Override
-	public void perform(final Provider object) {
+	public void perform(final Consumer object) {
 		assert object != null;
 
 		this.repository.save(object);
 	}
 
 	@Override
-	public void unbind(final Provider object) {
+	public void unbind(final Consumer object) {
 		assert object != null;
 
 		Dataset dataset;

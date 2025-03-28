@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.crew_member;
+package acme.features.crewMember;
 
 import java.util.Collection;
 
@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.crewMember.FlightCrewMember;
 import acme.entities.flightAssignment.FlightAssignment;
+import acme.realms.FlightCrewMember;
 
 @GuiService
 public class FlightAssignmentListService extends AbstractGuiService<FlightCrewMember, FlightAssignment> {

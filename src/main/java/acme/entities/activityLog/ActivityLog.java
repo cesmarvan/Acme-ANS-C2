@@ -4,7 +4,6 @@ package acme.entities.activityLog;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,7 +16,6 @@ import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
 import acme.constraints.ValidLongText;
 import acme.constraints.ValidShortText;
-import acme.entities.crewMember.FlightCrewMember;
 import acme.entities.flightAssignment.FlightAssignment;
 import lombok.Getter;
 import lombok.Setter;
@@ -48,11 +46,6 @@ public class ActivityLog extends AbstractEntity {
 	@ValidNumber(min = 0, max = 10)
 	@Automapped
 	private Integer				severity;
-
-	@Mandatory
-	@Valid
-	@ManyToOne
-	private FlightCrewMember	flightCrewMember;
 
 	@Mandatory
 	@Valid

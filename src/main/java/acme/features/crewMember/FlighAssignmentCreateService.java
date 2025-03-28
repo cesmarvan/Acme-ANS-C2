@@ -1,16 +1,17 @@
 
-package acme.features.authenticated.crew_member;
+package acme.features.crewMember;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.crewMember.FlightCrewMember;
 import acme.entities.flightAssignment.FlightAssignment;
+import acme.entities.leg.Leg;
+import acme.realms.FlightCrewMember;
 
 @GuiService
-public class FlightAssignmentPublishService extends AbstractGuiService<FlightCrewMember, FlightAssignment> {
+public class FlighAssignmentCreateService extends AbstractGuiService<FlightCrewMember, FlightAssignment> {
 
 	@Autowired
 	private FlightAssignmentRepository flightAssignmentRepository;
@@ -18,39 +19,44 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int flightAssignmentId;
-		FlightAssignment flightAssignment;
-		FlightCrewMember crewMember;
-
-		flightAssignmentId = super.getRequest().getData("id", int.class);
-		flightAssignment = this.flightAssignmentRepository.findFlightAssignmentById(flightAssignmentId);
-		crewMember = flightAssignment == null ? null : flightAssignment.getFlightCrewMember();
-
-		status = flightAssignment != null && super.getRequest().getPrincipal().hasRealm(crewMember);
+		boolean status = true;
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		int id;
 		FlightAssignment flightAssignment;
+		FlightCrewMember crewMember;
 
-		id = super.getRequest().getData("id", int.class);
-		flightAssignment = this.flightAssignmentRepository.findFlightAssignmentById(id);
+		crewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
+		flightAssignment = new FlightAssignment();
+		flightAssignment.setFlightCrewMember(crewMember);
 		super.getBuffer().addData(flightAssignment);
 	}
 
 	@Override
 	public void bind(final FlightAssignment flightAssignment) {
+		int crewMemberId = super.getRequest().getData("id", int.class);
+		FlightCrewMember crewMember = this.flightAssignmentRepository.findCrewMemberById(crewMemberId);
 
-		super.bindObject(flightAssignment, "duty", "lastUpdate", "status", "remarks", "flightCrewMember", "leg");
+		int legId = super.getRequest().getData("id", int.class);
+		Leg leg = this.flightAssignmentRepository.findLegById(legId);
+
+		super.bindObject(flightAssignment, "duty", "lastUpdate", "status", "remarks");
+
+		flightAssignment.setFlightCrewMember(crewMember);
+		flightAssignment.setLeg(leg);
 
 	}
 
 	@Override
 	public void validate(final FlightAssignment flightAssignment) {
 
+	}
+
+	@Override
+	public void perform(final FlightAssignment flightAssignment) {
+		this.flightAssignmentRepository.save(flightAssignment);
 	}
 
 	@Override
