@@ -8,9 +8,10 @@ user-account-consumer-03,true,"UserIdentity{name: 'Manolo', surname: '之乎路�
 user-account-provider-01,true,"UserIdentity{name: 'Laurel', surname: 'Provider', email: 'laurel@acme.com'}",provider1,provider1
 user-account-provider-02,true,"UserIdentity{name: 'Martina', surname: 'коза თხა', email: 'martina@acme.com'}",provider2,provider2
 user-account-provider-03,true,"UserIdentity{name: 'Antonia', surname: 'אבטיח Æløzå', email: 'antonia@acme.com'}",provider3,provider3
-user-account-customer-01,true,"UserIdentity{name: 'Ismael', surname: 'Portillo', email: 'ismael@acme.com'}",customer1,customer1
-user-account-customer-02,true,"UserIdentity{name: 'Pablo', surname: 'Herrera', email: 'pablo@acme.com'}",customer2,customer2
-user-account-customer-03,true,"UserIdentity{name: 'Manuel', surname: 'Morales', email: 'manuel@acme.com'}",customer3,customer3
+user-account-customer-01,true,"UserIdentity{name: 'Joaquín', surname: 'González', email: 'joagonrod@acme.com'}",customer1,customer1
+user-account-customer-02,true,"UserIdentity{name: 'César', surname: 'Martinez', email: 'cesmarvan@acme.com'}",customer2,customer2
+user-account-customer-03,true,"UserIdentity{name: 'Alejandro', surname: 'Mantecón', email: 'alemanrod@acme.com'}",customer3,customer3
+user-account-customer-04,true,"UserIdentity{name: 'Germán', surname: 'Ojeda', email: 'manuel@acme.com'}",customer4,customer4
 user-account-agent-01,true,"UserIdentity{name: 'Juan Antonio', surname: 'Ruiz', email: 'JuanAntonio@acme.com'}",agent1,agent1
 user-account-agent-02,true,"UserIdentity{name: 'Juan', surname: 'Lopez', email: 'Juan@acme.com'}",agent2,agent2
 user-account-agent-03,true,"UserIdentity{name: 'Antonio', surname: 'Rodriguez', email: 'Antonio@acme.com'}",agent3,agent3
