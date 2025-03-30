@@ -20,5 +20,12 @@ customer.booking.list.label.purchaseMoment = Moment d'achat
 customer.booking.list.label.travelClass = Classe de voyage
 customer.booking.list.label.price = Prix
 customer.booking.list.label.lastCreditCardNibble = Derniers chiffres de la carte de crédit
+customer.booking.list.label.flight = Vol
+customer.booking.list.label.isPublished = Est-ce public ?
+customer.booking.list.label.passenger = Passagers
 
 customer.booking.list.button.create = Créer
+
+acme.validation.confirmation.message.lastCreditCardNibble = Le dernier nibble est requis lorsque la réservation est publiée
+acme.validation.confirmation.message.update = Vous ne pouvez pas mettre à jour une réservation une fois qu'elle est publiée
+acme.validation.confirmation.message.booking.locator-code = Ce code de localisateur est déjà associé à une autre réservation

@@ -102,12 +102,17 @@ public class Flight extends AbstractEntity {
 		return repository.getNumberOfLegsOfFlight(this.getId());
 	}
 
-	// Relationships
 
+	@Mandatory
+	@Valid
+	@Automapped
+	private Boolean	draftMode;
+
+	// Relationships
 
 	@Mandatory
 	@Valid
 	@ManyToOne
-	private Manager manager;
+	private Manager	manager;
 
 }

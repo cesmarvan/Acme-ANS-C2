@@ -1,7 +1,7 @@
 # messages-en.i18n
 
 customer.booking.form.title = Booking form 
-customer.booking.list.title = Listing of bookings
+customer.booking.list.title = Booking list
 
 customer.booking.form.label.locatorCode = Locator Code
 customer.booking.form.label.purchaseMoment = Purchase moment
@@ -20,5 +20,23 @@ customer.booking.list.label.purchaseMoment = Purchase moment
 customer.booking.list.label.travelClass = Travel class
 customer.booking.list.label.price = Price
 customer.booking.list.label.lastCreditCardNibble = Last Credit Card Nible
+customer.booking.list.label.flight = Flight
+customer.booking.list.label.isPublished = Is it public?
+customer.booking.list.label.passenger = Passengers
 
 customer.booking.list.button.create = Create
+
+customer.booking.create.label.locatorCode =  Locator Code
+customer.booking.create.label.purchaseMoment = Purchase moment
+customer.booking.create.label.travelClass = Travel class
+customer.booking.create.label.price = Price
+customer.booking.create.label.lastCreditCardNibble = Last Credit Card Nible
+customer.booking.create.label.passenger = Passenger
+customer.booking.create.label.isPublished = ¿Es público?
+
+
+customer.booking.create.button.create = Create
+
+acme.validation.confirmation.message.lastCreditCardNibble = The last nibble is required when the booking is published
+acme.validation.confirmation.message.update = You cannot update a booking once it is published
+acme.validation.confirmation.message.booking.locator-code = This locator code is already associated with another booking

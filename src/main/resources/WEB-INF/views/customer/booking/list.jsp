@@ -9,8 +9,6 @@
 	<acme:list-column code="customer.booking.list.label.locatorCode" path="locatorCode" width="10%"/>
 	<acme:list-column code="customer.booking.list.label.purchaseMoment" path="purchaseMoment" width="5%"/>
 	<acme:list-column code="customer.booking.list.label.travelClass" path="travelClass" width="10%"/>
-	<acme:list-column code="customer.booking.list.label.price" path="price" width="80%"/>
-	<acme:list-column code="customer.booking.list.label.lastCreditCardNibble" path="lastCreditCardNibble" width="5%"/>
 </acme:list>
 
 <jstl:if test="${_command == 'list'}">

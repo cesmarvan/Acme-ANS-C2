@@ -20,16 +20,23 @@ public class CustomerBookingListService extends AbstractGuiService<Customer, Boo
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+
+		boolean status;
+		int customerId;
+		Collection<Booking> bookings;
+
+		customerId = super.getRequest().getPrincipal().getActiveRealm().getUserAccount().getId();
+		bookings = this.repository.findBookingByCustomer(customerId);
+		status = bookings.stream().allMatch(b -> b.getCustomer().getUserAccount().getId() == customerId);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
 		Collection<Booking> bookings;
-		int customerId;
-
-		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		bookings = this.repository.findBookingsByCustomerId(customerId);
+		int customerId = super.getRequest().getPrincipal().getActiveRealm().getUserAccount().getId();
+		bookings = this.repository.findBookingByCustomer(customerId);
 
 		super.getBuffer().addData(bookings);
 	}
@@ -38,7 +45,7 @@ public class CustomerBookingListService extends AbstractGuiService<Customer, Boo
 	public void unbind(final Booking booking) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "lastCreditCardNibble");
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass");
 
 		super.getResponse().addData(dataset);
 	}
