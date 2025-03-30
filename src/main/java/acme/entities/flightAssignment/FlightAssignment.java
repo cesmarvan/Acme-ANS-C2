@@ -55,6 +55,9 @@ public class FlightAssignment extends AbstractEntity {
 	private String				remarks;
 
 	@Mandatory
+	private Boolean				draftMode;
+
+	@Mandatory
 	@Valid
 	@OneToOne
 	private FlightCrewMember	flightCrewMember;

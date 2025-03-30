@@ -1,5 +1,5 @@
 
-package acme.features.crewMember;
+package acme.features.flightCrewMember.flightAssignment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,7 +10,7 @@ import acme.entities.flightAssignment.FlightAssignment;
 import acme.realms.FlightCrewMember;
 
 @GuiService
-public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMember, FlightAssignment> {
+public class FlightAssignmentPublishService extends AbstractGuiService<FlightCrewMember, FlightAssignment> {
 
 	@Autowired
 	private FlightAssignmentRepository flightAssignmentRepository;
@@ -25,9 +25,12 @@ public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMe
 
 		flightAssignmentId = super.getRequest().getData("id", int.class);
 		flightAssignment = this.flightAssignmentRepository.findFlightAssignmentById(flightAssignmentId);
-		crewMember = flightAssignment == null ? null : flightAssignment.getFlightCrewMember();
+		if (flightAssignment == null)
+			return;
 
-		status = flightAssignment != null && super.getRequest().getPrincipal().hasRealm(crewMember);
+		crewMember = flightAssignment.getFlightCrewMember();
+
+		status = super.getRequest().getPrincipal().hasRealm(crewMember) && flightAssignment.getDraftMode();
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -39,6 +42,18 @@ public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMe
 		id = super.getRequest().getData("id", int.class);
 		flightAssignment = this.flightAssignmentRepository.findFlightAssignmentById(id);
 		super.getBuffer().addData(flightAssignment);
+	}
+
+	@Override
+	public void bind(final FlightAssignment flightAssignment) {
+
+		super.bindObject(flightAssignment, "duty", "status", "flightCrewMember", "leg");
+
+	}
+
+	@Override
+	public void validate(final FlightAssignment flightAssignment) {
+
 	}
 
 	@Override

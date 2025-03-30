@@ -1,0 +1,25 @@
+################## LIST ##########################
+flight-crew-member.flight-assignment.list.title = Flight Assignments
+flightCrewMember.flightAssignment.list.label.duty = Duty
+flightCrewMember.flightAssignment.list.label.status = Status
+flightCrewMember.flightAssignment.list.label.leg = Leg
+flightCrewMember.flightAssignment.list.label.flightCrewMember = Crew Member
+flightCrewMember.flightAssignment.list.label.lastUpdate = Last Update
+flightCrewMember.flightAssignment.list.label.remarks = Remarks
+
+
+################## CREATE ##########################
+flight-crew-member.flight-assignment.form.title = Flight Assignments
+flightCrewMember.flightAssignment.form.label.duty = Duty
+flightCrewMember.flightAssignment.form.label.lastUpdate = Last Update
+flightCrewMember.flightAssignment.form.label.status = Status
+flightCrewMember.flightAssignment.form.label.remarks = Remarks
+flightCrewMember.flightAssignment.form.label.leg = Leg
+flightCrewMember.flightAssignment.form.label.flightCrewMember = Crew Member
+
+################## BUTTONS ##########################
+flightCrewMember.flightAssignment.list.button.create = Create Flight Assignment
+flightCrewMember.flightAssignment.form.button.create = Create
+flightCrewMember.flightAssignment.form.button.update = Update
+flightCrewMember.flightAssignment.form.button.delete = Delete
+flightCrewMember.flightAssignment.form.button.publish = Publish

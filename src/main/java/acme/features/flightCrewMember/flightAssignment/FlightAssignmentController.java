@@ -1,5 +1,5 @@
 
-package acme.features.crewMember;
+package acme.features.flightCrewMember.flightAssignment;
 
 import javax.annotation.PostConstruct;
 
@@ -38,5 +38,8 @@ public class FlightAssignmentController extends AbstractGuiController<FlightCrew
 		super.addBasicCommand("create", this.createService);
 
 		super.addBasicCommand("update", this.updateService);
+
+		super.addCustomCommand("publish", "update", this.publishService);
+
 	}
 }
