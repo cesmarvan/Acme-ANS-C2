@@ -7,6 +7,7 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightAssignment.FlightAssignment;
+import acme.entities.leg.LegStatus;
 import acme.realms.FlightCrewMember;
 
 @GuiService
@@ -53,7 +54,14 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 
 	@Override
 	public void validate(final FlightAssignment flightAssignment) {
+		if (flightAssignment.getLeg().getStatus() != LegStatus.ON_TIME || flightAssignment.getLeg().getStatus() != LegStatus.DELAYED)
+			super.state(false, "*", "acme.validation.confirmation.message");
+	}
 
+	@Override
+	public void perform(final FlightAssignment flightAssignment) {
+		flightAssignment.setDraftMode(false);
+		this.flightAssignmentRepository.save(flightAssignment);
 	}
 
 	@Override

@@ -46,13 +46,13 @@ public class FlightAssignmentListService extends AbstractGuiService<FlightCrewMe
 		SelectChoices legChoices;
 
 		List<Leg> legList = this.flightAssignmentRepository.findAllLegs();
+		legChoices = SelectChoices.from(legList, "flightNumber", flightAssignment.getLeg());
+
 		List<FlightCrewMember> crewMemberList = this.flightAssignmentRepository.findAllCrewMembers();
+		crewMemberChoices = SelectChoices.from(crewMemberList, "employeeCode", flightAssignment.getFlightCrewMember());
 
 		dutyChoices = SelectChoices.from(CrewDuties.class, flightAssignment.getDuty());
 		statusChoices = SelectChoices.from(AssignmentStatus.class, flightAssignment.getStatus());
-
-		crewMemberChoices = SelectChoices.from(crewMemberList, "employeeCode", flightAssignment.getFlightCrewMember());
-		legChoices = SelectChoices.from(legList, "flightNumber", flightAssignment.getLeg());
 
 		dataset = super.unbindObject(flightAssignment, "duty", "status", "remarks", "lastUpdate");
 		dataset.put("duties", dutyChoices);

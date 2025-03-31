@@ -16,7 +16,7 @@ import acme.entities.leg.Leg;
 import acme.realms.FlightCrewMember;
 
 @GuiService
-public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMember, FlightAssignment> {
+public class FlightAssignmentDeleteService extends AbstractGuiService<FlightCrewMember, FlightAssignment> {
 
 	@Autowired
 	private FlightAssignmentRepository flightAssignmentRepository;
@@ -24,18 +24,7 @@ public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMe
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int flightAssignmentId;
-		FlightAssignment flightAssignment;
-		FlightCrewMember crewMember;
-
-		flightAssignmentId = super.getRequest().getData("id", int.class);
-		flightAssignment = this.flightAssignmentRepository.findFlightAssignmentById(flightAssignmentId);
-		if (flightAssignment == null)
-			return;
-		crewMember = flightAssignment.getFlightCrewMember();
-		status = super.getRequest().getPrincipal().hasRealm(crewMember);
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
@@ -46,6 +35,30 @@ public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMe
 		id = super.getRequest().getData("id", int.class);
 		flightAssignment = this.flightAssignmentRepository.findFlightAssignmentById(id);
 		super.getBuffer().addData(flightAssignment);
+	}
+
+	@Override
+	public void bind(final FlightAssignment flightAssignment) {
+		int crewMemberId = super.getRequest().getData("flightCrewMember", int.class);
+		FlightCrewMember crewMember = this.flightAssignmentRepository.findCrewMemberById(crewMemberId);
+
+		int legId = super.getRequest().getData("leg", int.class);
+		Leg leg = this.flightAssignmentRepository.findLegById(legId);
+
+		super.bindObject(flightAssignment, "duty", "status", "remarks");
+
+		flightAssignment.setFlightCrewMember(crewMember);
+		flightAssignment.setLeg(leg);
+	}
+
+	@Override
+	public void validate(final FlightAssignment flightAssignment) {
+		;
+	}
+
+	@Override
+	public void perform(final FlightAssignment flightAssignment) {
+		this.flightAssignmentRepository.delete(flightAssignment);
 	}
 
 	@Override
@@ -65,7 +78,7 @@ public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMe
 		dutyChoices = SelectChoices.from(CrewDuties.class, flightAssignment.getDuty());
 		statusChoices = SelectChoices.from(AssignmentStatus.class, flightAssignment.getStatus());
 
-		dataset = super.unbindObject(flightAssignment, "duty", "remarks", "status", "lastUpdate", "draftMode");
+		dataset = super.unbindObject(flightAssignment, "duty", "status", "remarks", "lastUpdate");
 		dataset.put("duties", dutyChoices);
 		dataset.put("statuses", statusChoices);
 		dataset.put("lastUpdate", flightAssignment.getLastUpdate());
@@ -74,6 +87,8 @@ public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMe
 		dataset.put("flightCrewMember", crewMemberChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
 		dataset.put("leg", legChoices.getSelected().getKey());
+
 		super.getResponse().addData(dataset);
 	}
+
 }

@@ -16,6 +16,7 @@ flightCrewMember.flightAssignment.form.label.status = Status
 flightCrewMember.flightAssignment.form.label.remarks = Remarks
 flightCrewMember.flightAssignment.form.label.leg = Leg
 flightCrewMember.flightAssignment.form.label.flightCrewMember = Crew Member
+acme.validation.confirmation.message.createFlightAssignment = You can only assign a Flight to Crew Members with status 'AVAILABLE'
 
 ################## BUTTONS ##########################
 flightCrewMember.flightAssignment.list.button.create = Create Flight Assignment

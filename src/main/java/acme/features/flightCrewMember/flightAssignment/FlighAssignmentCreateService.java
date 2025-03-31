@@ -12,6 +12,7 @@ import acme.client.helpers.MomentHelper;
 import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.crewMember.AvailabilityStatus;
 import acme.entities.flightAssignment.AssignmentStatus;
 import acme.entities.flightAssignment.CrewDuties;
 import acme.entities.flightAssignment.FlightAssignment;
@@ -60,7 +61,13 @@ public class FlighAssignmentCreateService extends AbstractGuiService<FlightCrewM
 
 	@Override
 	public void validate(final FlightAssignment flightAssignment) {
-		;
+		boolean status = false;
+		boolean onlyOnePilotAndCopilot = true;
+
+		if (!this.flightAssignmentRepository.findPilotsInLegByLegId(flightAssignment.getLeg().getId()).isEmpty() && !this.flightAssignmentRepository.findCopilotsInLegByLegId(flightAssignment.getLeg().getId()).isEmpty())
+			onlyOnePilotAndCopilot = false;
+		status = flightAssignment.getFlightCrewMember().getStatus() == AvailabilityStatus.AVAILABLE && this.flightAssignmentRepository.findLegsByCrewMemberId(flightAssignment.getFlightCrewMember().getId()).isEmpty() && onlyOnePilotAndCopilot;
+		super.state(status, "*", "acme.validation.confirmation.message.createFlightAssignment");
 	}
 
 	@Override
