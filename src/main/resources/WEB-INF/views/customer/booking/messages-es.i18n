@@ -1,0 +1,31 @@
+# messages-es.i18n
+
+customer.booking.form.title = Formulario de reserva
+customer.booking.list.title = Lista de reservas
+
+customer.booking.form.label.locatorCode = Código de localización
+customer.booking.form.label.purchaseMoment = Momento de compra
+customer.booking.form.label.travelClass = Clase de viaje
+customer.booking.form.label.price = Precio
+customer.booking.form.label.lastCreditCardNibble = Últimos 4 dígitos de la tarjeta de crédito
+
+customer.booking.form.button.duties = Deberes
+customer.booking.form.button.update = Actualizar
+customer.booking.form.button.delete = Eliminar
+customer.booking.form.button.publish = Publicar
+customer.booking.form.button.create = Crear
+
+customer.booking.list.label.locatorCode = Código de localización
+customer.booking.list.label.purchaseMoment = Momento de compra
+customer.booking.list.label.travelClass = Clase de viaje
+customer.booking.list.label.price = Precio
+customer.booking.list.label.lastCreditCardNibble = Últimos 4 dígitos de la tarjeta de crédito
+customer.booking.list.label.flight = Vuelo
+customer.booking.list.label.isPublished = ¿Es público?
+customer.booking.list.label.passenger = Pasajeros
+
+customer.booking.list.button.create = Crear
+
+acme.validation.confirmation.message.lastCreditCardNibble = El último nibble es obligatorio cuando la reserva está publicada
+acme.validation.confirmation.message.update = No se puede actualizar una reserva una vez que está publicada
+acme.validation.confirmation.message.booking.locator-code = Este código de localizador ya está asociado con otra reserva
