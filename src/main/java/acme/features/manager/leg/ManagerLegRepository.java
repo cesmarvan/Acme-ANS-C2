@@ -10,6 +10,7 @@ import acme.entities.aircraft.Aircraft;
 import acme.entities.airport.Airport;
 import acme.entities.flight.Flight;
 import acme.entities.leg.Leg;
+import acme.realms.Manager;
 
 public interface ManagerLegRepository extends AbstractRepository {
 
@@ -34,6 +35,12 @@ public interface ManagerLegRepository extends AbstractRepository {
 	@Query("select l from Leg l where l.aircraft.registrationNumber = :registrationNumber")
 	List<Leg> findAllLegsByAircraftRegistrationNumber(String registrationNumber);
 
+	@Query("select l from Leg l where l.flight.id = :flightId order by l.scheduledDeparture asc")
+	List<Leg> getFisrtLegOfFlight(int flightId);
+
+	@Query("select l from Leg l where l.flight.id = :flightId order by l.scheduledDeparture desc")
+	List<Leg> getLastLegOfFlight(int flightId);
+
 	@Query("select a from Aircraft a where a.id = :id")
 	Aircraft findAircraftById(int id);
 
@@ -45,4 +52,7 @@ public interface ManagerLegRepository extends AbstractRepository {
 
 	@Query("select a from Airport a")
 	List<Airport> findAllAirports();
+
+	@Query("select m from Manager m where m.id = :id")
+	Manager findManagerById(int id);
 }

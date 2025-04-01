@@ -57,12 +57,6 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 				super.state(context, rightDatesOrder, "scheduledArrival", "acme.validation.leg.wrong-order-dates.message");
 			}
 			{
-				boolean rightFlightNumber;
-
-				rightFlightNumber = value.getFlightNumber() != null ? true : value.getFlightNumber().substring(0, 3).equals(value.getAircraft().getAirline().getIataCode());
-				super.state(context, rightFlightNumber, "flightNumber", "acme.validation.leg.wrong-iata.message");
-			}
-			{
 				boolean overlappingAircraft = true;
 
 				if (value.getAircraft() != null) {
@@ -72,9 +66,9 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 					legsSameAircraft = legsSameAircraft.stream().filter(legs -> !Objects.equals(legs.getFlightNumber(), value.getFlightNumber())).collect(Collectors.toList());
 
 					overlappingAircraft = !legsSameAircraft.stream()
-						.anyMatch(existingObject -> existingObject.getScheduledDeparture().compareTo(value.getScheduledDeparture()) <= 0 && existingObject.getScheduledArrival().compareTo(value.getScheduledDeparture()) >= 0
-							|| existingObject.getScheduledDeparture().compareTo(value.getScheduledArrival()) <= 0 && existingObject.getScheduledArrival().compareTo(value.getScheduledArrival()) >= 0
-							|| existingObject.getScheduledDeparture().compareTo(value.getScheduledDeparture()) >= 0 && existingObject.getScheduledArrival().compareTo(value.getScheduledArrival()) <= 0);
+						.anyMatch(x -> x.getScheduledDeparture().compareTo(value.getScheduledDeparture()) <= 0 && x.getScheduledArrival().compareTo(value.getScheduledDeparture()) >= 0
+							|| x.getScheduledDeparture().compareTo(value.getScheduledDeparture()) >= 0 && x.getScheduledArrival().compareTo(value.getScheduledArrival()) <= 0
+							|| x.getScheduledDeparture().compareTo(value.getScheduledArrival()) <= 0 && x.getScheduledArrival().compareTo(value.getScheduledArrival()) >= 0);
 
 				}
 				super.state(context, overlappingAircraft, "aircraft", "acme.validation.leg.overlapping-aircraft.message");
