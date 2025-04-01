@@ -13,11 +13,11 @@ import acme.realms.FlightCrewMember;
 
 public interface FlightAssignmentRepository extends AbstractRepository {
 
-	@Query("SELECT fa FROM FlightAssignment fa JOIN fa.leg l WHERE l.status = 'LANDED'")
-	List<FlightAssignment> findFlightAssignmentCompletedLeg();
+	@Query("SELECT fa FROM FlightAssignment fa JOIN fa.leg l WHERE l.status = 'LANDED' AND fa.flightCrewMember.id = :id ")
+	List<FlightAssignment> findFlightAssignmentCompletedLeg(int id);
 
-	@Query("SELECT fa FROM FlightAssignment fa JOIN fa.leg l WHERE l.status = 'ON_TIME' OR l.status='DELAYED'")
-	List<FlightAssignment> findPlannedFlightAssignment();
+	@Query("SELECT fa FROM FlightAssignment fa JOIN fa.leg l WHERE l.status = 'ON_TIME' OR l.status='DELAYED' AND  fa.flightCrewMember.id= :id")
+	List<FlightAssignment> findPlannedFlightAssignment(int id);
 
 	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.id = :id")
 	FlightAssignment findFlightAssignmentById(int id);

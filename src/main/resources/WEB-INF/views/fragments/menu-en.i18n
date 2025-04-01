@@ -46,5 +46,6 @@ master.menu.user-account.consumer-profile = Consumer profile
 
 # master.menu.flight-crew-member ####################################################
 master.menu.flight-crew-member = Flight Crew Member
-master.menu.flight-crew-member.list-my-flights-assignments = Assignments List
+master.menu.flight-crew-member.list-my-completed-flights-assignments = Completed Flight Assignments List
+master.menu.flight-crew-member.list-my-planned-flights-assignments = Planned Flight Assignments List
 master.menu.flight-crew-member.create-flight-assignment = Create Assignment
