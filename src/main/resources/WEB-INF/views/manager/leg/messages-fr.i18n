@@ -1,0 +1,35 @@
+# messages-es.i18n
+ 
+manager.leg.list.title = Liste du sections
+
+
+manager.leg.list.label.flightNumber = Numéro du vol
+manager.leg.list.label.scheduledDeparture = Date de départ
+manager.leg.list.label.scheduledArrival = Date d'arrivée
+manager.leg.list.label.status = Status
+manager.leg.list.button.create = Créer
+  
+  manager.leg.form.title = Détails du section
+  manager.leg.form.label.flightNumber = Numéro du vol
+manager.leg.form.label.scheduledDeparture = Date de départ
+manager.leg.form.label.scheduledArrival = Date d'arrivée
+manager.leg.form.label.status = Status
+manager.leg.form.label.travelHours = Durée (heures)
+manager.leg.form.label.departureAirport = Aéroport de départ
+manager.leg.form.label.arrivalAirport = Aéroport d'arrivée
+manager.leg.form.label.aircraft = Aéronef
+
+manager.leg.form.button.publish = Poste
+manager.leg.form.button.delete = Éliminer
+manager.leg.form.button.update = Mise à jour
+
+manager.leg.form.button.create = Créer
+
+
+
+
+acme.validation.leg.duplicated-flight-number.message = Il existe déjà une autre section avec ce numéro de vol
+acme.validation.leg.wrong-order-dates.message = La date de départ ne peut être postérieure à la date d'arrivée
+acme.validation.leg.wrong-iata.message = Le numéro de vol doit être créé avec le code IATA correspondant suivi de quatre numéros d'identification
+acme.validation.leg.overlapping-aircraft.message = Les aéroports ne peuvent pas se chevaucher
+acme.validation.leg.same-airport.message = L'aéroport de départ ne peut pas être le même que l'aéroport d'arrivée.

@@ -35,8 +35,11 @@ master.menu.provider.favourite-link = Lien favori
 master.menu.consumer = Consommateur
 master.menu.consumer.favourite-link = Lien favori
 
+# master.menu.manager ########################################################
+ master.menu.manager = Manager
+ master.menu.manager.list-my-flights = List Veules
+ 
 # master.menu.customer ##########################################################
-
 master.menu.customer = Client
 master.menu.customer.list-my-bookings = Liste des réservations
 

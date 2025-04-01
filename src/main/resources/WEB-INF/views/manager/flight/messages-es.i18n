@@ -1,0 +1,31 @@
+# messages-es.i18n
+ 
+manager.flight.list.title = Lista de Vuelos
+manager.flight.list.label.id = ID
+manager.flight.list.label.tag = Etiqueta
+manager.flight.list.label.selfTransfer = Autotransferencia
+manager.flight.list.label.cost = Coste
+manager.flight.list.label.description = Descripción
+
+manager.flight.form.title = Detalles del vuelo
+manager.flight.form.label.tag = Etiqueta
+manager.flight.form.label.selfTransfer = Autotransferencia
+manager.flight.form.label.cost = Coste
+ manager.flight.form.label.description = Descripción
+manager.flight.form.label.scheduledDeparture = Fecha de salida
+manager.flight.form.label.scheduledArrival = Fecha de llegada
+manager.flight.form.label.originCity = Ciudad de salida
+manager.flight.form.label.destinationCity = Ciudad de llegada
+manager.flight.form.label.lavoyers = Escalas
+manager.flight.list.button.legs = Lista de sus tramos
+manager.flight.list.button.create = Crear
+manager.flight.form.button.publish = Publicar
+manager.flight.form.button.delete = Eliminar
+manager.flight.form.button.update = Actualizar
+manager.flight.form.button.create = Crear
+
+
+acme.validation.flight.any-legs.message = Imposible publicar sin tramos
+acme.validation.flight.no-published-legs.message = Imposible publicar con tramos sin publicar
+
+ 

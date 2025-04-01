@@ -45,6 +45,10 @@
 		<acme:menu-option code="master.menu.consumer" access="hasRealm('Consumer')">
 			<acme:menu-suboption code="master.menu.consumer.favourite-link" action="http://www.example.com/"/>
 		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.manager" access="hasRealm('Manager')">
+ 			<acme:menu-suboption code="master.menu.manager.list-my-flights" action="/manager/flight/list"/>
+ 		</acme:menu-option>
 	</acme:menu-left>
 	
 	
@@ -63,4 +67,3 @@
 		</acme:menu-option>
 	</acme:menu-right>
 </acme:menu-bar>
-

@@ -1,6 +1,7 @@
 
 package acme.entities.flight;
 
+import java.util.List;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -15,11 +16,19 @@ import acme.entities.leg.Leg;
 @Repository
 public interface FlightRepository extends AbstractRepository {
 
+	@Query("select f from Flight f where f.id = :id")
+	Flight findFlightById(int id);
+
+	@Query("select f from Flight f where f.manager.id = :id")
+	List<Flight> findFlightByManagerId(int id);
+
 	@Query("select l from Leg l where l.flight.id = :flightId order by l.scheduledDeparture asc")
-	Optional<Leg> getFisrtLegOfFlight(@Param("flightId") int flightId);
+	List<Leg> getFisrtLegOfFlight(int flightId);
 
 	@Query("select l from Leg l where l.flight.id = :flightId order by l.scheduledDeparture desc")
-	Optional<Leg> getLastLegOfFlight(@Param("flightId") int flightId);
+	List<Leg> getLastLegOfFlight(int flightId);
+	Optional<Leg> getFisrtLegOfFlight(@Param("flightId") int flightId);
+
 
 	@Query("select count(l) from Leg l where l.flight.id = :flightId")
 	Integer getNumberOfLegsOfFlight(@Param("flightId") int flightId);
