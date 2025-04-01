@@ -1,9 +1,8 @@
 
 package acme.entities.flight;
 
-import java.util.List;
 import java.util.Collection;
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -27,8 +26,6 @@ public interface FlightRepository extends AbstractRepository {
 
 	@Query("select l from Leg l where l.flight.id = :flightId order by l.scheduledDeparture desc")
 	List<Leg> getLastLegOfFlight(int flightId);
-	Optional<Leg> getFisrtLegOfFlight(@Param("flightId") int flightId);
-
 
 	@Query("select count(l) from Leg l where l.flight.id = :flightId")
 	Integer getNumberOfLegsOfFlight(@Param("flightId") int flightId);

@@ -29,7 +29,16 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int masterId;
+		masterId = super.getRequest().getData("masterId", int.class);
+
+		Manager manager;
+		manager = this.repository.findFlightById(masterId).getManager();
+
+		status = manager != null && super.getRequest().getPrincipal().hasRealm(manager);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -78,7 +87,16 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void validate(final Leg leg) {
-		;
+		{
+			boolean correctFlightNumber = true;
+
+			String airlineIATACode;
+			airlineIATACode = leg.getAircraft().getAirline().getIataCode();
+
+			correctFlightNumber = leg.getFlightNumber().contains(airlineIATACode) ? true : false;
+
+			super.state(correctFlightNumber, "*", "acme.validation.flight.wrong-IATA-code.message");
+		}
 	}
 
 	@Override

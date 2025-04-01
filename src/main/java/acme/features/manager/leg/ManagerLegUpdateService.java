@@ -83,7 +83,16 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void validate(final Leg leg) {
-		;
+		{
+			boolean correctFlightNumber = true;
+
+			String airlineIATACode;
+			airlineIATACode = leg.getAircraft().getAirline().getIataCode();
+
+			correctFlightNumber = leg.getFlightNumber().contains(airlineIATACode) ? true : false;
+
+			super.state(correctFlightNumber, "*", "acme.validation.flight.wrong-IATA-code.message");
+		}
 	}
 
 	@Override

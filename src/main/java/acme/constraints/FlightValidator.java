@@ -42,21 +42,6 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 
 			super.state(context, statusNumberLegs, "tag", "acme.validation.flight.any-legs.message");
 		}
-		/*
-		 * {
-		 * boolean statusLegsPublished = true;
-		 * 
-		 * List<Leg> flightLegs = this.repository.getLegsOfFlight(value.getId());
-		 * 
-		 * for (Leg l : flightLegs)
-		 * if (Boolean.TRUE.equals(l.getDraftMode())) {
-		 * statusLegsPublished = false;
-		 * break;
-		 * }
-		 * 
-		 * super.state(context, statusLegsPublished, "tag", "acme.validation.flight.no-published-legs.message");
-		 * }
-		 */
 		result = !super.hasErrors(context);
 
 		return result;
