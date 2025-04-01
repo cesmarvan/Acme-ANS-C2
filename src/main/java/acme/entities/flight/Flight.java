@@ -110,11 +110,6 @@ public class Flight extends AbstractEntity {
 		return repository.getNumberOfLegsOfFlight(this.getId());
 	}
 
-	@Mandatory
-	@Valid
-	@Automapped
-	private Boolean	draftMode;
-
 	// Relationships
 
 	@Mandatory
