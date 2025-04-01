@@ -74,30 +74,23 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 	@Override
 	public void validate(final FlightAssignment flightAssignment) {
 		{
-
-			List<CrewDuties> ls = this.flightAssignmentRepository.findPilotsInLegByLegId(flightAssignment.getLeg().getId());
-			boolean status = true;
-			if (flightAssignment.getDuty().equals(CrewDuties.PILOT))
-				if (ls.contains(CrewDuties.PILOT))
-					status = false;
-			if (flightAssignment.getDuty().equals(CrewDuties.COPILOT))
-				if (ls.contains(CrewDuties.COPILOT))
-					status = false;
-			super.state(status, "duty", "acme.validation.confirmation.message.moreThanOnePilotOrCopilot");
-
+			if (flightAssignment.getLeg() != null) {
+				List<CrewDuties> ls = this.flightAssignmentRepository.findPilotsInLegByLegId(flightAssignment.getLeg().getId());
+				boolean status = true;
+				if (flightAssignment.getDuty().equals(CrewDuties.PILOT))
+					if (ls.contains(CrewDuties.PILOT))
+						status = false;
+				if (flightAssignment.getDuty().equals(CrewDuties.COPILOT))
+					if (ls.contains(CrewDuties.COPILOT))
+						status = false;
+				super.state(status, "duty", "validation.error.messagemoreThanOnePilotOrCopilot");
+			}
 		}
 		{
 
 			boolean crewMemberAvailable;
 			crewMemberAvailable = flightAssignment.getFlightCrewMember().getStatus() == AvailabilityStatus.AVAILABLE;
-			super.state(crewMemberAvailable, "flightCrewMember", "acme.validation.confirmation.message.crewMemberNotAvailable");
-
-		}
-
-		{
-			boolean onlyOneLeg;
-			onlyOneLeg = this.flightAssignmentRepository.findLegsByCrewMemberId(flightAssignment.getFlightCrewMember().getId()).isEmpty();
-			super.state(onlyOneLeg, "flightCrewMember", "acme.validation.confirmation.message.crewMemberAlreadyInLeg");
+			super.state(crewMemberAvailable, "flightCrewMember", "validation.error.messagecrewMemberNotAvailable");
 
 		}
 	}

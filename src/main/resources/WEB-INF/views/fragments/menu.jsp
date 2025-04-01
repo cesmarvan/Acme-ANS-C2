@@ -48,6 +48,8 @@
 			<acme:menu-suboption code="master.menu.flight-crew-member.list-my-completed-flights-assignments" action="/flight-crew-member/flight-assignment/list-completed"/>
 			<acme:menu-suboption code="master.menu.flight-crew-member.list-my-planned-flights-assignments" action="/flight-crew-member/flight-assignment/list-planned"/>
 			<acme:menu-suboption code="master.menu.flight-crew-member.create-flight-assignment" action="/flight-crew-member/flight-assignment/create"/>
+			<acme:menu-suboption code="master.menu.flight-crew-member.list-my-activity-logs" action="/flight-crew-member/activity-log/list"/>
+			<acme:menu-suboption code="master.menu.flight-crew-member.create-activity-logs" action="/flight-crew-member/activity-log/create"/>
 		</acme:menu-option>
 
 	<acme:menu-right>		

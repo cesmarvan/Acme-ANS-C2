@@ -23,7 +23,7 @@ public @interface ValidLongText {
 
 	// Standard validation properties -----------------------------------------
 
-	String message() default "{acme.validation.text.message}";
+	String message() default "This text cannot be nor empty nor blank";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

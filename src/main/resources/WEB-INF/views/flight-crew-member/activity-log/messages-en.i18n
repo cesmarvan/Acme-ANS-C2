@@ -10,19 +10,14 @@ flightCrewMember.flightAssignment.list.label.remarks = Remarks
 
 ################## CREATE ##########################
 flight-crew-member.flight-assignment.form.title = Flight Assignments
-flightCrewMember.flightAssignment.form.label.duty = Duty
-flightCrewMember.flightAssignment.form.label.lastUpdate = Last Update
-flightCrewMember.flightAssignment.form.label.status = Status
-flightCrewMember.flightAssignment.form.label.remarks = Remarks
-flightCrewMember.flightAssignment.form.label.leg = Leg
-flightCrewMember.flightAssignment.form.label.flightCrewMember = Crew Member
-validation.error.messagemoreThanOnePilotOrCopilot = This leg has already a Pilot or Copilot assigned
-validation.error.messagecrewMemberNotAvailable = This Crew Member is currently not available for assignment
-validation.error.messagecrewMemberAlreadyInLeg = This Crew Member is already assigned to another Leg
-validation.error.messageblankOrEmptyString = The remark cannot be empty
+flightCrewMember.activityLog.list.label.registrationMoment = Registration Moment
+flightCrewMember.activityLog.list.label.typeOfIncident = Type of Incident
+flightCrewMember.activityLog.list.label.description = Description
+flightCrewMember.activityLog.list.label.severity = Severity
+flightCrewMember.activityLog.list.label.flightAssignment = Flight Assignment
 
 ################## BUTTONS ##########################
-flightCrewMember.flightAssignment.list.button.create = Create Flight Assignment
+flightCrewMember.activityLog.list.button.create = Create Activity Log
 flightCrewMember.flightAssignment.form.button.create = Create
 flightCrewMember.flightAssignment.form.button.update = Update
 flightCrewMember.flightAssignment.form.button.delete = Delete
