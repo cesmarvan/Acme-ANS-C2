@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.flightAssignment.CrewDuties;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Leg;
 import acme.realms.FlightCrewMember;
@@ -42,9 +43,9 @@ public interface FlightAssignmentRepository extends AbstractRepository {
 	@Query("SELECT fa.flightCrewMember FROM  FlightAssignment fa WHERE fa.leg.id= :id")
 	List<FlightCrewMember> findCrewMembersByLegId(int id);
 
-	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.leg.id= :id AND fa.duty = 'PILOT'")
-	List<FlightAssignment> findPilotsInLegByLegId(int id);
-
-	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.leg.id= :id AND fa.duty = 'CO_PILOT'")
-	List<FlightAssignment> findCopilotsInLegByLegId(int id);
+	@Query("SELECT fa.duty FROM FlightAssignment fa WHERE fa.leg.id= :id")
+	List<CrewDuties> findPilotsInLegByLegId(int id);
+	//
+	//	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.leg.id= :id AND fa.duty = 'COPILOT'")
+	//	List<FlightAssignment> findCopilotsInLegByLegId(int id);
 }
