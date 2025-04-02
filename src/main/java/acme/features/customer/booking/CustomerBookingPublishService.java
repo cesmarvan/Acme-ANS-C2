@@ -63,7 +63,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		if (booking.getLastCreditCardNibble() == null || booking.getLastCreditCardNibble().isBlank() || booking.getLastCreditCardNibble().isEmpty()) {
 			String lastNibbleStored = this.repository.findBookingById(booking.getId()).getLastCreditCardNibble();
 			if (lastNibbleStored == null || lastNibbleStored.isBlank() || lastNibbleStored.isEmpty())
-				super.state(false, "lastNibble", "acme.validation.confirmation.message.lastCreditCardNibble");
+				super.state(false, "lastCreditCardNibble", "acme.validation.confirmation.message.lastCreditCardNibble");
 		}
 	}
 
@@ -71,7 +71,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 	public void perform(final Booking booking) {
 		if (booking.getLastCreditCardNibble() == null || booking.getLastCreditCardNibble().isBlank() || booking.getLastCreditCardNibble().isEmpty())
 			booking.setLastCreditCardNibble(this.repository.findBookingById(booking.getId()).getLastCreditCardNibble());
-		booking.setIsPublished(false);
+		booking.setIsPublished(true);
 		this.repository.save(booking);
 	}
 

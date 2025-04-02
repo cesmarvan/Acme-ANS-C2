@@ -20,8 +20,6 @@ import acme.realms.Customer;
 @GuiService
 public class CustomerBookingCreateService extends AbstractGuiService<Customer, Booking> {
 
-	// Internal state ---------------------------------------------------------
-
 	@Autowired
 	private CustomerBookingRepository	repository;
 

@@ -47,6 +47,7 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 		booking = this.repository.findBookingById(id);
 
 		super.getBuffer().addData(booking);
+		super.getResponse().addGlobal("masterId", booking.getId());
 	}
 
 	@Override
