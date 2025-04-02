@@ -10,6 +10,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
+import acme.entities.aircraft.AircraftStatus;
 import acme.entities.airport.Airport;
 import acme.entities.flight.Flight;
 import acme.entities.leg.Leg;
@@ -84,14 +85,11 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 	@Override
 	public void validate(final Leg leg) {
 		{
-			boolean correctFlightNumber = true;
+			boolean datesNotNull = true;
 
-			String airlineIATACode;
-			airlineIATACode = leg.getAircraft().getAirline().getIataCode();
+			datesNotNull = leg.getScheduledArrival() != null && leg.getScheduledDeparture() != null;
 
-			correctFlightNumber = leg.getFlightNumber().contains(airlineIATACode) ? true : false;
-
-			super.state(correctFlightNumber, "*", "acme.validation.flight.wrong-IATA-code.message");
+			super.state(datesNotNull, "*", "acme.validation.leg.null-dates.message");
 		}
 	}
 
@@ -111,7 +109,8 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 
 		SelectChoices aircraftChoices;
 		List<Aircraft> aircrafts = this.repository.findAllAircrafts();
-		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", leg.getAircraft());
+		List<Aircraft> ableAircrafts = aircrafts.stream().filter(a -> a.getStatus().equals(AircraftStatus.ACTIVE_SERVICE)).toList();
+		aircraftChoices = SelectChoices.from(ableAircrafts, "registrationNumber", leg.getAircraft());
 
 		SelectChoices airportDepartureChoices;
 		SelectChoices airportArrivalChoices;

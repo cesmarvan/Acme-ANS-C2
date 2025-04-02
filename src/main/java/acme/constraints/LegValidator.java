@@ -51,15 +51,22 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 			}
 			{
 
-				boolean rightDatesOrder;
+				boolean rightDatesOrder = true;
 
-				rightDatesOrder = value.getScheduledArrival() == null || value.getScheduledDeparture() == null || value.getScheduledArrival().after(value.getScheduledDeparture());
-				super.state(context, rightDatesOrder, "scheduledArrival", "acme.validation.leg.wrong-order-dates.message");
+				if (value.getScheduledDeparture() == null)
+					super.state(context, false, "scheduledDeparture", "acme.validation.leg.null-dates.message");
+				if (value.getScheduledArrival() == null)
+					super.state(context, false, "scheduledArrival", "acme.validation.leg.null-dates.message");
+				else {
+					rightDatesOrder = value.getScheduledArrival().after(value.getScheduledDeparture());
+					super.state(context, rightDatesOrder, "scheduledArrival", "acme.validation.leg.wrong-order-dates.message");
+				}
+
 			}
 			{
 				boolean overlappingAircraft = true;
 
-				if (value.getAircraft() != null) {
+				if (value.getAircraft() != null && value.getScheduledArrival() != null && value.getScheduledDeparture() != null) {
 
 					List<Leg> legsSameAircraft = this.repository.findAllLegsByAircraftRegistrationNumber(value.getAircraft().getRegistrationNumber());
 
@@ -79,6 +86,20 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 				sameAirport = value.getDepartureAirport() == null && value.getArrivalAirport() == null ? true : value.getDepartureAirport() != value.getArrivalAirport();
 
 				super.state(context, sameAirport, "arrivalAirport", "acme.validation.leg.same-airport.message");
+			}
+			{
+				boolean correctFlightNumber = false;
+
+				if (value.getAircraft() == null)
+					super.state(context, correctFlightNumber, "*", "acme.validation.leg.null-aircraft.message");
+				else {
+					String airlineIATACode;
+					airlineIATACode = value.getAircraft().getAirline().getIataCode();
+
+					correctFlightNumber = value.getFlightNumber().contains(airlineIATACode) ? true : false;
+
+					super.state(context, correctFlightNumber, "flightNumber", "acme.validation.leg.wrong-IATA-code.message");
+				}
 			}
 		}
 		result = !super.hasErrors(context);

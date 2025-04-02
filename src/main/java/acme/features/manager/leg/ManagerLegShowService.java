@@ -10,6 +10,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
+import acme.entities.aircraft.AircraftStatus;
 import acme.entities.airport.Airport;
 import acme.entities.leg.Leg;
 import acme.entities.leg.LegStatus;
@@ -59,7 +60,8 @@ public class ManagerLegShowService extends AbstractGuiService<Manager, Leg> {
 
 		SelectChoices aircraftChoices;
 		List<Aircraft> aircrafts = this.repository.findAllAircrafts();
-		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", leg.getAircraft());
+		List<Aircraft> ableAircrafts = aircrafts.stream().filter(a -> a.getStatus().equals(AircraftStatus.ACTIVE_SERVICE)).toList();
+		aircraftChoices = SelectChoices.from(ableAircrafts, "registrationNumber", leg.getAircraft());
 
 		SelectChoices airportDepartureChoices;
 		SelectChoices airportArrivalChoices;
