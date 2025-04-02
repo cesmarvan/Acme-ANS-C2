@@ -1,0 +1,26 @@
+# messages-en.i18n
+
+administrator.airline.list.title = Airlines List
+administrator.airline.list.label.name = Name
+administrator.airline.list.label.iataCode = IATA Code
+administrator.airline.list.label.website = Web
+
+administrator.airline.list.button.create = Create
+
+
+administrator.airline.form.title = Airline details
+
+administrator.airline.form.label.name = Name
+administrator.airline.form.label.iataCode = IATA Code
+administrator.airline.form.label.website = Web
+administrator.airline.form.label.type = Type
+administrator.airline.form.label.foundationMoment = Foundation Moment
+administrator.airline.form.label.email = Email
+administrator.airline.form.label.phoneNumber = Phone number
+administrator.airline.form.label.confirmation = Confirmation
+
+administrator.airline.form.button.update = Update
+administrator.airline.form.button.create = Create
+
+acme.validation.airline.no-confirmation.message = You must confirm
+acme.validation.airline.duplicated-iata-code.message = That IATA already exists 

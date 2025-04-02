@@ -24,7 +24,11 @@ public class ManagerLegListService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		Manager manager;
+		manager = (Manager) super.getRequest().getPrincipal().getActiveRealm();
+		status = super.getRequest().getPrincipal().hasRealm(manager);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override

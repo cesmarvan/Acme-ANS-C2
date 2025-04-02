@@ -1,5 +1,5 @@
 
-package acme.features.administrator.airport;
+package acme.features.administrator.airline;
 
 import java.util.List;
 
@@ -9,13 +9,13 @@ import acme.client.components.models.Dataset;
 import acme.client.components.principals.Administrator;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.airport.Airport;
+import acme.entities.airline.Airline;
 
 @GuiService
-public class AdministratorAirportListService extends AbstractGuiService<Administrator, Airport> {
+public class AdministratorAirlineListService extends AbstractGuiService<Administrator, Airline> {
 
 	@Autowired
-	private AdministratorAirportRepository repository;
+	private AdministratorAirlineRepository repository;
 
 
 	@Override
@@ -29,20 +29,21 @@ public class AdministratorAirportListService extends AbstractGuiService<Administ
 
 	@Override
 	public void load() {
-		List<Airport> airports;
+		List<Airline> airlines;
 
-		airports = this.repository.findAllAirports();
+		airlines = this.repository.findAllAirlines();
 
-		super.getBuffer().addData(airports);
+		super.getBuffer().addData(airlines);
 	}
 
 	@Override
-	public void unbind(final Airport airport) {
+	public void unbind(final Airline airline) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(airport, "name", "iataCode", "operationalScope");
-		super.addPayload(dataset, airport, "city");
+		dataset = super.unbindObject(airline, "name", "iataCode", "website");
+		super.addPayload(dataset, airline, "name");
 
 		super.getResponse().addData(dataset);
 	}
+
 }

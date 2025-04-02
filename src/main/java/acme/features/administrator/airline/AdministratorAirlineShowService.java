@@ -1,5 +1,5 @@
 
-package acme.features.administrator.airport;
+package acme.features.administrator.airline;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -8,16 +8,16 @@ import acme.client.components.principals.Administrator;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.airport.Airport;
-import acme.entities.airport.AirportOperationalScope;
+import acme.entities.airline.Airline;
+import acme.entities.airline.AirlineType;
 
 @GuiService
-public class AdministratorAirportShowService extends AbstractGuiService<Administrator, Airport> {
+public class AdministratorAirlineShowService extends AbstractGuiService<Administrator, Airline> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AdministratorAirportRepository repository;
+	private AdministratorAirlineRepository repository;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -33,27 +33,26 @@ public class AdministratorAirportShowService extends AbstractGuiService<Administ
 
 	@Override
 	public void load() {
-		Airport airport;
+		Airline airline;
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
-		airport = this.repository.findAirportById(id);
+		airline = this.repository.findAirlineById(id);
 
-		super.getBuffer().addData(airport);
+		super.getBuffer().addData(airline);
 	}
 
 	@Override
-	public void unbind(final Airport airport) {
+	public void unbind(final Airline airline) {
 		SelectChoices choices;
 		Dataset dataset;
 
-		choices = SelectChoices.from(AirportOperationalScope.class, airport.getOperationalScope());
+		choices = SelectChoices.from(AirlineType.class, airline.getType());
 
-		dataset = super.unbindObject(airport, "name", "iataCode", "operationalScope", "city", "country", "web", "emailAddress", "contactPhoneNumber");
+		dataset = super.unbindObject(airline, "name", "iataCode", "website", "type", "foundationMoment", "email", "phoneNumber");
 		dataset.put("confirmation", false);
-		dataset.put("operationalScopes", choices);
+		dataset.put("types", choices);
 
 		super.getResponse().addData(dataset);
 	}
-
 }
