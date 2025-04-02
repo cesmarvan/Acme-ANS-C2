@@ -47,13 +47,10 @@ public class ActivityLogUpdateService extends AbstractGuiService<FlightCrewMembe
 
 	@Override
 	public void bind(final ActivityLog activityLog) {
-		int crewMemberId = super.getRequest().getData("flightCrewMember", int.class);
-		FlightCrewMember crewMember = this.repository.findCrewMemberById(crewMemberId);
 
-		int flightAssignmentId = super.getRequest().getData("flightAssignment", int.class);
+		int flightAssignmentId = activityLog.getFlightAssignment().getId();
 		FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
 		super.bindObject(activityLog, "registrationMoment", "typeOfIncident", "description", "severity");
-
 		activityLog.setFlightAssignment(flightAssignment);
 	}
 
@@ -73,7 +70,7 @@ public class ActivityLogUpdateService extends AbstractGuiService<FlightCrewMembe
 		SelectChoices flightAssignmentChoices;
 
 		List<FlightAssignment> flightAssignmentList = this.repository.findAllFlightAssignments();
-		flightAssignmentChoices = SelectChoices.from(flightAssignmentList, "id", null);
+		flightAssignmentChoices = SelectChoices.from(flightAssignmentList, "id", activityLog.getFlightAssignment());
 
 		dataset = super.unbindObject(activityLog, "registrationMoment", "typeOfIncident", "description", "severity", "draftMode");
 

@@ -5,14 +5,15 @@
 
 <acme:form>
 	<acme:input-textarea
-	code="flightCrewMember.activityLog.form.label.typeOfIncident" path="typeOfIncident""/>
+	code="flightCrewMember.activityLog.form.label.typeOfIncident" path="typeOfIncident"/>
 	<acme:input-textarea
 	code="flightCrewMember.activityLog.form.label.description" path="description"/>
+	<acme:input-moment
+	code="flightCrewMember.activityLog.form.label.registrationMoment" path="registrationMoment"/>
 	<acme:input-integer
 	code="flightCrewMember.activityLog.form.label.severity" path="severity"/>
 	<acme:input-select 
 	code="flightCrewMember.activityLog.list.label.flightAssignment" path="flightAssignment" choices="${flightAssignments}"/>
-	
 	
 	<jstl:choose>
 		<jstl:when test="${acme:anyOf(_command,'show|update|delete|publish') && draftMode==true}">
