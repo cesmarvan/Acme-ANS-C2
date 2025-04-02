@@ -93,14 +93,14 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 
 			datesNotNull = !(leg.getScheduledArrival() == null || leg.getScheduledDeparture() == null);
 
-			super.state(datesNotNull, "*", "acme.validation.leg.null-dates.message");
+			super.state(datesNotNull, "scheduledDeparture", "acme.validation.leg.null-dates.message");
 		}
 		{
 			boolean aircraftNotNull = true;
 
 			aircraftNotNull = leg.getAircraft() != null;
 
-			super.state(aircraftNotNull, "*", "acme.validation.leg.null-aircraft.message");
+			super.state(aircraftNotNull, "aircraft", "acme.validation.leg.null-aircraft.message");
 		}
 	}
 

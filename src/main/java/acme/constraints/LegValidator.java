@@ -50,6 +50,13 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 				super.state(context, uniqueLeg, "flightNumber", "acme.validation.leg.duplicated-flight-number.message");
 			}
 			{
+				boolean notNullAircraft;
+
+				notNullAircraft = value.getAircraft() != null;
+
+				super.state(context, notNullAircraft, "aircraft", "javax.validation.constraints.NotNull.message");
+			}
+			{
 
 				boolean rightDatesOrder = true;
 
@@ -91,7 +98,7 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 				boolean correctFlightNumber = false;
 
 				if (value.getAircraft() == null)
-					super.state(context, correctFlightNumber, "*", "acme.validation.leg.null-aircraft.message");
+					super.state(context, correctFlightNumber, "aircraft", "acme.validation.leg.null-aircraft.message");
 				else {
 					String airlineIATACode;
 					airlineIATACode = value.getAircraft().getAirline().getIataCode();
