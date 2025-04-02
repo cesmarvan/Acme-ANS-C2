@@ -1,0 +1,40 @@
+# messages-es.i18n
+ 
+ manager.leg.list.title = Lista de tramos
+ 
+ 
+manager.leg.list.label.flightNumber = Número de vuelo
+manager.leg.list.label.scheduledDeparture = Fecha de salida
+manager.leg.list.label.scheduledArrival = Fecha de llegada
+manager.leg.list.label.status = Status
+manager.leg.list.button.create = Crear
+
+
+manager.leg.form.title = Detalles del tramo
+manager.leg.form.label.flightNumber = Número de vuelo
+manager.leg.form.label.scheduledDeparture = Fecha de salida
+manager.leg.form.label.scheduledArrival = Fecha de llegada
+manager.leg.form.label.status = Status
+manager.leg.form.label.travelHours = Duración (horas)
+manager.leg.form.label.departureAirport = Aeropuerto de salida
+manager.leg.form.label.arrivalAirport = Aeropuerto de llegada
+manager.leg.form.label.aircraft = Aeronave
+
+manager.leg.form.button.publish = Publicar
+manager.leg.form.button.delete = Eliminar
+manager.leg.form.button.update = Actualizar
+
+manager.leg.form.button.create = Crear
+
+
+
+acme.validation.leg.duplicated-flight-number.message = Ya existe otro tramo con este Número de Vuelo
+acme.validation.leg.null-dates.message = La fecha no puede ser nula o no tener un formato correcto
+acme.validation.leg.wrong-order-dates.message = La fecha de salida no puede ser posterior a la de llegada
+acme.validation.leg.wrong-iata.message = El Número de Vuelo debe crearse con el código IATA correspondiente seguido de cuatro números identificativos
+acme.validation.leg.overlapping-aircraft.message = Los aviones no pueden solaparse
+acme.validation.leg.same-airport.message = El aeropuerto de salida no puede ser el mismo que el de llegada
+acme.validation.leg.no-correct-dates.message = Fechas incorrectas: El tramo i no puede llegar después de la salida del tramo i+1
+acme.validation.leg.no-correct-airports.message  = Aeropuertos incorrectos: El aeropuerto de llegada del tramo i debe ser el aeropuerto de salida del tramo i+1
+acme.validation.leg.null-aircraft.message = Debe introducir un avión
+acme.validation.leg.wrong-IATA-code.message = Código IATA inválido

@@ -1,0 +1,19 @@
+# validation-en.i18n
+
+
+acme.validation.header.message = This value cannot be empty.
+acme.validation.identifier.message = This identifier is incorrect, it must follow the structure: "^[A-Z]{2,3}\\d{6}$"
+acme.validation.long-text.message = It does not follow the format, it must be between 1 and 255 characters.
+acme.validation.short-text.message = It does not follow the format, it must be between 1 and 50 characters.
+acme.validation.phone-number.message = This phone number is incorrect, it must follow the structure: "^\\+?\\d{10,15}$"
+acme.validation.iata-code.message = This IATA code is incorrect, it must follow the structure: "^\\+?\\d{6,15}$"
+
+acme.validation.confirmation.message.lastCreditCardNibble = The last nibble is required when the booking is published.
+acme.validation.confirmation.message.update = You cannot update a booking once it is published.
+acme.validation.confirmation.message.booking.locator-code = This locator code is already associated with another booking.
+
+acme.validation.Customer.NotNull.message = This value cannot be empty.
+acme.validation.Customer.identifier.message = This identifier is incorrect, it must follow the structure: "^[A-Z]{2,3}\\d{6}$"
+acme.validation.Customer.phoneNumber.message = This phone number is incorrect, it must follow the structure: "^\\+?\\d{10,15}$"
+acme.validation.Customer.address.message = This address does not follow the format, it must be between 1 and 255 characters.
+acme.validation.Customer.city.message = This city does not follow the

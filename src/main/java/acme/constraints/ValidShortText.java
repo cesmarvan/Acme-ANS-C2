@@ -25,7 +25,7 @@ public @interface ValidShortText {
 
 	// Standard validation properties -----------------------------------------
 
-	String message() default "{acme.validation.header.message}";
+	String message() default "{acme.validation.short-text.message}";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

@@ -1,0 +1,15 @@
+# messages-fr.i18n
+
+customer.passenger.list.title = Liste des passagers
+customer.passenger.form.title = Détails des passagers
+
+customer.passenger.list.label.fullName = Nom complet
+customer.passenger.list.label.email = Email
+customer.passenger.list.label.passportNumber = Passeport
+customer.passenger.list.label.dateOfBirth = Date de naissance
+customer.passenger.list.label.specialNeeds = Besoins spéciaux
+customer.passenger.list.label.isPublished = Est-il publié ?
+
+customer.passenger.form.button.create = Créer un passager
+customer.passenger.form.button.update = Mettre à jour le passager
+customer.passenger.form.button.publish = Publier le passager

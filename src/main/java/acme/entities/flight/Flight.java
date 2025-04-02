@@ -2,6 +2,7 @@
 package acme.entities.flight;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -15,6 +16,7 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.client.helpers.SpringHelper;
+import acme.constraints.ValidFlight;
 import acme.constraints.ValidLongText;
 import acme.constraints.ValidShortText;
 import acme.entities.leg.Leg;
@@ -25,6 +27,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@ValidFlight
 public class Flight extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
@@ -49,6 +52,11 @@ public class Flight extends AbstractEntity {
 	@Automapped
 	private String				description;
 
+	@Mandatory
+	@Valid
+	@Automapped
+	private Boolean				draftMode;
+
 	// Derived attributes
 
 
@@ -57,9 +65,9 @@ public class Flight extends AbstractEntity {
 		FlightRepository repository;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		java.util.Optional<Leg> leg = repository.getFisrtLegOfFlight(this.getId());
+		List<Leg> legs = repository.getFisrtLegOfFlight(this.getId());
 
-		return leg.isPresent() ? leg.get().getScheduledDeparture() : null;
+		return legs != null && !legs.isEmpty() ? legs.get(0).getScheduledDeparture() : null;
 	}
 
 	@Transient
@@ -67,9 +75,9 @@ public class Flight extends AbstractEntity {
 		FlightRepository repository;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		java.util.Optional<Leg> leg = repository.getLastLegOfFlight(this.getId());
+		List<Leg> legs = repository.getLastLegOfFlight(this.getId());
 
-		return leg.isPresent() ? leg.get().getScheduledArrival() : null;
+		return legs != null && !legs.isEmpty() ? legs.get(0).getScheduledArrival() : null;
 
 	}
 
@@ -78,9 +86,9 @@ public class Flight extends AbstractEntity {
 		FlightRepository repository;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		java.util.Optional<Leg> leg = repository.getFisrtLegOfFlight(this.getId());
+		List<Leg> legs = repository.getFisrtLegOfFlight(this.getId());
 
-		return leg.isPresent() ? leg.get().getDepartureAirport().getCity() : null;
+		return legs != null && !legs.isEmpty() ? legs.get(0).getDepartureAirport().getCity() : null;
 	}
 
 	@Transient
@@ -88,9 +96,9 @@ public class Flight extends AbstractEntity {
 		FlightRepository repository;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		java.util.Optional<Leg> leg = repository.getLastLegOfFlight(this.getId());
+		List<Leg> legs = repository.getLastLegOfFlight(this.getId());
 
-		return leg.isPresent() ? leg.get().getArrivalAirport().getCity() : null;
+		return legs != null && !legs.isEmpty() ? legs.get(0).getArrivalAirport().getCity() : null;
 
 	}
 

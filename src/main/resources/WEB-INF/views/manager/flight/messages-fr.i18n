@@ -1,0 +1,30 @@
+# messages-es.i18n
+ 
+manager.flight.list.title = Liste des vols
+manager.flight.list.label.id = ID
+manager.flight.list.label.tag = Étiqueter
+manager.flight.list.label.selfTransfer = Auto-transfert
+manager.flight.list.label.cost = Coût
+manager.flight.list.label.description = Description
+
+manager.flight.form.title = Détails du vol
+manager.flight.form.label.tag = Étiqueter
+manager.flight.form.label.selfTransfer = Auto-transfert
+manager.flight.form.label.cost = Coût
+ manager.flight.form.label.description = Description
+manager.flight.form.label.scheduledDeparture = Date de départ
+manager.flight.form.label.scheduledArrival = Date d'arrivée
+manager.flight.form.label.originCity = Ville de départ
+manager.flight.form.label.destinationCity = Ville d'arrivée
+manager.flight.form.label.lavoyers = Escales
+manager.flight.list.button.legs = Liste des segments
+manager.flight.list.button.create = Créer
+manager.flight.form.button.publish = Publier
+manager.flight.form.button.delete = Éliminer
+manager.flight.form.button.update = Mise à jour
+manager.flight.form.button.create = Créer
+
+
+
+acme.validation.flight.any-legs.message = Impossible de publier sans sections
+acme.validation.flight.no-published-legs.message = Impossible de publier avec des sections non publiées

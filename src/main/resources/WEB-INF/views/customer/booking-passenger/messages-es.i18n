@@ -1,0 +1,9 @@
+# messages-es.i18n
+
+customer.booking-passenger.list.title = Lista de reservas de pasajeros
+customer.booking-passenger.form.title = Crear una reserva de pasajeros
+
+customer.booking-passenger.list.label.passenger = Pasajero
+customer.booking-passenger.list.label.booking = Reserva
+
+acme.validation.confirmation.message.booking-passenger.create = Esa relación ya está creada

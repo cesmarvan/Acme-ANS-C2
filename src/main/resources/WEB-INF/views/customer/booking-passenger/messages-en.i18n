@@ -1,0 +1,9 @@
+# messages-en.i18n
+
+customer.booking-passenger.list.title = List of bookings passengers
+customer.booking-passenger.form.title = Create a booking passengers
+
+customer.booking-passenger.list.label.passenger = Passenger
+customer.booking-passenger.list.label.booking = Booking
+
+acme.validation.confirmation.message.booking-passenger.create = That relation is already created

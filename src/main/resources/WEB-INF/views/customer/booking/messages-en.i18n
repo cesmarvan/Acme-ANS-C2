@@ -1,0 +1,40 @@
+# messages-en.i18n
+
+customer.booking.form.title = Booking form 
+customer.booking.list.title = Booking list
+
+customer.booking.form.label.locatorCode = Locator Code
+customer.booking.form.label.purchaseMoment = Purchase moment
+customer.booking.form.label.travelClass = Travel class
+customer.booking.form.label.price = Price
+customer.booking.form.label.lastCreditCardNibble = Last Credit Card Nible
+
+customer.booking.form.button.duties = Duties
+customer.booking.form.button.update = Update
+customer.booking.form.button.delete = Delete
+customer.booking.form.button.publish = Publish
+customer.booking.form.button.create = Create
+customer.booking.form.button.passenger = List of passengers
+
+customer.booking.list.label.locatorCode =  Locator Code
+customer.booking.list.label.purchaseMoment = Purchase moment
+customer.booking.list.label.travelClass = Travel class
+customer.booking.list.label.price = Price
+customer.booking.list.label.lastCreditCardNibble = Last Credit Card Nible
+customer.booking.list.label.flight = Flight
+customer.booking.list.label.passenger = Passengers
+customer.booking.list.label.isPublished = Is it published?
+
+customer.booking.list.button.create = Create
+
+customer.booking.create.label.locatorCode =  Locator Code
+customer.booking.create.label.purchaseMoment = Purchase moment
+customer.booking.create.label.travelClass = Travel class
+customer.booking.create.label.price = Price
+customer.booking.create.label.lastCreditCardNibble = Last Credit Card Nible
+customer.booking.create.label.passenger = Passenger
+
+customer.booking-passenger.form.button.create = Associate passenger to a booking
+
+customer.booking.create.button.create = Create
+
