@@ -1,0 +1,27 @@
+# messages-fr.i18n
+
+administrator.airport.list.title = Liste des aéroports
+
+administrator.airport.list.label.name = Nom
+administrator.airport.list.label.iataCode = Code IATA
+administrator.airport.list.label.operationalScope = Portée opérationnelle
+
+administrator.airport.list.button.create = Créer
+
+administrator.airport.form.title = Détails de l'aéroport
+
+administrator.airport.form.label.name = Nom
+administrator.airport.form.label.iataCode = Code IATA
+administrator.airport.form.label.operationalScope = Portée opérationnelle
+administrator.airport.form.label.city = Ville
+administrator.airport.form.label.country = Pays
+administrator.airport.form.label.web = Web
+administrator.airport.form.label.emailAddress = Adresse e-mail
+administrator.airport.form.label.contactPhoneNumber = Numéro de téléphone
+administrator.airport.form.label.confirmation = Confirmation
+
+administrator.airport.form.button.update = Mettre à jour
+administrator.airport.form.button.create = Créer
+
+acme.validation.airport.no-confirmation.message = Vous devez confirmer
+acme.validation.airport.duplicated-iata-code.message = Que l'IATA existe déjà

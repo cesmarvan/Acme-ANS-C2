@@ -14,13 +14,7 @@
 	<acme:input-select code="manager.leg.form.label.departureAirport" path="departureAirport" choices="${departureAirports}"/>
 	<acme:input-select code="manager.leg.form.label.arrivalAirport" path="arrivalAirport" choices="${arrivalAirports}"/>
 	<acme:input-select code="manager.leg.form.label.aircraft" path="aircraft" choices="${aircrafts}"/>
-	
-	<%-- 
-	<acme:input-textbox code="manager.leg.form.label.departueAirport" path="departueAirport" />
-	<acme:input-textbox code="manager.leg.form.label.arrivalAirport" path="arrivalAirport" />
-	<acme:input-textbox code="manager.leg.form.label.aircraft" path="aircraft" />
-	<acme:input-textbox code="manager.leg.form.label.flight" path="flight" />
-	--%>	
+		
 	<jstl:choose>	 
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
 			<acme:submit code="manager.leg.form.button.publish" action="/manager/leg/publish"/>

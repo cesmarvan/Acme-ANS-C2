@@ -120,7 +120,14 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 					continue;
 				}
 
-			super.state(correctAirport, "*", "acme.validation.flight.no-correct-airports.message");
+			super.state(correctAirport, "*", "acme.validation.leg.no-correct-airports.message");
+		}
+		{
+			boolean aircraftNotNull = true;
+
+			aircraftNotNull = leg.getAircraft() != null;
+
+			super.state(aircraftNotNull, "aircraft", "acme.validation.leg.null-aircraft.message");
 		}
 	}
 
