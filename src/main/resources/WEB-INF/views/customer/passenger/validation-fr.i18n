@@ -1,0 +1,32 @@
+# validation-fr.i18n
+
+acme.validation.header.message = Cette valeur ne peut pas être vide
+acme.validation.identifier.message = Cet identifiant n'est pas correct, il doit suivre la structure : "^[A-Z]{2,3}\\d{6}$"
+acme.validation.long-text.message = Il ne respecte pas le format, il doit comporter entre 1 et 255 caractères
+acme.validation.short-text.message = Il ne respecte pas le format, il doit comporter entre 1 et 50 caractères
+acme.validation.phone-number.message = Ce numéro de téléphone n'est pas correct, il doit suivre la structure : "^\\+?\\d{6,15}$"
+acme.validation.iata-code.message = Ce code IATA n'est pas correct, il doit suivre la structure : "^\\+?\\d{6,15}$"
+
+
+acme.validation.confirmation.message.lastCreditCardNibble = Le dernier nibble est requis lorsque la réservation est publiée
+acme.validation.confirmation.message.update = Vous ne pouvez pas mettre à jour une réservation une fois qu'elle est publiée
+acme.validation.confirmation.message.booking.locator-code = Ce code de localisateur est déjà associé à une autre réservation
+
+
+acme.validation.Customer.NotNull.message = Cette valeur ne peut pas être vide.
+acme.validation.Customer.identifier.message = Cet identifiant n'est pas correct, il doit suivre la structure : "^[A-Z]{2,3}\\d{6}$"
+acme.validation.Customer.phoneNumber.message = Ce numéro de téléphone n'est pas correct, il doit suivre la structure : "^\\+?\\d{10,15}$"
+acme.validation.Customer.address.message = Cette adresse ne respecte pas le format, elle doit comporter entre 1 et 255 caractères.
+acme.validation.Customer.city.message = Cette ville ne respecte pas le format, elle doit comporter entre 1 et 255 caractères.
+acme.validation.Customer.country.message = Ce pays ne respecte pas le format, il doit comporter entre 1 et 255 caractères.
+acme.validation.Customer.earnedPoints.message = Le nombre de points gagnés doit être compris entre 0 et 500,000.
+acme.validation.Customer.identifier.name.message = Les deux premiers ou les trois premiers caractères de l'identifiant ne correspondent pas aux initiales du prénom et du nom du client.
+
+
+acme.validation.Passenger.invalid.message = Le passager contient des données invalides. Veuillez vérifier les champs et réessayer.
+acme.validation.Passenger.fullName.message = Le nom complet est obligatoire et doit suivre le format du texte long.
+acme.validation.Passenger.email.message = L'adresse e-mail n'est pas valide.
+acme.validation.Passenger.passportNumber.message = Le numéro de passeport n'est pas valide, il doit suivre le format : "^[A-Z0-9]{6,9}$".
+acme.validation.Passenger.dateOfBirth.message = La date de naissance doit être une date passée.
+acme.validation.Passenger.specialNeeds.message = Les besoins spéciaux ne peuvent pas dépasser 255 caractères.
+acme.validation.Passenger.customer.message = Le client ne peut pas être nul.

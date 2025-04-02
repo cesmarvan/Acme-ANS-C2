@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.booking.Booking;
 import acme.entities.booking.BookingPassenger;
 import acme.entities.passenger.Passenger;
 import acme.realms.Customer;
@@ -20,8 +21,12 @@ public interface CustomerPassengerRepository extends AbstractRepository {
 	Customer findCustomerById(@Param("customerId") Integer customerId);
 
 	@Query("select p from Passenger p where p.customer.userAccount.id = :customerId")
-	Collection<Passenger> findPassengerByCustomer(@Param("customerId") Integer customerId);
+	Collection<Passenger> findPassengerByCustomer(@Param("customerId") int customerId);
 
 	@Query("select bp from BookingPassenger bp where bp.passenger.id = :passengerId")
-	Collection<BookingPassenger> findBookingRecordByPassenger(@Param("passengerId") int passengerId);
+	Collection<BookingPassenger> findBookingPassengerByPassenger(@Param("passengerId") int passengerId);
+
+	@Query("select bk.booking from BookingPassenger bk where bk.passenger.id = :passengerId")
+	Collection<Booking> findBookingByPassenger(int passengerId);
+
 }

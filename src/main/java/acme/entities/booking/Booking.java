@@ -20,6 +20,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.client.helpers.SpringHelper;
+import acme.constraints.ValidBooking;
 import acme.entities.flight.Flight;
 import acme.entities.flight.FlightRepository;
 import acme.entities.passenger.Passenger;
@@ -30,9 +31,15 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@ValidBooking
 public class Booking extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
+
+	@Mandatory
+	@Valid
+	@Automapped
+	private Boolean				isPublished;
 
 	@Mandatory
 	@ValidString(pattern = "^[A-Z0-9]{6,8}$")
@@ -76,6 +83,8 @@ public class Booking extends AbstractEntity {
 	@Automapped
 	private String		lastCreditCardNibble;
 
+	// Relationships
+
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
@@ -85,10 +94,5 @@ public class Booking extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private Flight		flight;
-
-	@Mandatory
-	@Valid
-	@Automapped
-	private Boolean		isPublished;
 
 }

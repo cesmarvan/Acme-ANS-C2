@@ -67,9 +67,9 @@ public class CustomerBookingPassengerCreateService extends AbstractGuiService<Cu
 
 	@Override
 	public void validate(final BookingPassenger bookingPassenger) {
-		BookingPassenger br = this.repository.findBookingRecordById(bookingPassenger.getBooking().getId(), bookingPassenger.getPassenger().getId());
+		BookingPassenger br = this.repository.findBookingPassengerById(bookingPassenger.getBooking().getId(), bookingPassenger.getPassenger().getId());
 		if (br != null)
-			super.state(false, "*", "acme.validation.confirmation.message.booking-record.create");
+			super.state(false, "*", "acme.validation.confirmation.message.booking-passenger.create");
 	}
 
 	@Override
