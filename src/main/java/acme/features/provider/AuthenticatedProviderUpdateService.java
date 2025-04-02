@@ -1,5 +1,5 @@
 /*
- * AuthenticatedProviderCreateService.java
+ * AuthenticatedProviderUpdateService.java
  *
  * Copyright (C) 2012-2025 Rafael Corchuelo.
  *
@@ -10,34 +10,33 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.authenticated.provider;
+package acme.features.provider;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.principals.Authenticated;
-import acme.client.components.principals.UserAccount;
 import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.realms.Provider;
 
 @GuiService
-public class AuthenticatedProviderCreateService extends AbstractGuiService<Authenticated, Provider> {
+public class AuthenticatedProviderUpdateService extends AbstractGuiService<Authenticated, Provider> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	private AuthenticatedProviderRepository repository;
 
-	// AbstractService<Authenticated, Provider> ---------------------------
+	// AbstractService interface ----------------------------------------------ç
 
 
 	@Override
 	public void authorise() {
 		boolean status;
 
-		status = !super.getRequest().getPrincipal().hasRealmOfType(Provider.class);
+		status = super.getRequest().getPrincipal().hasRealmOfType(Provider.class);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -46,13 +45,9 @@ public class AuthenticatedProviderCreateService extends AbstractGuiService<Authe
 	public void load() {
 		Provider object;
 		int userAccountId;
-		UserAccount userAccount;
 
 		userAccountId = super.getRequest().getPrincipal().getAccountId();
-		userAccount = this.repository.findUserAccountById(userAccountId);
-
-		object = new Provider();
-		object.setUserAccount(userAccount);
+		object = this.repository.findProviderByUserAccountId(userAccountId);
 
 		super.getBuffer().addData(object);
 	}
@@ -78,10 +73,11 @@ public class AuthenticatedProviderCreateService extends AbstractGuiService<Authe
 
 	@Override
 	public void unbind(final Provider object) {
+		assert object != null;
+
 		Dataset dataset;
 
 		dataset = super.unbindObject(object, "company", "sector");
-
 		super.getResponse().addData(dataset);
 	}
 

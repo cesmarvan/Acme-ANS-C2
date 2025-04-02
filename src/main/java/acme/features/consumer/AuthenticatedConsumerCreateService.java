@@ -1,5 +1,5 @@
 /*
- * AuthenticatedConsumerUpdateService.java
+ * AuthenticatedConsumerCreateService.java
  *
  * Copyright (C) 2012-2025 Rafael Corchuelo.
  *
@@ -10,33 +10,34 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.authenticated.consumer;
+package acme.features.consumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.principals.Authenticated;
+import acme.client.components.principals.UserAccount;
 import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.realms.Consumer;
 
 @GuiService
-public class AuthenticatedConsumerUpdateService extends AbstractGuiService<Authenticated, Consumer> {
+public class AuthenticatedConsumerCreateService extends AbstractGuiService<Authenticated, Consumer> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	private AuthenticatedConsumerRepository repository;
 
-	// AbstractService interface ----------------------------------------------ç
+	// AbstractService<Authenticated, Consumer> ---------------------------
 
 
 	@Override
 	public void authorise() {
 		boolean status;
 
-		status = super.getRequest().getPrincipal().hasRealmOfType(Consumer.class);
+		status = !super.getRequest().getPrincipal().hasRealmOfType(Consumer.class);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -45,9 +46,13 @@ public class AuthenticatedConsumerUpdateService extends AbstractGuiService<Authe
 	public void load() {
 		Consumer object;
 		int userAccountId;
+		UserAccount userAccount;
 
 		userAccountId = super.getRequest().getPrincipal().getAccountId();
-		object = this.repository.findConsumerByUserAccountId(userAccountId);
+		userAccount = this.repository.findUserAccountById(userAccountId);
+
+		object = new Consumer();
+		object.setUserAccount(userAccount);
 
 		super.getBuffer().addData(object);
 	}
@@ -73,11 +78,10 @@ public class AuthenticatedConsumerUpdateService extends AbstractGuiService<Authe
 
 	@Override
 	public void unbind(final Consumer object) {
-		assert object != null;
-
 		Dataset dataset;
 
 		dataset = super.unbindObject(object, "company", "sector");
+
 		super.getResponse().addData(dataset);
 	}
 

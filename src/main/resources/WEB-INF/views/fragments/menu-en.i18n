@@ -53,3 +53,11 @@ master.menu.user-account.become-provider = Become a provider
 master.menu.user-account.provider-profile = Provider profile
 master.menu.user-account.become-consumer = Become a consumer
 master.menu.user-account.consumer-profile = Consumer profile
+
+# master.menu.flight-crew-member ####################################################
+master.menu.flight-crew-member = Flight Crew Member
+master.menu.flight-crew-member.list-my-completed-flights-assignments = Completed Flight Assignments List
+master.menu.flight-crew-member.list-my-planned-flights-assignments = Planned Flight Assignments List
+master.menu.flight-crew-member.create-flight-assignment = Create Assignment
+master.menu.flight-crew-member.list-my-activity-logs = Activity Logs
+master.menu.flight-crew-member.create-activity-logs = Create Activity Log

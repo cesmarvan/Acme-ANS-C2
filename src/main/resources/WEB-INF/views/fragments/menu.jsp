@@ -52,12 +52,16 @@
  			<acme:menu-suboption code="master.menu.manager.list-my-flights" action="/manager/flight/list"/>
  		</acme:menu-option>
 	</acme:menu-left>
-	
+
+	<acme:menu-option code="master.menu.flight-crew-member" access="hasRealm('FlightCrewMember')">
+			<acme:menu-suboption code="master.menu.flight-crew-member.list-my-completed-flights-assignments" action="/flight-crew-member/flight-assignment/list-completed"/>
+			<acme:menu-suboption code="master.menu.flight-crew-member.list-my-planned-flights-assignments" action="/flight-crew-member/flight-assignment/list-planned"/>
+			<acme:menu-suboption code="master.menu.flight-crew-member.list-my-activity-logs" action="/flight-crew-member/activity-log/list"/>
+		</acme:menu-option>
 	
 		<acme:menu-option code="master.menu.customer" access="hasRealm('Customer')">
 			<acme:menu-suboption code="master.menu.customer.list-my-bookings" action="/customer/booking/list"/>
 		</acme:menu-option>
-
 
 	<acme:menu-right>		
 		<acme:menu-option code="master.menu.user-account" access="isAuthenticated()">
