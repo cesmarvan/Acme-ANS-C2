@@ -22,7 +22,11 @@ public class ManagerFlightCreateService extends AbstractGuiService<Manager, Flig
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		Manager manager;
+		manager = (Manager) super.getRequest().getPrincipal().getActiveRealm();
+		status = super.getRequest().getPrincipal().hasRealm(manager);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override

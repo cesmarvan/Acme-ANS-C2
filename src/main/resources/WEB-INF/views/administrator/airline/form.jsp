@@ -4,8 +4,13 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<acme:input-textbox code="administrator.airline.form.label.name" path="name"/>	
-	<acme:input-textbox code="administrator.airline.form.label.iataCode" path="iataCode"/>
+	<acme:input-textbox code="administrator.airline.form.label.name" path="name"/>
+	<jstl:if test="${acme:anyOf(_command, 'show|update')}">
+		<acme:input-textbox code="administrator.airline.form.label.iataCode" path="iataCode" readonly="true"/>
+	</jstl:if>
+	<jstl:if test="${_command == 'create'}">
+		<acme:input-textbox code="administrator.airline.form.label.iataCode" path="iataCode"/>
+	</jstl:if>
 	<acme:input-url code="administrator.airline.form.label.website" path="website"/>
 	<acme:input-select code="administrator.airline.form.label.type" path="type" choices="${types}"/>
 	<acme:input-moment code="administrator.airline.form.label.foundationMoment" path="foundationMoment"/>

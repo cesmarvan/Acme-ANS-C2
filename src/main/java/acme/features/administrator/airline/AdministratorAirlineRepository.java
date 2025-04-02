@@ -19,7 +19,4 @@ public interface AdministratorAirlineRepository extends AbstractRepository {
 	@Query("select a from Airline a where a.iataCode = :iataCode")
 	Airline findAirlineByIATA(String iataCode);
 
-	//	@Query("select l from Leg l where l.aircraft.airline.iataCode = :iataCode")
-	//	List<Leg> findLegByAirlineIATACode(String iataCode);
-
 }
