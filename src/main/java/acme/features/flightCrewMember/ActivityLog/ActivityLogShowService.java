@@ -1,12 +1,9 @@
 
 package acme.features.flightCrewMember.ActivityLog;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
-import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.activityLog.ActivityLog;
@@ -49,17 +46,15 @@ public class ActivityLogShowService extends AbstractGuiService<FlightCrewMember,
 	@Override
 	public void unbind(final ActivityLog activityLog) {
 		Dataset dataset;
-		SelectChoices flightAssignmentChoices;
 
-		List<FlightAssignment> flightAssignmentList = this.repository.findAllFlightAssignments();
-		flightAssignmentChoices = SelectChoices.from(flightAssignmentList, "id", null);
+		FlightAssignment flightAssignment = this.repository.findFlightAssignmentByCrewMemberId(activityLog.getFlightAssignment().getFlightCrewMember().getId());
 
 		dataset = super.unbindObject(activityLog, "registrationMoment", "typeOfIncident", "description", "severity", "draftMode");
 
-		dataset.put("flightAssignments", flightAssignmentChoices);
-		dataset.put("flightAssignment", flightAssignmentChoices.getSelected().getKey());
+		dataset.put("flightAssignment", flightAssignment.getId());
 
 		super.getResponse().addData(dataset);
+
 	}
 
 }

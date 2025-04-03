@@ -1,0 +1,18 @@
+{
+	"sProcessing":     "Processing...",
+	"sSearch":         "Search:",
+	"sLengthMenu":     "Show _MENU_ items",
+	"sInfo":           "Showing data _START_ - _END_ out of _TOTAL_ data",
+	"sInfoEmpty":      "No items found",
+	"sInfoFiltered":   "(filtered from _MAX_ data)",
+	"sInfoPostFix":    "",
+	"sLoadingRecords": "Loading...",
+	"sZeroRecords":    "No data",
+	"sEmptyTable":     "No data",
+	"oPaginate": {
+	    "sFirst":      "First",
+	    "sPrevious":   "Previous",
+	    "sNext":       "Next",
+	    "sLast":       "Last"
+	}
+}

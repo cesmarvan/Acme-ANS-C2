@@ -75,18 +75,19 @@ public class FlighAssignmentCreateService extends AbstractGuiService<FlightCrewM
 			}
 		}
 		{
-
-			boolean crewMemberAvailable;
-			crewMemberAvailable = flightAssignment.getFlightCrewMember().getStatus() == AvailabilityStatus.AVAILABLE;
-			super.state(crewMemberAvailable, "flightCrewMember", "validation.error.messagecrewMemberNotAvailable");
-
+			if (flightAssignment.getFlightCrewMember() != null) {
+				boolean crewMemberAvailable;
+				crewMemberAvailable = flightAssignment.getFlightCrewMember().getStatus() == AvailabilityStatus.AVAILABLE;
+				super.state(crewMemberAvailable, "flightCrewMember", "validation.error.messagecrewMemberNotAvailable");
+			}
 		}
 
 		{
-			boolean onlyOneLeg;
-			onlyOneLeg = this.flightAssignmentRepository.findLegsByCrewMemberId(flightAssignment.getFlightCrewMember().getId()).isEmpty();
-			super.state(onlyOneLeg, "flightCrewMember", "validation.error.messagecrewMemberAlreadyInLeg");
-
+			if (flightAssignment.getFlightCrewMember() != null) {
+				boolean onlyOneLeg;
+				onlyOneLeg = this.flightAssignmentRepository.findLegsByCrewMemberId(flightAssignment.getFlightCrewMember().getId()).isEmpty();
+				super.state(onlyOneLeg, "flightCrewMember", "validation.error.messagecrewMemberAlreadyInLeg");
+			}
 		}
 	}
 
@@ -108,7 +109,7 @@ public class FlighAssignmentCreateService extends AbstractGuiService<FlightCrewM
 		dutyChoices = SelectChoices.from(CrewDuties.class, null);
 		statusChoices = SelectChoices.from(AssignmentStatus.class, null);
 
-		List<Leg> legList = this.flightAssignmentRepository.findAllLegs();
+		List<Leg> legList = this.flightAssignmentRepository.findAllPublishedLegs();
 		legChoices = SelectChoices.from(legList, "flightNumber", null);
 
 		List<FlightCrewMember> crewMemberList = this.flightAssignmentRepository.findAllCrewMembers();

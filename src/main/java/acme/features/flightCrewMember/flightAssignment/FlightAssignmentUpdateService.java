@@ -106,7 +106,7 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 		dutyChoices = SelectChoices.from(CrewDuties.class, null);
 		statusChoices = SelectChoices.from(AssignmentStatus.class, null);
 
-		List<Leg> legList = this.flightAssignmentRepository.findAllLegs();
+		List<Leg> legList = this.flightAssignmentRepository.findAllPublishedLegs();
 		legChoices = SelectChoices.from(legList, "flightNumber", null);
 
 		List<FlightCrewMember> crewMemberList = this.flightAssignmentRepository.findAllCrewMembers();

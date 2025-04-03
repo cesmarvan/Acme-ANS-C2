@@ -1,0 +1,5 @@
+key,registrationMoment,typeOfIncident,description,severity,key:flight-crew-member,key:flight-assignment
+log-01,2020/01/01 14:30,weather-related disruption,heavy rain and electric storm,7,member1,assigned-flight-01
+log-02,2020/01/01 18:30,route desviation,strong winds in the actual route,3,member2,assigned-flight-01
+log-03,2020/01/01 11:00,passenger issues,a passanger has started smoking in the airplane,7,member3,assigned-flight-02
+log-04,2020/01/01 20:45,mechanical failure,heavy rain and electric storm,7,member4,assigned-flight-01

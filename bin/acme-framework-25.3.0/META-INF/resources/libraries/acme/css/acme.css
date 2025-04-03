@@ -1,0 +1,268 @@
+/* acme.css
+ *
+ * Copyright (C) 2012-2025 Rafael Corchuelo.
+ *
+ * In keeping with the traditional purpose of furthering science, education 
+ * and research, it is the policy of the copyright owner to permit non-commercial 
+ * use and redistribution of this software. It has been tested carefully, but 
+ * it is not guaranteed for any particular purposes.  The copyright owner does 
+ * not offer any warranties or representations, nor do they accept any liabilities
+ * with respect to them.
+ * 
+ */
+
+/* Patches to Bootstrap ---------------------------------------------------- */
+
+h1 {
+	font-size: xx-large;
+	margin-bottom: 1rem;
+}
+
+h2 {
+	font-size: x-large;
+	font-weight: bold;
+}
+
+h3 {
+	font-size: large;
+	font-weight: bold;
+}
+
+h4 h5 h6 h7 {
+	font-size: medium;
+	font-weight: bold;
+}
+
+*:focus {
+	outline: none !important;
+	box-shadow: none !important;
+	border-color: Black !important; 
+}
+
+label {
+	margin-bottom: 0px;
+	font-weight: bold;
+}
+
+a, a:hover {
+	text-decoration: underline;
+}
+
+pre {
+	 word-wrap: break-word; 
+	 white-space: pre-wrap; 
+	 margin-left: 1em;
+	 margin-right: 1em;
+}
+
+.form-group {
+	margin-bottom: 0.50rem;	
+}
+
+/*
+.form-control:disabled, .form-control[readonly] {
+	border: 0px;
+}
+*/
+
+.bg-dark {
+	background-color: Black !important;
+}
+
+.navbar-dark .navbar-nav .nav-link, .navbar-dark .navbar-nav .nav-link:hover {
+	color: White !important;
+	text-decoration: none;	
+}
+
+.navbar-brand {
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	font-size: 1rem;
+	text-decoration: none;
+}
+
+div.dropdown-divider {
+	color: Grey !important;
+	border-color: Grey !important;
+}
+
+div.dropdown-menu {
+	background-color: Black !important;
+	border-color: Grey !important;
+}
+
+a.btn.btn-dark, button.btn.btn-dark {
+    color: White !important;
+	background-color: Black !important;  
+	border-color: Black !important; 
+	text-decoration: none;
+}
+
+a.btn.btn-dark:hover, button.btn.btn-dark:hover {
+    color: Black !important;
+    background-color: Silver !important;
+    border-color: Black !important; 
+    text-decoration: none;        	  
+}
+
+a.btn.btn-dark:focus, button.btn.btn-dark:focus {
+    color: Black !important;
+    background-color: Silver !important;
+    border-color: Black !important; 
+    text-decoration: none;    	  
+}
+
+a.nav-link.dropdown-toggle {
+	color: White !important;
+	text-decoration: none;
+}
+
+a.nav-link.dropdown-toggle:hover {
+	color: LightGrey !important;
+	text-decoration: none;
+}
+
+a.dropdown-item {
+	color: White !important;
+	text-decoration: none;
+}
+
+a.dropdown-item:hover, a.dropdown-item:focus, a.dropdown-item.active {
+	color: Black !important;
+	background-color: LightGrey !important;
+	text-decoration: none;
+}
+
+li.nav-item.show a.nav-link {
+	color: Black !important;
+	background-color: LightGrey !important;
+}		
+
+li.nav-item.show a.nav-link:hover {
+	color: Black !important;
+	background-color: LightGrey !important;
+}
+
+.panel-body a, .panel-body a:hover {
+	color: Black !important;
+}
+
+footer {
+	padding: 15px;
+}
+
+footer a, footer a:hover {
+	color: White !important;
+	text-decoration: none !important;
+	background-color: transparent !important;
+}
+
+.form-control::-webkit-input-placeholder { /* Webkit friends */
+  	color: LightGrey !important;
+  	opacity: 1;
+}
+
+.form-control::-ms-input-placeholder { /* Microsoft Edge */
+	color: LightGrey !important;
+	opacity: 1;
+}
+
+.form-control::placeholder {
+  	color: LightGrey;
+  	opacity: 1; 
+}
+
+select.selectpicker {
+    /*background: White !important;*/
+    color: Black !important;
+}
+
+select.selectpicker :disabled {
+   	color: Grey !important;  /* INFO: does not work */
+    background: linear-gradient(0deg, Grey 0%, DimGrey 100%);
+    background: -moz-linear-gradient(0deg, Grey 0%, DimGrey 100%);
+    background: -webkit-gradient(0deg, Grey 0%, DimGrey 100%);
+}
+
+select.selectpicker option:not(:checked) {
+    background-color: White !important;
+    color: Black !important;
+}
+
+select.selectpicker option:checked {
+	color: Black !important;  /* INFO: does not work */
+    background: linear-gradient(0deg, DimGrey 0%, DimGrey 100%);
+    background: -moz-linear-gradient(0deg, DimGrey 0%, DimGrey 100%);
+    background: -webkit-gradient(0deg, DimGrey 0%, DimGrey 100%);
+}
+
+select.selectpicker option:hover {
+    background-color: Black !important;
+    color: White !important;
+}
+
+@media screen and (max-width: 767px) {
+	body.container-fluid {
+		width: 100%;
+	}
+}
+
+@media (min-width : 992px) {
+	body.container-fluid {
+		width: 90%;
+	}
+}
+
+@media (min-width : 1200px) {
+	body.container-fluid {
+		width: 80%;
+	}
+}
+
+/* Patches to datatables --------------------------------------------------- */
+
+div.dataTables_wrapper {
+	padding-bottom: 12px;
+}
+
+table.dataTable tbody tr.selected {
+	background-color: LightYellow !important;
+	color: Black !important;
+}
+
+.dataTables_filter {
+   float: left;
+}
+
+.dataTables_info {
+   vertical-align: middle !important;
+   font-size: small;
+   text-align: right;
+}
+
+li.paginate_button.page-item a.page-link {
+	color: Black !important;
+	background-color: White !important;
+	text-decoration: none !important;
+	border-color: Black
+}
+
+li.paginate_button.page-item.active a.page-link {
+	color: White !important;
+	background-color: Black !important;
+	text-decoration: none !important;	
+}
+
+@media screen and (max-width: 767px) {
+	div.dataTables_wrapper div.dataTables_length,
+	div.dataTables_wrapper div.dataTables_filter {
+		text-align: left !important;
+	}
+	
+	div.dataTables_wrapper div.dataTables_info,
+	div.dataTables_wrapper div.dataTables_paginate {
+		text-align: right !important;
+	}
+}
+
+ 

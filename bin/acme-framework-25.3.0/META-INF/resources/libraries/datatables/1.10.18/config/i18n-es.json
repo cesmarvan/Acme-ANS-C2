@@ -1,0 +1,18 @@
+{
+	"sProcessing":     "Procesando...",
+	"sSearch":         "Buscar:",
+	"sLengthMenu":     "Mostrar _MENU_ datos",
+	"sInfo":           "Mostrando datos _START_ - _END_ de un total de _TOTAL_",
+	"sInfoEmpty":      "Sin datos",
+	"sInfoFiltered":   "(seleccionados entre _MAX_ datos)",
+	"sInfoPostFix":    "",
+	"sLoadingRecords": "Cargando...",
+	"sZeroRecords":    "No hay datos",
+	"sEmptyTable":     "No hay datos",
+	"oPaginate": {
+	    "sFirst":      "Primero",
+	    "sPrevious":   "Anterior",
+	    "sNext":       "Siguiente",
+	    "sLast":       "&Uacute;ltimo"
+	}
+}

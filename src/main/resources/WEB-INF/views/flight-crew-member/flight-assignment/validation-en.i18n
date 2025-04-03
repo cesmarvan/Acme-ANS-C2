@@ -1,0 +1,11 @@
+validation.error.messagemoreThanOnePilotOrCopilot = This leg has already a Pilot or Copilot assigned
+validation.error.messagecrewMemberNotAvailable = This Crew Member is currently not available for assignment
+validation.error.messagecrewMemberAlreadyInLeg = This Crew Member is already assigned to another Leg
+validation.error.messageblankOrEmptyString = The remark cannot be empty
+
+acme.validation.flightAssignment.duty.message = Duty doesn't have a valid value
+acme.validation.flightAssignment.lastUpdate.message = Last Update doesn't have a valid value
+acme.validation.flightAssignment.crewMember.message = Flight Crew Member doesn't have a valid value
+acme.validation.flightAssignment.remarks.message = Remarks doesn't have a valid value
+acme.validation.flightAssignment.leg.message = Leg doesn't have a valid value
+acme.validation.flightAssignment.status.message= Status doesn't have a valid value

@@ -1,0 +1,32 @@
+# defaults-en.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+acme.default.datatables.language = /libraries/datatables/1.10.18/config/i18n-en.json
+
+acme.default.format.moment = yyyy/MM/dd HH:mm
+
+acme.default.placeholder.moment = yyyy/mm/dd hh:mm
+acme.default.placeholder.money = EUR 123,456.78
+acme.default.placeholder.double = 123,456.78
+acme.default.placeholder.integer = 123,456
+acme.default.placeholder.textarea = Lorem ipsum
+acme.default.placeholder.textbox = Lorem ipsum
+acme.default.placeholder.email = user@mail.com
+acme.default.placeholder.password = Password
+acme.default.placeholder.url = http://www.acme.com
+acme.default.placeholder.currency = EUR, USD, GBP, ...
+
+acme.default.error.endpoint-unavailable = End-point not available
+acme.default.error.not-authorised = Access is not authorised
+
+acme.default.label.return = Return
+
+acme.default.global.message.success = Operation completed successfully
+acme.default.global.message.error = Operation completed with errors 

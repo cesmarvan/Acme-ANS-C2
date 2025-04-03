@@ -25,31 +25,26 @@ public class ActivityLogValidator extends AbstractValidator<ValidActivityLog, Ac
 	public boolean isValid(final ActivityLog activityLog, final ConstraintValidatorContext context) {
 		assert activityLog != null;
 		boolean result = true;
-
-		Leg leg = this.repository.findLegById(activityLog.getFlightAssignment().getLeg().getId());
+		Leg leg = null;
+		if (activityLog.getFlightAssignment() != null)
+			leg = this.repository.findLegById(activityLog.getFlightAssignment().getLeg().getId());
 
 		if (activityLog.getTypeOfIncident().isBlank() || activityLog.getTypeOfIncident().isEmpty() || activityLog.getTypeOfIncident().length() > 255) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.activityLog.typeOfIncident.message").addPropertyNode("typeOfIncident").addConstraintViolation();
+			super.state(context, false, "typeOfIncident", "acme.validation.activityLog.typeOfIncident.message");
 			result = false;
 		} else if (activityLog.getDescription().isBlank() || activityLog.getDescription().isEmpty() || activityLog.getDescription().length() > 255) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.activityLog.description.message").addPropertyNode("description").addConstraintViolation();
+			super.state(context, false, "description", "acme.validation.activityLog.description.message");
 			result = false;
-		} else if (activityLog.getRegistrationMoment() == null || activityLog.getRegistrationMoment().before(leg.getScheduledDeparture()) || activityLog.getRegistrationMoment().after(leg.getScheduledArrival())) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.activityLog.registrationMoment.message").addPropertyNode("registrationMoment").addConstraintViolation();
+		} else if (leg != null && (activityLog.getRegistrationMoment() == null || activityLog.getRegistrationMoment().before(leg.getScheduledDeparture()) || activityLog.getRegistrationMoment().after(leg.getScheduledArrival()))) {
+			super.state(context, false, "registrationMoment", "acme.validation.activityLog.registrationMoment.message");
 			result = false;
-		} else if (activityLog.getSeverity() == null || activityLog.getSeverity() > 0 || activityLog.getSeverity() < 10) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.activityLog.severity.message").addPropertyNode("severity").addConstraintViolation();
+		} else if (activityLog.getSeverity() == null || activityLog.getSeverity() < 0 || activityLog.getSeverity() > 10) {
+			super.state(context, false, "severity", "acme.validation.activityLog.severity.message");
 			result = false;
 		} else if (activityLog.getFlightAssignment() == null) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.activityLog.flighAssignment.message").addPropertyNode("flightAssignment").addConstraintViolation();
+			super.state(context, false, "flightAssignment", "acme.validation.activityLog.flightAssignment.message");
 			result = false;
 		}
-
 		return result;
 
 	}

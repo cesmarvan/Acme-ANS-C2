@@ -12,8 +12,8 @@
 	code="flightCrewMember.activityLog.form.label.registrationMoment" path="registrationMoment"/>
 	<acme:input-integer
 	code="flightCrewMember.activityLog.form.label.severity" path="severity"/>
-	<acme:input-select 
-	code="flightCrewMember.activityLog.list.label.flightAssignment" path="flightAssignment" choices="${flightAssignments}"/>
+	<acme:input-textarea 
+	code="flightCrewMember.activityLog.list.label.flightAssignment" path="flightAssignment"/>
 	
 	<jstl:choose>
 		<jstl:when test="${acme:anyOf(_command,'show|update|delete|publish') && draftMode==true}">

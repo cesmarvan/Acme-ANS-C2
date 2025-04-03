@@ -7,6 +7,7 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.activityLog.ActivityLog;
+import acme.entities.flightAssignment.FlightAssignment;
 import acme.realms.FlightCrewMember;
 
 @GuiService
@@ -48,7 +49,10 @@ public class ActivityLogPublishService extends AbstractGuiService<FlightCrewMemb
 
 	@Override
 	public void validate(final ActivityLog activityLog) {
-		;
+		boolean status;
+		FlightAssignment flightAssignment = activityLog.getFlightAssignment();
+		status = flightAssignment.getDraftMode();
+		super.state(!status, "flightAssignment", "validation.error.flightAssignmentNotPublished");
 	}
 
 	@Override
