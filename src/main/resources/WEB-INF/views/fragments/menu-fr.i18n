@@ -35,6 +35,11 @@ master.menu.provider.favourite-link = Lien favori
 master.menu.consumer = Consommateur
 master.menu.consumer.favourite-link = Lien favori
 
+# master.menu.assistance-agent ##################################################
+
+master.menu.assistance-agent = Agent d'assistance
+master.menu.assistance-agent.list-complete = Liste de déclaration
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Compte

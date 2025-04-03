@@ -1,0 +1,25 @@
+# defaults-en.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+administrator.user-account.form.title = Details of user account
+administrator.user-account.list.title = Listing of user accounts
+
+administrator.user-account.form.label.username = Username:
+administrator.user-account.form.label.name = Name:
+administrator.user-account.form.label.surname = Surname:
+administrator.user-account.form.label.email = Email:
+administrator.user-account.form.label.role-list = Roles:
+administrator.user-account.form.label.status = Enablement status
+
+administrator.user-account.form.button.update = Update
+
+administrator.user-account.list.label.username = Username
+administrator.user-account.list.label.name = Name
+administrator.user-account.list.label.surname = Surname

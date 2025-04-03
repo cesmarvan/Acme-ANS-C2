@@ -43,6 +43,12 @@
 			<acme:menu-suboption code="master.menu.consumer.favourite-link" action="http://www.example.com/"/>
 		</acme:menu-option>
 	</acme:menu-left>
+	
+	
+	<acme:menu-option code="master.menu.assistance-agent" access="hasRealm('AssistanceAgent')">
+		<acme:menu-suboption code="list-complete" action="/assistance-agent/claim/list-complete"/>
+		<acme:menu-suboption code="list-pending" action="/assistance-agent/claim/list-pending"/>
+	</acme:menu-option>
 
 	<acme:menu-right>		
 		<acme:menu-option code="master.menu.user-account" access="isAuthenticated()">

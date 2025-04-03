@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+- acme.tld
+-
+- Copyright (C) 2012-2025 Rafael Corchuelo.
+-
+- In keeping with the traditional purpose of furthering education and research, it is
+- the policy of the copyright owner to permit non-commercial use and redistribution of
+- this software. It has been tested carefully, but it is not guaranteed for any particular
+- purposes.  The copyright owner does not offer any warranties or representations, nor do
+- they accept any liabilities with respect to them.
+-->
+
+<taglib 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd" 
+	version="2.1">
+	
+	<!-- Indexing data -->
+		
+	<description>Custom tag library for the Acme Framework</description>
+	<display-name>Acme Tags</display-name>  	
+  	<tlib-version>25.2.0</tlib-version>  	
+  	<short-name>acme</short-name>
+  	<uri>http://acme-framework.org/</uri>
+  	<!--  <uri>urn:jsptagdir:/WEB-INF/tags</uri> -->
+  	
+  	<!-- Tags -->  	
+		
+	<tag-file>
+		<name>alert-error</name>
+		<path>/WEB-INF/tags/alert-error.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>alert-success</name>
+		<path>/WEB-INF/tags/alert-success.tag</path>
+	</tag-file>
+	
+	<tag-file>
+		<name>button</name>
+		<path>/WEB-INF/tags/button.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>check-access</name>
+		<path>/WEB-INF/tags/check-access.tag</path>
+	</tag-file>
+	
+	<tag-file>
+		<name>debug-panel</name>
+		<path>/WEB-INF/tags/debug-panel.tag</path>
+	</tag-file>
+	
+	<tag-file>
+		<name>debug-payload</name>
+		<path>/WEB-INF/tags/debug-payload.tag</path>
+	</tag-file>	
+
+	<tag-file>
+		<name>debug-log</name>
+		<path>/WEB-INF/tags/debug-log.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>footer-copyright</name>
+		<path>/WEB-INF/tags/footer-copyright.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>footer-logo</name>
+		<path>/WEB-INF/tags/footer-logo.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>footer-option</name>
+		<path>/WEB-INF/tags/footer-option.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>footer-panel</name>
+		<path>/WEB-INF/tags/footer-panel.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>footer-subpanel</name>
+		<path>/WEB-INF/tags/footer-subpanel.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>hidden-data</name>
+		<path>/WEB-INF/tags/hidden-data.tag</path>
+	</tag-file>
+	
+	<tag-file>
+		<name>input-checkbox</name>
+		<path>/WEB-INF/tags/input-checkbox.tag</path>
+	</tag-file>
+	
+	<tag-file>
+		<name>input-double</name>
+		<path>/WEB-INF/tags/input-double.tag</path>
+	</tag-file>
+	
+	<tag-file>
+		<name>input-email</name>
+		<path>/WEB-INF/tags/input-email.tag</path>
+	</tag-file>	
+
+	<tag-file>
+		<name>input-integer</name>
+		<path>/WEB-INF/tags/input-integer.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>input-moment</name>
+		<path>/WEB-INF/tags/input-moment.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>input-money</name>
+		<path>/WEB-INF/tags/input-money.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>input-option</name>
+		<path>/WEB-INF/tags/input-option.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>input-password</name>
+		<path>/WEB-INF/tags/input-password.tag</path>
+	</tag-file>
+	
+	<tag-file>
+		<name>input-select</name>
+		<path>/WEB-INF/tags/input-select.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>form</name>
+		<path>/WEB-INF/tags/form.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>input-textarea</name>
+		<path>/WEB-INF/tags/input-textarea.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>input-textbox</name>
+		<path>/WEB-INF/tags/input-textbox.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>input-url</name>
+		<path>/WEB-INF/tags/input-url.tag</path>
+	</tag-file>
+	
+	<tag-file>
+		<name>link</name>
+		<path>/WEB-INF/tags/link.tag</path>
+	</tag-file>
+	
+	<tag-file>
+		<name>list</name>
+		<path>/WEB-INF/tags/list.tag</path>
+	</tag-file>
+		
+	<tag-file>
+		<name>list-column</name>
+		<path>/WEB-INF/tags/list-column.tag</path>
+	</tag-file>
+	
+	<tag-file>
+		<name>list-payload</name>
+		<path>/WEB-INF/tags/list-payload.tag</path>
+	</tag-file>
+		
+	<tag-file>
+		<name>menu-bar</name>
+		<path>/WEB-INF/tags/menu-bar.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>menu-left</name>
+		<path>/WEB-INF/tags/menu-left.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>menu-option</name>
+		<path>/WEB-INF/tags/menu-option.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>menu-right</name>
+		<path>/WEB-INF/tags/menu-right.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>menu-separator</name>
+		<path>/WEB-INF/tags/menu-separator.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>menu-suboption</name>
+		<path>/WEB-INF/tags/menu-suboption.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>print</name>
+		<path>/WEB-INF/tags/print.tag</path>
+	</tag-file>
+	
+	<tag-file>
+		<name>return</name>
+		<path>/WEB-INF/tags/return.tag</path>
+	</tag-file>
+		
+	<tag-file>
+		<name>show-errors</name>
+		<path>/WEB-INF/tags/show-errors.tag</path>
+	</tag-file>
+
+	<tag-file>
+		<name>submit</name>
+		<path>/WEB-INF/tags/submit.tag</path>
+	</tag-file>
+	
+	<!-- Functions -->
+	
+	<function>
+	    <name>matches</name>
+	    <function-class>acme.client.helpers.JspHelper</function-class>
+	    <function-signature>boolean matches(java.lang.String, java.lang.String)</function-signature>	    
+	</function>
+	
+	<function>
+	    <name>anyOf</name>
+	    <function-class>acme.client.helpers.JspHelper</function-class>
+	    <function-signature>boolean anyOf(java.lang.String, java.lang.String)</function-signature>	    
+	</function>
+	
+	<function>
+	    <name>pushIdParameter</name>
+	    <function-class>acme.client.helpers.JspHelper</function-class>
+	    <function-signature>boolean pushIdParameter(java.lang.String, java.lang.String)</function-signature>	    
+	</function>
+	
+</taglib>

@@ -1,0 +1,6 @@
+key,airportCode,city,country,category,name,description,moreInfoUrl
+R1,JFK,New York,USA,RESTAURANT,Joe's Pizza,Authentic New York-style pizza in the heart of Manhattan,https://joespizzanyc.com
+R2,LHR,London,UK,EXPERIENCE,London Eye,A must-visit attraction with stunning city views,https://www.londoneye.com
+R3,CDG,Paris,France,ACTIVITY,Seine River Cruise,A relaxing boat tour through the heart of Paris,https://www.bateauxparisiens.com
+R4,HND,Tokyo,Japan,ACCOMMODATION,Shinjuku Granbell Hotel,Modern hotel with easy access to major attractions,https://www.granbellhotel.jp
+R5,SYD,Sydney,Australia,ACTIVITY,Bondi Beach,Popular beach known for surfing and scenic views,https://www.bondibeach.com
