@@ -37,6 +37,11 @@ master.menu.provider.favourite-link = Lien favori
 master.menu.consumer = Consommateur
 master.menu.consumer.favourite-link = Lien favori
 
+# master.menu.assistance-agent ##################################################
+
+master.menu.assistance-agent = Agent d'assistance
+master.menu.assistance-agent.list-complete = Liste de déclaration
+
 # master.menu.manager ########################################################
  master.menu.manager = Manager
  master.menu.manager.list-my-flights = List Veules
@@ -44,7 +49,6 @@ master.menu.consumer.favourite-link = Lien favori
 # master.menu.customer ##########################################################
 master.menu.customer = Client
 master.menu.customer.list-my-bookings = Liste des réservations
-
 
 # master.menu.user-account ####################################################
 

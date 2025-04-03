@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+- logback-spring.xml
+-
+- Copyright (C) 2012-2025 Rafael Corchuelo.
+-
+- In keeping with the traditional purpose of furthering education and research, it is
+- the policy of the copyright owner to permit non-commercial use and redistribution of
+- this software. It has been tested carefully, but it is not guaranteed for any particular
+- purposes.  The copyright owner does not offer any warranties or representations, nor do
+- they accept any liabilities with respect to them.
+-->
+
+<!DOCTYPE xml>
+
+<configuration
+    xmlns="http://ch.qos.logback/xml/ns/logback-spring"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+
+	<!-- HINT: there is an incomplete scheme for logback. 
+	     xsi:schemaLocation="http://ch.qos.logback/xml/ns/logback-spring https://raw.githubusercontent.com/borgille/logback-spring-XSD/master/src/main/xsd/logback-spring.xsd" 
+	-->
+
+	<!-- Properties -->
+	
+	<springProfile name="application">
+		<property name="profileName" value="application"/>
+	</springProfile>
+		
+	<springProfile name="populator">
+		<property name="profileName" value="populator"/>
+	</springProfile>
+	
+	
+	<springProfile name="tester">
+		<property name="profileName" value="tester"/>
+	</springProfile>
+
+	<!-- Appenders -->
+	
+	<appender name="File" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    	<file>./logs/${profileName}.log</file>
+    	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      		<fileNamePattern>./logs/${profileName}.log;%d{yyyy-MM-dd}@%d{HH.mm.ss,aux}</fileNamePattern>
+      		<timeBasedFileNamingAndTriggeringPolicy class="acme.internals.components.logging.LogbackTriggeringPolicy"/>
+    	</rollingPolicy>
+   		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+			<layout class="acme.internals.components.logging.LogbackFileLayout"/>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>TRACE</level>
+		</filter>
+  	</appender>
+	
+	<appender name="RestrictedConsole" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+			<layout class="acme.internals.components.logging.LogbackConsoleLayout"/>
+		</encoder>				
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+		<filter class="acme.internals.components.logging.LogbackRestrictedConsoleFilter" />
+	</appender>
+
+	<appender name="FullConsole" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+			<layout class="acme.internals.components.logging.LogbackConsoleLayout"/>
+		</encoder>				
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+		<filter class="acme.internals.components.logging.LogbackFullConsoleFilter" />
+	</appender>		
+ 	
+	<appender name="Trace" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	   	<file>./logs/${profileName}.trace</file>
+	   	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	     		<fileNamePattern>./logs/${profileName}.trace;%d{yyyy-MM-dd}@%d{HH.mm.ss,aux}</fileNamePattern>
+	     		<timeBasedFileNamingAndTriggeringPolicy class="acme.internals.components.logging.LogbackTriggeringPolicy"/>
+	   	</rollingPolicy>
+	  	<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+			<layout class="acme.internals.components.logging.LogbackTraceLayout"/>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>TRACE</level>
+		</filter>
+ 	</appender>
+
+	<!-- 
+		HINT: Eclipse loggers commonly overload your machine.  Unless, it's powerful enough, it's 
+		HINT+ not generally a good idea to use them.  Typically, only the port needs configuration.
+	-->
+	
+ 	<springProfile name="development,testing">
+		<appender name="Eclipse" class="ch.qos.logback.classic.net.SocketAppender">
+		    <remoteHost>localhost</remoteHost>
+		    <port>4444</port>
+		    <includeCallerData>true</includeCallerData>
+		    <reconnectionDelay>0</reconnectionDelay>
+		    <queueSize>0</queueSize>
+		    <eventDelayLimit>0 seconds</eventDelayLimit>   
+		    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+				<level>TRACE</level>
+			</filter>
+		</appender>		
+	</springProfile>
+ 			  	
+  	<!-- Loggers -->
+  	
+	<root level="DEBUG">		
+		<appender-ref ref="File"/>						
+	</root>
+	
+	<springProfile name="tester#replay">
+		<root level="DEBUG">
+			<appender-ref ref="RestrictedConsole"/>									
+		</root>
+	</springProfile>
+	
+	<springProfile name="!tester#replay">
+		<root level="DEBUG">
+			<appender-ref ref="FullConsole"/>									
+		</root>
+	</springProfile>
+			
+	<springProfile name="development,testing">
+		<root level="DEBUG">
+			<appender-ref ref="Eclipse"/>						
+		</root>	
+	</springProfile>
+	
+	<logger name="acme.internals.helpers.TraceLoggerHelper" additivity="false">
+		<appender-ref ref="Trace"/>
+	</logger>
+
+</configuration>
+
