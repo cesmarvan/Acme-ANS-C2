@@ -1,16 +1,17 @@
 
 package acme.constraints;
 
-import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import acme.client.components.validation.AbstractValidator;
+import acme.client.helpers.MomentHelper;
 import acme.entities.passenger.Passenger;
 
-public class PassengerValidator implements ConstraintValidator<ValidPassenger, Passenger> {
+public class PassengerValidator extends AbstractValidator<ValidPassenger, Passenger> {
 
 	@Override
-	public void initialize(final ValidPassenger constraintAnnotation) {
-		// Inicialización si es necesario.
+	protected void initialise(final ValidPassenger constraintAnnotation) {
+		// Inicialización si es necesario
 	}
 
 	@Override
@@ -20,45 +21,39 @@ public class PassengerValidator implements ConstraintValidator<ValidPassenger, P
 
 		boolean result = true;
 
-		// Validar que "fullName" no sea nulo y que cumpla con los criterios del "ValidLongText"
-		if (passenger.getFullName() == null || passenger.getFullName().length() < 1) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.Passenger.fullName.message").addPropertyNode("fullName").addConstraintViolation();
+		// Validar que "fullName" no sea nulo ni vacío
+		if (passenger.getFullName() == null || passenger.getFullName().isEmpty()) {
+			super.state(context, false, "fullName", "acme.validation.Passenger.fullName.message");
 			result = false;
 		}
 
-		// Validar que "email" no sea nulo y que cumpla con el formato del "ValidEmail"
+		// Validar que "email" sea válido
 		if (passenger.getEmail() == null || !passenger.getEmail().matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.Passenger.email.message").addPropertyNode("email").addConstraintViolation();
+			super.state(context, false, "email", "acme.validation.Passenger.email.message");
 			result = false;
 		}
 
-		// Validar que "passportNumber" sea válido según el patrón "^[A-Z0-9]{6,9}$"
+		// Validar que "passportNumber" siga el patrón "^[A-Z0-9]{6,9}$"
 		if (passenger.getPassportNumber() == null || !passenger.getPassportNumber().matches("^[A-Z0-9]{6,9}$")) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.Passenger.passportNumber.message").addPropertyNode("passportNumber").addConstraintViolation();
+			super.state(context, false, "passportNumber", "acme.validation.Passenger.passportNumber.message");
 			result = false;
 		}
 
 		// Validar que "dateOfBirth" sea una fecha pasada
-		if (passenger.getDateOfBirth() == null || passenger.getDateOfBirth().after(new java.util.Date())) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.Passenger.dateOfBirth.message").addPropertyNode("dateOfBirth").addConstraintViolation();
+		if (passenger.getDateOfBirth() == null || passenger.getDateOfBirth().after(MomentHelper.getCurrentMoment())) {
+			super.state(context, false, "dateOfBirth", "acme.validation.Passenger.dateOfBirth.message");
 			result = false;
 		}
 
 		// Validar que "specialNeeds" no exceda los límites de "ValidShortText"
 		if (passenger.getSpecialNeeds() != null && passenger.getSpecialNeeds().length() > 255) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.Passenger.specialNeeds.message").addPropertyNode("specialNeeds").addConstraintViolation();
+			super.state(context, false, "specialNeeds", "acme.validation.Passenger.specialNeeds.message");
 			result = false;
 		}
 
 		// Validar que "customer" no sea nulo
 		if (passenger.getCustomer() == null) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.Passenger.customer.message").addPropertyNode("customer").addConstraintViolation();
+			super.state(context, false, "customer", "acme.validation.Passenger.customer.message");
 			result = false;
 		}
 

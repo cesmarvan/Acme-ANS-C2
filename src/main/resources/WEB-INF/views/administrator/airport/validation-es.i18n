@@ -1,0 +1,19 @@
+# validation-es.i18n
+# validation-es.i18n
+
+acme.validation.header.message = Este valor no puede estar vacío.
+acme.validation.identifier.message = Este identificador no es correcto, debe seguir la estructura: "^[A-Z]{2,3}\\d{6}$"
+acme.validation.long-text.message = No sigue el formato, debe tener entre 1 y 255 caracteres.
+acme.validation.short-text.message = No sigue el formato, debe tener entre 1 y 50 caracteres.
+acme.validation.phone-number.message = Este número de teléfono no es correcto, debe seguir la estructura: "^\\+?\\d{10,15}$"
+acme.validation.iata-code.message = Este código IATA no es correcto, debe seguir la estructura: "^\\+?\\d{6,15}$"
+
+acme.validation.Airport.name.message = El nombre del aeropuerto no puede estar vacío.
+acme.validation.Airport.iataCode.message = El código IATA debe tener tres letras mayúsculas.
+acme.validation.Airport.operationalScope.message = El alcance operativo no puede ser nulo.
+acme.validation.Airport.city.message = La ciudad no puede estar vacía.
+acme.validation.Airport.country.message = El país no puede estar vacío.
+acme.validation.Airport.web.message = El sitio web debe ser una URL válida.
+acme.validation.Airport.emailAddress.message = La dirección de correo electrónico no es válida.
+acme.validation.Airport.contactPhoneNumber.message = El número de teléfono no es válido.
+acme.validation.Airport.notExist.message = El aeropuerto especificado no existe.

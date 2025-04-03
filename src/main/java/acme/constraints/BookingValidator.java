@@ -1,20 +1,19 @@
 
 package acme.constraints;
 
-import java.util.Date;
-
-import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import acme.client.components.validation.AbstractValidator;
+import acme.client.helpers.MomentHelper;
 import acme.client.helpers.SpringHelper;
 import acme.entities.booking.Booking;
-import acme.entities.flight.FlightRepository;
+import acme.entities.booking.BookingRepository;
 
-public class BookingValidator implements ConstraintValidator<ValidBooking, Booking> {
+public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
 
 	@Override
-	public void initialize(final ValidBooking constraintAnnotation) {
-		// Initial setup if needed.
+	protected void initialise(final ValidBooking constraintAnnotation) {
+		// Inicialización si es necesario.
 	}
 
 	@Override
@@ -24,58 +23,46 @@ public class BookingValidator implements ConstraintValidator<ValidBooking, Booki
 
 		boolean result = true;
 
-		// Validar si el "locatorCode" cumple con el formato adecuado
+		// Validar que "locatorCode" sea válido con el patrón "^[A-Z0-9]{6,8}$"
 		if (booking.getLocatorCode() == null || !booking.getLocatorCode().matches("^[A-Z0-9]{6,8}$")) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.Booking.locatorCode.message").addPropertyNode("locatorCode").addConstraintViolation();
+			super.state(context, false, "locatorCode", "acme.validation.Booking.locatorCode.message");
 			result = false;
 		}
 
-		// Validar si "purchaseMoment" es una fecha pasada
-		if (booking.getPurchaseMoment() == null || booking.getPurchaseMoment().after(new Date())) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.Booking.purchaseMoment.message").addPropertyNode("purchaseMoment").addConstraintViolation();
+		// Verificar si ya existe un "locatorCode" en la base de datos
+		BookingRepository bookingRepository = SpringHelper.getBean(BookingRepository.class);
+		if (bookingRepository != null && bookingRepository.existsByLocatorCode(booking.getLocatorCode())) {
+			super.state(context, false, "locatorCode", "acme.validation.Booking.locatorCode.exists.message");
 			result = false;
 		}
 
-		// Validar si el "isPublished" está correctamente marcado
+		// Validar que "purchaseMoment" sea una fecha pasada
+		if (booking.getPurchaseMoment() == null || booking.getPurchaseMoment().after(MomentHelper.getCurrentMoment())) {
+			super.state(context, false, "purchaseMoment", "acme.validation.Booking.purchaseMoment.message");
+			result = false;
+		}
+
+		// Validar que "isPublished" no sea nulo
 		if (booking.getIsPublished() == null) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.Booking.isPublished.message").addPropertyNode("isPublished").addConstraintViolation();
+			super.state(context, false, "isPublished", "acme.validation.Booking.isPublished.message");
 			result = false;
 		}
 
-		// Validar que el "customer" no sea nulo
+		// Validar que "customer" no sea nulo
 		if (booking.getCustomer() == null) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.Booking.customer.message").addPropertyNode("customer").addConstraintViolation();
+			super.state(context, false, "customer", "acme.validation.Booking.customer.message");
 			result = false;
 		}
 
-		// Validar que el "flight" no sea nulo
+		// Validar que "flight" no sea nulo
 		if (booking.getFlight() == null) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.Booking.flight.message").addPropertyNode("flight").addConstraintViolation();
+			super.state(context, false, "flight", "acme.validation.Booking.flight.message");
 			result = false;
 		}
 
-		// Validar el "lastCreditCardNibble" si está presente, que sea válido (si está presente)
+		// Validar que "lastCreditCardNibble" sea válido si está presente
 		if (booking.getLastCreditCardNibble() != null && !booking.getLastCreditCardNibble().matches("^\\d{4}$")) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.Booking.lastCreditCardNibble.message").addPropertyNode("lastCreditCardNibble").addConstraintViolation();
-			result = false;
-		}
-
-		// Comprobamos la relación entre el "flight" y el "customer" (por ejemplo, que el vuelo esté disponible para el cliente)
-		FlightRepository flightRepository = SpringHelper.getBean(FlightRepository.class);
-		if (flightRepository == null)
-			result = false;
-
-		// Si es un vuelo válido y el cliente puede acceder, no se genera error
-		// Comprobamos si el vuelo no es nulo y está en un estado adecuado
-		if (booking.getFlight() != null && !flightRepository.existsById(booking.getFlight().getId())) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.Booking.flight.notExist.message").addPropertyNode("flight").addConstraintViolation();
+			super.state(context, false, "lastCreditCardNibble", "acme.validation.Booking.lastCreditCardNibble.message");
 			result = false;
 		}
 

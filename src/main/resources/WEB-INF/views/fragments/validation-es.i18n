@@ -1,4 +1,5 @@
 # validation-es.i18n
+# validation-es.i18n
 
 acme.validation.header.message = Este valor no puede estar vacío.
 acme.validation.identifier.message = Este identificador no es correcto, debe seguir la estructura: "^[A-Z]{2,3}\\d{6}$"
@@ -7,10 +8,8 @@ acme.validation.short-text.message = No sigue el formato, debe tener entre 1 y 5
 acme.validation.phone-number.message = Este número de teléfono no es correcto, debe seguir la estructura: "^\\+?\\d{10,15}$"
 acme.validation.iata-code.message = Este código IATA no es correcto, debe seguir la estructura: "^\\+?\\d{6,15}$"
 
-
-acme.validation.Passenger.fullName.message = El nombre completo no puede estar vacío
-acme.validation.Passenger.email.message = El correo electrónico no es válido
-acme.validation.Passenger.passportNumber.message = El número de pasaporte debe tener entre 6 y 9 caracteres alfanuméricos
-acme.validation.Passenger.dateOfBirth.message = La fecha de nacimiento debe ser una fecha pasada
-acme.validation.Passenger.specialNeeds.message = Las necesidades especiales no pueden exceder los 255 caracteres
-acme.validation.Passenger.customer.message = El cliente no puede ser nulo
+acme.validation.Service.name.message = El nombre del servicio no puede estar vacío.
+acme.validation.Service.pictureLink.message = El enlace de la imagen no puede estar vacío.
+acme.validation.Service.avgDwellTime.message = El tiempo promedio de permanencia debe ser mayor o igual a 0.
+acme.validation.Service.promoCode.message = El código promocional debe tener el formato correcto (ej. ABCD-12).
+acme.validation.Service.discount.message = El descuento no puede ser negativo.

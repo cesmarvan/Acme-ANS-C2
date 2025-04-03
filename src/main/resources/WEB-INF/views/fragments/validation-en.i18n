@@ -8,10 +8,8 @@ acme.validation.short-text.message = It does not follow the format, it must be b
 acme.validation.phone-number.message = This phone number is incorrect, it must follow the structure: "^\\+?\\d{10,15}$"
 acme.validation.iata-code.message = This IATA code is incorrect, it must follow the structure: "^\\+?\\d{6,15}$"
 
-
-acme.validation.Passenger.fullName.message = The full name cannot be empty
-acme.validation.Passenger.email.message = The email is not valid
-acme.validation.Passenger.passportNumber.message = The passport number must be between 6 and 9 alphanumeric characters
-acme.validation.Passenger.dateOfBirth.message = The date of birth must be a past date
-acme.validation.Passenger.specialNeeds.message = Special needs cannot exceed 255 characters
-acme.validation.Passenger.customer.message = The customer cannot be null
+acme.validation.Service.name.message = The service name cannot be empty.
+acme.validation.Service.pictureLink.message = The picture link cannot be empty.
+acme.validation.Service.avgDwellTime.message = The average dwell time must be greater than or equal to 0.
+acme.validation.Service.promoCode.message = The promo code must follow the correct format (e.g. ABCD-12).
+acme.validation.Service.discount.message = The discount cannot be negative.

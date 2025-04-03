@@ -23,6 +23,7 @@ master.menu.administrator = Administrateur
 master.menu.administrator.list-user-accounts = Voir les comptes utilisateurs
 master.menu.administrator.list-airports = Liste des aéroports
 master.menu.administrator.list-airlines = Liste des compagnies aériennes
+master.menu.administrator.list-aircrafts = Liste des avions
 master.menu.administrator.populate-db-initial = Peupler BD (initial)
 master.menu.administrator.populate-db-sample = Peupler BD (exemples)
 master.menu.administrator.shut-system-down = Arrêter le système

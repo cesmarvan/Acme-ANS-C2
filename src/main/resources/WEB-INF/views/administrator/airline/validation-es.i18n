@@ -1,0 +1,19 @@
+# validation-es.i18n
+
+acme.validation.header.message = Este valor no puede estar vacío.
+acme.validation.identifier.message = Este identificador no es correcto, debe seguir la estructura: "^[A-Z]{2,3}\\d{6}$"
+acme.validation.long-text.message = No sigue el formato, debe tener entre 1 y 255 caracteres.
+acme.validation.short-text.message = No sigue el formato, debe tener entre 1 y 50 caracteres.
+acme.validation.phone-number.message = Este número de teléfono no es correcto, debe seguir la estructura: "^\\+?\\d{10,15}$"
+acme.validation.iata-code.message = Este código IATA no es correcto, debe seguir la estructura: "^\\+?\\d{6,15}$"
+
+
+acme.validation.Airline.name.message = El nombre de la aerolínea no puede estar vacío.
+acme.validation.Airline.iataCode.message = El código IATA debe tener tres letras mayúsculas.
+acme.validation.Airline.website.message = El sitio web no puede estar vacío.
+acme.validation.Airline.type.message = El tipo de aerolínea no puede ser nulo.
+acme.validation.Airline.foundationMoment.message = La fecha de fundación debe ser una fecha pasada.
+acme.validation.Airline.email.message = El correo electrónico no es válido.
+acme.validation.Airline.phoneNumber.message = El número de teléfono no es válido.
+acme.validation.Airline.airlineNotExist.message = La aerolínea especificada no existe.
+

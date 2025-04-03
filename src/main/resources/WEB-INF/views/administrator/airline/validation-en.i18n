@@ -8,10 +8,11 @@ acme.validation.short-text.message = It does not follow the format, it must be b
 acme.validation.phone-number.message = This phone number is incorrect, it must follow the structure: "^\\+?\\d{10,15}$"
 acme.validation.iata-code.message = This IATA code is incorrect, it must follow the structure: "^\\+?\\d{6,15}$"
 
-
-acme.validation.Passenger.fullName.message = The full name cannot be empty
-acme.validation.Passenger.email.message = The email is not valid
-acme.validation.Passenger.passportNumber.message = The passport number must be between 6 and 9 alphanumeric characters
-acme.validation.Passenger.dateOfBirth.message = The date of birth must be a past date
-acme.validation.Passenger.specialNeeds.message = Special needs cannot exceed 255 characters
-acme.validation.Passenger.customer.message = The customer cannot be null
+acme.validation.Airline.name.message = The airline name cannot be empty.
+acme.validation.Airline.iataCode.message = The IATA code must have three uppercase letters.
+acme.validation.Airline.website.message = The website cannot be empty.
+acme.validation.Airline.type.message = The airline type cannot be null.
+acme.validation.Airline.foundationMoment.message = The foundation date must be a past date.
+acme.validation.Airline.email.message = The email is not valid.
+acme.validation.Airline.phoneNumber.message = The phone number is not valid.
+acme.validation.Airline.airlineNotExist.message = The specified airline does not exist.
