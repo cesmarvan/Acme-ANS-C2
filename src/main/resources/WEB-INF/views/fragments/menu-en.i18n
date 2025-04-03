@@ -21,6 +21,8 @@ master.menu.anonymous.jotageerre = 7790208Q: Gonzalez Rodriguez, Joaquin
 
 master.menu.administrator = Administrator
 master.menu.administrator.list-user-accounts = List user accounts
+master.menu.administrator.list-airports = List Airports
+master.menu.administrator.list-airlines = List Airlines
 master.menu.administrator.populate-db-initial = Populate DB (initial)
 master.menu.administrator.populate-db-sample = Populate DB (samples)
 master.menu.administrator.shut-system-down = Shut system down
@@ -40,6 +42,16 @@ master.menu.consumer.favourite-link = Favourite link
 master.menu.assistance-agent = assistance-agent
 master.menu.assistance-agent.list-complete = Claim list
 
+# master.menu.manager ########################################################
+ master.menu.manager = Manager
+ master.menu.manager.list-my-flights = Flights list
+
+
+# master.menu.customer ########################################################
+master.menu.customer = Customer
+master.menu.customer.list-my-bookings = Booking list
+
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account
@@ -48,3 +60,11 @@ master.menu.user-account.become-provider = Become a provider
 master.menu.user-account.provider-profile = Provider profile
 master.menu.user-account.become-consumer = Become a consumer
 master.menu.user-account.consumer-profile = Consumer profile
+
+# master.menu.flight-crew-member ####################################################
+master.menu.flight-crew-member = Flight Crew Member
+master.menu.flight-crew-member.list-my-completed-flights-assignments = Completed Flight Assignments List
+master.menu.flight-crew-member.list-my-planned-flights-assignments = Planned Flight Assignments List
+master.menu.flight-crew-member.create-flight-assignment = Create Assignment
+master.menu.flight-crew-member.list-my-activity-logs = Activity Logs
+master.menu.flight-crew-member.create-activity-logs = Create Activity Log

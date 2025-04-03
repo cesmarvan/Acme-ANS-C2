@@ -23,7 +23,7 @@ import javax.validation.constraints.Pattern;
 public @interface ValidPhoneNumber {
 
 	// Propiedades estándar de validación
-	String message() default "{acme.validation.identifier.message}";
+	String message() default "{acme.validation.phone-number.message}";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

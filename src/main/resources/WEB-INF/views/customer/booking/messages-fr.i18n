@@ -1,0 +1,39 @@
+# messages-fr.i18n
+
+customer.booking.form.title = Formulaire de réservation
+customer.booking.list.title = Liste de réservations
+
+customer.booking.form.label.locatorCode = Code du localisateur
+customer.booking.form.label.purchaseMoment = Moment de l'achat
+customer.booking.form.label.travelClass = Classe de voyage
+customer.booking.form.label.price = Prix
+customer.booking.form.label.lastCreditCardNibble = Dernier chiffre de la carte de crédit
+
+customer.booking.form.button.duties = Taxes
+customer.booking.form.button.update = Mettre à jour
+customer.booking.form.button.delete = Supprimer
+customer.booking.form.button.publish = Publier
+customer.booking.form.button.create = Créer
+customer.booking.form.button.passenger = Liste des passagers
+
+customer.booking.list.label.locatorCode = Code du localisateur
+customer.booking.list.label.purchaseMoment = Moment de l'achat
+customer.booking.list.label.travelClass = Classe de voyage
+customer.booking.list.label.price = Prix
+customer.booking.list.label.lastCreditCardNibble = Dernier chiffre de la carte de crédit
+customer.booking.list.label.flight = Vol
+customer.booking.list.label.passenger = Passagers
+customer.booking.list.label.isPublished = Est-ce publié ?
+
+customer.booking.list.button.create = Créer
+
+customer.booking.create.label.locatorCode = Code du localisateur
+customer.booking.create.label.purchaseMoment = Moment de l'achat
+customer.booking.create.label.travelClass = Classe de voyage
+customer.booking.create.label.price = Prix
+customer.booking.create.label.lastCreditCardNibble = Dernier chiffre de la carte de crédit
+customer.booking.create.label.passenger = Passager
+
+customer.booking-passenger.form.button.create = Associer un passager à une réservation
+
+customer.booking.create.button.create = Créer

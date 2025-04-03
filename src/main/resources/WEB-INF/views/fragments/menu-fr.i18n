@@ -21,6 +21,8 @@ master.menu.anonymous.jotageerre = 7790208Q: González Rodríguez, Joaquín
 
 master.menu.administrator = Administrateur
 master.menu.administrator.list-user-accounts = Voir les comptes utilisateurs
+master.menu.administrator.list-airports = Liste des aéroports
+master.menu.administrator.list-airlines = Liste des compagnies aériennes
 master.menu.administrator.populate-db-initial = Peupler BD (initial)
 master.menu.administrator.populate-db-sample = Peupler BD (exemples)
 master.menu.administrator.shut-system-down = Arrêter le système
@@ -39,6 +41,14 @@ master.menu.consumer.favourite-link = Lien favori
 
 master.menu.assistance-agent = Agent d'assistance
 master.menu.assistance-agent.list-complete = Liste de déclaration
+
+# master.menu.manager ########################################################
+ master.menu.manager = Manager
+ master.menu.manager.list-my-flights = List Veules
+ 
+# master.menu.customer ##########################################################
+master.menu.customer = Client
+master.menu.customer.list-my-bookings = Liste des réservations
 
 # master.menu.user-account ####################################################
 

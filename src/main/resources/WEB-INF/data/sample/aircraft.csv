@@ -1,4 +1,5 @@
-key,model,registration-number,capacity,cargo-weight,status,details
-aircraft-01,Model1,01,100,2100,ACTIVE_SERVICE,details1
-aircraft-02,Model2,02,200,2200,ACTIVE_SERVICE,details1
-aircraft-03,Model3,03,300,2300,ACTIVE_SERVICE,details3
+key,model,registration-number,capacity,cargo-weight,status,details,key:airline
+aircraft-01,Model1,01,100,2100,ACTIVE_SERVICE,details1,airline1
+aircraft-02,Model2,02,200,2200,ACTIVE_SERVICE,details1,airline2
+aircraft-03,Model3,03,300,2300,ACTIVE_SERVICE,details3,airline3
+aircraft-04,Model4,04,400,2300,UNDER_MAINTENANCE,details4,airline3

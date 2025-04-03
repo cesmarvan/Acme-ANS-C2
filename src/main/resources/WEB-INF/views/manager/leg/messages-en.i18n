@@ -1,0 +1,39 @@
+# messages-es.i18n
+
+manager.leg.list.title = Leg's list
+ 
+ manager.leg.list.label.flightNumber = Flight number
+ manager.leg.list.label.scheduledDeparture = Scheduled departure
+ manager.leg.list.label.scheduledArrival = Scheduled arrival
+ manager.leg.list.label.status = Status
+ manager.leg.list.button.create = Create
+
+  
+  manager.leg.form.title = Leg's details
+  manager.leg.form.label.flightNumber = Flight number
+manager.leg.form.label.scheduledDeparture = Scheduled departure
+manager.leg.form.label.scheduledArrival = Scheduled arrival
+manager.leg.form.label.status = Status
+manager.leg.form.label.travelHours = Duration (hours)
+manager.leg.form.label.departureAirport = Departure Airport
+manager.leg.form.label.arrivalAirport = Arrival Airport
+manager.leg.form.label.aircraft = Aircraft
+
+manager.leg.form.button.publish = Publish
+manager.leg.form.button.delete = Delete
+manager.leg.form.button.update = Update
+
+manager.leg.form.button.create = Create
+
+
+
+acme.validation.leg.duplicated-flight-number.message = There is already another section with this Flight Number
+acme.validation.leg.null-dates.message = Date can't be null or with no correct format
+acme.validation.leg.wrong-order-dates.message = The departure date cannot be later than the arrival date.
+acme.validation.leg.wrong-iata.message = The Flight Number must be created with the corresponding IATA code followed by four identifying numbers
+acme.validation.leg.overlapping-aircraft.message = Aircrafts cannot overlap
+acme.validation.leg.same-airport.message = The departure airport cannot be the same as the arrival airport.
+acme.validation.flight.no-correct-dates.message = Incorrect dates: Leg i cannot arrive after the departure of leg i+1
+acme.validation.flight.no-correct-airports.message  = Incorrect airports: The arrival airport of leg i must be the departure airport of leg i+1
+acme.validation.flight.null-aircraft.message = You must enter an aircraft
+acme.validation.leg.wrong-IATA-code.message = Invalid IATA code

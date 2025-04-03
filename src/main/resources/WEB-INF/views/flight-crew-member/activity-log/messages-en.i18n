@@ -1,0 +1,23 @@
+################## LIST ##########################
+flight-crew-member.activity-log.list.title = Activity Log List
+flightCrewMember.activityLog.list.label.registrationMoment = Registration Moment
+flightCrewMember.activityLog.list.label.typeOfIncident = Type of Incident
+flightCrewMember.activityLog.list.label.description = Description
+flightCrewMember.activityLog.list.label.severity = Severity
+flightCrewMember.activityLog.list.label.flightAssignment = Flight Assignment
+
+
+################## CREATE ##########################
+flight-crew-member.activity-log.form.title = Create Activity Log
+flightCrewMember.activityLog.form.label.registrationMoment = Registration Moment
+flightCrewMember.activityLog.form.label.typeOfIncident = Type of Incident
+flightCrewMember.activityLog.form.label.description = Description
+flightCrewMember.activityLog.form.label.severity = Severity
+flightCrewMember.activityLog.list.label.flightAssignment = Flight Assignment
+
+################## BUTTONS ##########################
+flightCrewMember.activityLog.list.button.create = Create Activity Log
+flightCrewMember.activityLog.form.button.create = Create
+flightCrewMember.activityLog.form.button.update = Update
+flightCrewMember.activityLog.form.button.delete = Delete
+flightCrewMember.activityLog.form.button.publish = Publish

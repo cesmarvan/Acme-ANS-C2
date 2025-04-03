@@ -1,0 +1,27 @@
+# messages-fr.i18n
+
+administrator.airline.list.title = Liste des compagnies aériennes
+
+administrator.airline.list.label.name = Nom
+administrator.airline.list.label.iataCode = Code IATA
+administrator.airline.list.label.website = Web
+
+administrator.airline.list.button.create = Créer
+
+
+administrator.airline.form.title = Détails de la compagnie aérienne
+
+administrator.airline.form.label.name = Nom
+administrator.airline.form.label.iataCode = Code IATA
+administrator.airline.form.label.website = Web
+administrator.airline.form.label.type = Type
+administrator.airline.form.label.foundationMoment = Date de fondation
+administrator.airline.form.label.email = Adresse email
+administrator.airline.form.label.phoneNumber = Numéro de téléphone
+administrator.airline.form.label.confirmation = Confirmation
+
+administrator.airline.form.button.update = Mise à jour
+administrator.airline.form.button.create = Créer
+
+acme.validation.airline.no-confirmation.message = Vous devez confirmer
+acme.validation.airline.duplicated-iata-code.message = Que l'IATA existe déjà

@@ -17,16 +17,24 @@ import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.constraints.ValidLongText;
-import acme.entities.booking.Booking;
+import acme.constraints.ValidPassenger;
+import acme.constraints.ValidShortText;
+import acme.realms.Customer;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@ValidPassenger
 public class Passenger extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
+
+	@Optional
+	@Valid
+	@Automapped
+	private Boolean				isPublished;
 
 	@Mandatory
 	@ValidLongText
@@ -49,13 +57,15 @@ public class Passenger extends AbstractEntity {
 	private Date				dateOfBirth;
 
 	@Optional
-	@ValidString(max = 50)
+	@ValidShortText
 	@Automapped
 	private String				specialNeeds;
+
+	//Relationships
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Booking				booking;
+	private Customer			customer;
 
 }
