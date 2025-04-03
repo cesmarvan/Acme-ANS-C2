@@ -7,6 +7,7 @@ acme.validation.long-text.message = No sigue el formato, debe tener entre 1 y 25
 acme.validation.short-text.message = No sigue el formato, debe tener entre 1 y 50 caracteres.
 acme.validation.phone-number.message = Este número de teléfono no es correcto, debe seguir la estructura: "^\\+?\\d{10,15}$"
 acme.validation.iata-code.message = Este código IATA no es correcto, debe seguir la estructura: "^\\+?\\d{6,15}$"
+acme.validation.locatorCode.message = Este código de localizador es incorrecto, debe seguir la estructura: "^[A-Z0-9]{6,8}$"
 
 acme.validation.Passenger.fullName.message = El nombre completo no puede estar vacío
 acme.validation.Passenger.email.message = El correo electrónico no es válido
@@ -15,3 +16,4 @@ acme.validation.Passenger.dateOfBirth.message = La fecha de nacimiento debe ser 
 acme.validation.Passenger.specialNeeds.message = Las necesidades especiales no pueden exceder los 255 caracteres
 acme.validation.Passenger.customer.message = El cliente no puede ser nulo
 acme.validation.Booking.locatorCode.exists.message = El código de localizador ya existe
+acme.validation.confirmation.message.booking.locator-code = Este valor no es aceptable

@@ -21,6 +21,7 @@ import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.client.helpers.SpringHelper;
 import acme.constraints.ValidBooking;
+import acme.constraints.ValidLocatorCode;
 import acme.entities.flight.Flight;
 import acme.entities.flight.FlightRepository;
 import acme.entities.passenger.Passenger;
@@ -42,7 +43,7 @@ public class Booking extends AbstractEntity {
 	private Boolean				isPublished;
 
 	@Mandatory
-	@ValidString(pattern = "^[A-Z0-9]{6,8}$")
+	@ValidLocatorCode
 	@Column(unique = true)
 	private String				locatorCode;
 

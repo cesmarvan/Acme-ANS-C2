@@ -7,6 +7,7 @@ acme.validation.long-text.message = It does not follow the format, it must be be
 acme.validation.short-text.message = It does not follow the format, it must be between 1 and 50 characters.
 acme.validation.phone-number.message = This phone number is incorrect, it must follow the structure: "^\\+?\\d{10,15}$"
 acme.validation.iata-code.message = This IATA code is incorrect, it must follow the structure: "^\\+?\\d{6,15}$"
+acme.validation.locatorCode.message =  This locator code is incorrect, it must follow the structure: "^[A-Z0-9]{6,8}$"
 
 acme.validation.Booking.locatorCode.message = The locator code must be between 6 and 8 alphanumeric characters
 acme.validation.Booking.purchaseMoment.message = The purchase moment must be in the past
@@ -16,3 +17,4 @@ acme.validation.Booking.flight.message = The flight cannot be null
 acme.validation.Booking.lastCreditCardNibble.message = The last credit card nibble must be 4 digits long
 acme.validation.Booking.flight.notExist.message = The specified flight does not exist in the database
 acme.validation.Booking.locatorCode.exists.message = The locator code already exists
+acme.validation.confirmation.message.booking.locator-code = This value is not acceptable

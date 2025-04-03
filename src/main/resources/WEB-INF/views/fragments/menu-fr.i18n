@@ -1,31 +1,26 @@
-# menu-es.i18n
-#
-# Copyright (C) 2012-2025 Rafael Corchuelo.
-#
-# In keeping with the traditional purpose of furthering education and research, it is
-# the policy of the copyright owner to permit non-commercial use and redistribution of
-# this software. It has been tested carefully, but it is not guaranteed for any particular
-# purposes.  The copyright owner does not offer any warranties or representations, nor do
-# they accept any liabilities with respect to them.
+# menu-fr.i18n
+
+master.menu.sign-out = Se déconnecter
+master.menu.home = Accueil
 
 # master.menu.anonymous #######################################################
 
 master.menu.anonymous = Anonyme
 master.menu.anonymous.favourite-link = Lien favori
-master.menu.anonymous.gerojegar = 29552532Q: Ojeda Garrido, Germán
-master.menu.anonymous.cesmarvan = 77214048N: Martínez Van der Looven, César
-master.menu.anonymous.alemanrod = 54223206Q: Mantecón Rodríguez, Alejandro
-master.menu.anonymous.jotageerre = 7790208Q: González Rodríguez, Joaquín
+master.menu.anonymous.gerojegar = 29552532Q: Ojeda Garrido, German
+master.menu.anonymous.cesmarvan = 77214048N: Martinez Van der Looven, Cesar
+master.menu.anonymous.alemanrod = 54223206Q: Mantecon Rodriguez, Alejandro
+master.menu.anonymous.jotageerre = 7790208Q: Gonzalez Rodriguez, Joaquin
 
 # master.menu.administrator ###################################################
 
 master.menu.administrator = Administrateur
-master.menu.administrator.list-user-accounts = Voir les comptes utilisateurs
+master.menu.administrator.list-user-accounts = Liste des comptes utilisateurs
 master.menu.administrator.list-airports = Liste des aéroports
 master.menu.administrator.list-airlines = Liste des compagnies aériennes
-master.menu.administrator.list-aircrafts = Liste des avions
-master.menu.administrator.populate-db-initial = Peupler BD (initial)
-master.menu.administrator.populate-db-sample = Peupler BD (exemples)
+master.menu.administrator.list-aircrafts = Liste des aéronefs
+master.menu.administrator.populate-db-initial = Remplir la base de données (initial)
+master.menu.administrator.populate-db-sample = Remplir la base de données (échantillons)
 master.menu.administrator.shut-system-down = Arrêter le système
 
 # master.menu.provider ########################################################
@@ -41,13 +36,15 @@ master.menu.consumer.favourite-link = Lien favori
 # master.menu.assistance-agent ##################################################
 
 master.menu.assistance-agent = Agent d'assistance
-master.menu.assistance-agent.list-complete = Liste de déclaration
+master.menu.assistance-agent.list-complete = Liste des réclamations
 
 # master.menu.manager ########################################################
- master.menu.manager = Manager
- master.menu.manager.list-my-flights = List Veules
- 
-# master.menu.customer ##########################################################
+
+master.menu.manager = Gestionnaire
+master.menu.manager.list-my-flights = Liste des vols
+
+# master.menu.customer ########################################################
+
 master.menu.customer = Client
 master.menu.customer.list-my-bookings = Liste des réservations
 
@@ -56,6 +53,15 @@ master.menu.customer.list-my-bookings = Liste des réservations
 master.menu.user-account = Compte
 master.menu.user-account.general-profile = Profil général
 master.menu.user-account.become-provider = Devenir fournisseur
-master.menu.user-account.provider-profile = Profil de fournisseur
+master.menu.user-account.provider-profile = Profil fournisseur
 master.menu.user-account.become-consumer = Devenir consommateur
-master.menu.user-account.consumer-profile = Profil de consommateur
+master.menu.user-account.consumer-profile = Profil consommateur
+
+# master.menu.flight-crew-member ####################################################
+
+master.menu.flight-crew-member = Membre de l'équipage de vol
+master.menu.flight-crew-member.list-my-completed-flights-assignments = Liste des affectations de vols terminées
+master.menu.flight-crew-member.list-my-planned-flights-assignments = Liste des affectations de vols prévues
+master.menu.flight-crew-member.create-flight-assignment = Créer une affectation
+master.menu.flight-crew-member.list-my-activity-logs = Journaux d'activités
+master.menu.flight-crew-member.create-activity-logs = Créer un journal d'activité

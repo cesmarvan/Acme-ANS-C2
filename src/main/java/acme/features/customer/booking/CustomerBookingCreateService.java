@@ -41,7 +41,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 		Booking booking = new Booking();
 		booking.setPurchaseMoment(MomentHelper.getCurrentMoment());
-		booking.setIsPublished(true);
+		booking.setIsPublished(false);
 		booking.setCustomer(customer);
 
 		super.getBuffer().addData(booking);
