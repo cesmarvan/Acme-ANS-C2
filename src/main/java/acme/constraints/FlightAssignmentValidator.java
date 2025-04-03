@@ -27,30 +27,22 @@ public class FlightAssignmentValidator extends AbstractValidator<ValidFlightAssi
 		boolean result = true;
 
 		if (flightAssignment.getDuty() == null) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.flightCrewMember.duty.message").addPropertyNode("duty").addConstraintViolation();
+			super.state(context, false, "duty", "acme.validation.flightAssignment.duty.message");
 			result = false;
 		} else if (flightAssignment.getLastUpdate() == null || flightAssignment.getLastUpdate().after(MomentHelper.getCurrentMoment())) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.flightCrewMember.lastUpdate.message").addPropertyNode("lastUpdate").addConstraintViolation();
+			super.state(context, false, "lastUpdate", "acme.validation.flightAssignment.lastUpdate.message");
 			result = false;
 		} else if (flightAssignment.getFlightCrewMember() == null) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.flightCrewMember.flightCrewMember.message").addPropertyNode("flightCrewMember").addConstraintViolation();
+			super.state(context, false, "flightCrewmember", "acme.validation.flightAssignment.crewMember.message");
 			result = false;
 		} else if (flightAssignment.getRemarks().isBlank() || flightAssignment.getRemarks().isEmpty() || flightAssignment.getRemarks().length() > 255 || flightAssignment.getRemarks().length() < 0) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.flightCrewMember.remarks.message").addPropertyNode("remarks").addConstraintViolation();
+			super.state(context, false, "remarks", "acme.validation.flightAssignment.remarks.message");
 			result = false;
-		}
-
-		else if (flightAssignment.getLeg() == null) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.flightCrewMember.leg.message").addPropertyNode("leg").addConstraintViolation();
+		} else if (flightAssignment.getLeg() == null) {
+			super.state(context, false, "leg", "acme.validation.flightAssignment.leg.message");
 			result = false;
 		} else if (flightAssignment.getStatus() == null) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("acme.validation.flightCrewMember.status.message").addPropertyNode("status").addConstraintViolation();
+			super.state(context, false, "status", "acme.validation.flightAssignment.status.message");
 			result = false;
 		}
 

@@ -16,10 +16,6 @@ flightCrewMember.flightAssignment.form.label.status = Status
 flightCrewMember.flightAssignment.form.label.remarks = Remarks
 flightCrewMember.flightAssignment.form.label.leg = Leg
 flightCrewMember.flightAssignment.form.label.flightCrewMember = Crew Member
-validation.error.messagemoreThanOnePilotOrCopilot = This leg has already a Pilot or Copilot assigned
-validation.error.messagecrewMemberNotAvailable = This Crew Member is currently not available for assignment
-validation.error.messagecrewMemberAlreadyInLeg = This Crew Member is already assigned to another Leg
-validation.error.messageblankOrEmptyString = The remark cannot be empty
 
 ################## BUTTONS ##########################
 flightCrewMember.flightAssignment.list.button.create = Create Flight Assignment
