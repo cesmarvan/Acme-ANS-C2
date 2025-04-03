@@ -1,0 +1,30 @@
+# validation-es.i18n
+
+acme.validation.range = Este valor no es posible
+acme.validation.header.message = Este valor no puede estar vacío.
+acme.validation.identifier.message = Este identificador no es correcto, debe seguir la estructura: "^[A-Z]{2,3}\\d{6}$"
+acme.validation.long-text.message = No sigue el formato, debe tener entre 1 y 255 caracteres.
+acme.validation.short-text.message = No sigue el formato, debe tener entre 1 y 50 caracteres.
+acme.validation.phone-number.message = Este número de teléfono no es correcto, debe seguir la estructura: "^\\+?\\d{10,15}$"
+acme.validation.iata-code.message = Este código IATA no es correcto, debe seguir la estructura: "^\\+?\\d{6,15}$"
+
+acme.validation.confirmation.message.lastCreditCardNibble = El último nibble es requerido cuando la reserva está publicada.
+acme.validation.confirmation.message.update = No puedes actualizar una reserva una vez que está publicada.
+acme.validation.confirmation.message.booking.locator-code = Este código de localizador ya está asociado con otra reserva.
+
+acme.validation.Customer.NotNull.message = Este valor no puede estar vacío.
+acme.validation.Customer.identifier.message = Este identificador no es correcto, debe seguir la estructura: "^[A-Z]{2,3}\\d{6}$"
+acme.validation.Customer.phoneNumber.message = Este número de teléfono no es correcto, debe seguir la estructura: "^\\+?\\d{10,15}$"
+acme.validation.Customer.address.message = Esta dirección no sigue el formato, debe tener entre 1 y 255 caracteres.
+acme.validation.Customer.city.message = Esta ciudad no sigue el formato, debe tener entre 1 y 255 caracteres.
+acme.validation.Customer.country.message = Este país no sigue el formato, debe tener entre 1 y 255 caracteres.
+acme.validation.Customer.earnedPoints.message = El número de puntos ganados debe estar entre 0 y 500,000.
+acme.validation.Customer.identifier.name.message = Los dos primeros o tres primeros caracteres del identificador no coinciden con las iniciales del nombre y apellido del cliente.
+
+acme.validation.Aircraft.model.message = El modelo del avión no puede estar vacío.
+acme.validation.Aircraft.registrationNumber.message = El número de registro del avión no puede estar vacío.
+acme.validation.Aircraft.capacity.message = La capacidad del avión debe estar entre 0 y 1000.
+acme.validation.Aircraft.cargoWeight.message = El peso de carga del avión debe estar entre 2000 y 50000.
+acme.validation.Aircraft.status.message = El estado del avión no puede ser nulo.
+acme.validation.Aircraft.airline.message = La aerolínea no puede ser nula.
+acme.validation.Aircraft.airline.notExist.message = La aerolínea especificada no existe.

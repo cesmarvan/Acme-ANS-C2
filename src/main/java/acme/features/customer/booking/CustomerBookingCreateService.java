@@ -41,7 +41,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 		Booking booking = new Booking();
 		booking.setPurchaseMoment(MomentHelper.getCurrentMoment());
-		booking.setIsPublished(true);
+		booking.setIsPublished(false);
 		booking.setCustomer(customer);
 
 		super.getBuffer().addData(booking);
@@ -65,8 +65,8 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 	}
 
 	@Override
-	public void perform(final Booking object) {
-		this.repository.save(object);
+	public void perform(final Booking booking) {
+		this.repository.save(booking);
 	}
 
 	@Override

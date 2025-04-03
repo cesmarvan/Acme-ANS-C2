@@ -8,6 +8,10 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
+master.menu.home = Home
+master.menu.sign-up = Sign up
+master.menu.sign-in = Sign in
+
 # master.menu.anonymous #######################################################
 
 master.menu.anonymous = Anonymous
@@ -25,6 +29,7 @@ master.menu.administrator.list-airports = List Airports
 master.menu.administrator.populate-db-initial = Populate DB (initial)
 master.menu.administrator.populate-db-sample = Populate DB (samples)
 master.menu.administrator.shut-system-down = Shut system down
+master.menu.administrator.list-aircrafts = List Aircrafts
 
 # master.menu.provider ########################################################
 

@@ -14,12 +14,8 @@ import acme.realms.Manager;
 @GuiService
 public class ManagerFlightListService extends AbstractGuiService<Manager, Flight> {
 
-	// Internal state ---------------------------------------------------------------------------
-
 	@Autowired
 	private ManagerFlightRepository repository;
-
-	// AbstractGuiService interface --------------------------------------------------------------
 
 
 	@Override
