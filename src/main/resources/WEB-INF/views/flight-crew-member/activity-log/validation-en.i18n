@@ -1,0 +1,6 @@
+validation.error.flightAssignmentNotPublished= This Flight Assignment isn't published yet
+acme.validation.activityLog.typeOfIncident.message= Type of Incident doesn't have a valid value
+acme.validation.activityLog.description.message= Description doesn't have a valid value
+acme.validation.activityLog.registrationMoment.message= Registration Moment doesn't have a valid value
+acme.validation.activityLog.severity.message= Severity doesn't have a valid value
+acme.validation.activityLog.flighAssignment.message= Flight Assignment doesn't have a valid value

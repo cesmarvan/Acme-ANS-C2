@@ -29,7 +29,7 @@ public class ActivityLogListService extends AbstractGuiService<FlightCrewMember,
 		List<ActivityLog> activityLogs;
 
 		crewMemberId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		activityLogs = this.repository.findActivityLogsByFlightCrewMemberId(crewMemberId);
+		activityLogs = this.repository.findActivityLogsByFlightAssignmentId(crewMemberId);
 		super.getBuffer().addData(activityLogs);
 	}
 
