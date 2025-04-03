@@ -39,3 +39,11 @@
 		<acme:footer-copyright code="master.company.name"/>
 	</acme:footer-logo>
 </acme:footer-panel>
+
+<jstl:if test="${service != null}">
+	<div class="panel-body" style="margin: 2em 1em; text-align: center;">
+		<a href="${service.pictureLink}" target="_blank">
+			<img src="${service.pictureLink}" alt="${service.name}" class="img-fluid rounded" style="border: 4px solid #000000; padding: 5px;"/>
+		</a>
+	</div>
+</jstl:if>
