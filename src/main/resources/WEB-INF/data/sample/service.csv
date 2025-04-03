@@ -1,5 +1,5 @@
 key,name,pictureLink,avgDwellTime,promoCode,discount
-service-01,Lounge Access,https://example.com/images/lounge_access.jpg,4.3,,
-service-02,Fast Track Security,https://example.com/images/fast_track_security.jpg,2.15,BTZN-25,EUR 39.09
-service-03,Duty-Free Shopping,https://example.com/images/duty-free_shopping.jpg,0.65,,
-service-04,Baggage Wrapping,https://example.com/images/baggage_wrapping.jpg,4.67,JLJR-25,EUR 29.74
+service-01,Lounge Access,https://i.imgur.com/8YcXhS0.png,4.3,,
+service-02,Fast Track Security,https://i.imgur.com/MtBRoNP.png,2.15,BTZN-25,EUR 39.09
+service-03,Duty-Free Shopping,https://i.imgur.com/NGLSjk6.png,0.65,,
+service-04,Baggage Wrapping,https://i.imgur.com/fihihcF.png,4.67,JLJR-25,EUR 29.74
