@@ -11,6 +11,7 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidNumber;
+import acme.constraints.ValidAircraft;
 import acme.constraints.ValidLongText;
 import acme.constraints.ValidShortText;
 import acme.entities.airline.Airline;
@@ -20,6 +21,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@ValidAircraft
 public class Aircraft extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
@@ -54,7 +56,8 @@ public class Aircraft extends AbstractEntity {
 	@Automapped
 	private String				details;
 
-	// Relacion con airline
+	// Relationships
+
 	@Mandatory
 	@Valid
 	@ManyToOne

@@ -1,0 +1,23 @@
+# messages-es.i18n
+
+administrator.aircraft.list.title = Liste des avions
+administrator.aircraft.form.title = Formulaire des avions
+
+administrator.aircraft.list.label.airline = Compagnie aérienne
+administrator.aircraft.list.label.model = Modèle
+administrator.aircraft.list.label.registrationNumber = Numéro d'enregistrement
+administrator.aircraft.list.label.aircraftStatus = Statut
+administrator.aircraft.list.label.capacity = Capacité
+administrator.aircraft.list.label.cargoWeight = Poids du fret
+administrator.aircraft.list.label.details = Détails
+
+administrator.aircraft.list.button.create = Créer un nouvel avion
+administrator.aircraft.list.button.delete = Supprimer un avion existant
+administrator.aircraft.form.label.confirmation.create = Êtes-vous sûr de vouloir créer l'avion ci-dessus ?
+administrator.aircraft.form.label.confirmation.update = Êtes-vous sûr de vouloir mettre à jour l'avion ci-dessus ?
+administrator.aircraft.form.button.create = Créer un avion
+administrator.aircraft.form.button.update = Mettre à jour un avion
+administrator.aircraft.form.button.disable = Désactiver l'avion
+administrator.aircraft.form.button.enable = Activer l'avion
+
+acme.validation.confirmation.message.aircraft.registrationNumber = Il existe déjà un autre avion avec ce numéro d'enregistrement

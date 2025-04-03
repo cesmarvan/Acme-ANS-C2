@@ -1,6 +1,6 @@
 # validation-en.i18n
 
-
+acme.validation.range = This value is not posible
 acme.validation.header.message = This value cannot be empty.
 acme.validation.identifier.message = This identifier is incorrect, it must follow the structure: "^[A-Z]{2,3}\\d{6}$"
 acme.validation.long-text.message = It does not follow the format, it must be between 1 and 255 characters.
@@ -12,10 +12,15 @@ acme.validation.confirmation.message.lastCreditCardNibble = The last nibble is r
 acme.validation.confirmation.message.update = You cannot update a booking once it is published.
 acme.validation.confirmation.message.booking.locator-code = This locator code is already associated with another booking.
 
+acme.validation.Airport.name.message = The airport name cannot be empty.
+acme.validation.Airport.iataCode.message = The IATA code must have three uppercase letters.
+acme.validation.Airport.operationalScope.message = The operational scope cannot be null.
+acme.validation.Airport.city.message = The city cannot be empty.
+acme.validation.Airport.country.message = The country cannot be empty.
+acme.validation.Airport.web.message = The website must be a valid URL.
+acme.validation.Airport.emailAddress.message = The email address is not valid.
+acme.validation.Airport.contactPhoneNumber.message = The phone number is not valid.
+acme.validation.Airport.notExist.message = The specified airport does not exist.
 
-acme.validation.Passenger.fullName.message = The full name cannot be empty
-acme.validation.Passenger.email.message = The email is not valid
-acme.validation.Passenger.passportNumber.message = The passport number is not valid, it must follow the format: "^[A-Z0-9]{6,9}$"
-acme.validation.Passenger.dateOfBirth.message = The date of birth must be a past date
-acme.validation.Passenger.specialNeeds.message = Special needs cannot exceed 255 characters
-acme.validation.Passenger.customer.message = The customer cannot be null
+
+

@@ -14,7 +14,7 @@
 		
 		<jstl:when test="${(_command == 'update' || _command == 'show' || _command == 'publish') && isPublished == false}">
 				<acme:submit code="customer.passenger.form.button.update" action="/customer/passenger/update"/>
-				<acme:submit code="customer.passenger.form.button.publish" action="/customer/passenger/publish"/>
+				
 			</jstl:when>
 			
 			<jstl:when test="${_command == 'create'}">
