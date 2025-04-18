@@ -9,5 +9,6 @@
 # they accept any liabilities with respect to them.
 
 25.1.0	This is the initial release of Acme-ANS, introducing core features and functionalities for the first time.
-25.2.0	Updated scripts and functionalities of the Framework.
-25.3.0	This is the third version of Acme ANS
+25.2.0	This version focuses on the development of data models.
+25.3.0	This version is dedicated to the implementation of functionalities.
+25.4.0	This version is dedicated to testing.
