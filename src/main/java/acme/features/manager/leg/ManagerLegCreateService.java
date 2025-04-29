@@ -1,12 +1,14 @@
 
 package acme.features.manager.leg;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
@@ -64,6 +66,7 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 	public void bind(final Leg leg) {
 		int masterId;
 		Flight flight;
+		String fNumber;
 
 		masterId = super.getRequest().getData("masterId", int.class);
 
@@ -80,6 +83,10 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 
 		super.bindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status");
 
+		if (aircraft == null)
+			leg.setFlightNumber(leg.getFlightNumber());
+		else
+			leg.setFlightNumber(aircraft.getAirline().getIataCode() + leg.getFlightNumber());
 		leg.setFlight(flight);
 		leg.setAircraft(aircraft);
 		leg.setDepartureAirport(departureAirport);
@@ -94,6 +101,16 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 			datesNotNull = !(leg.getScheduledArrival() == null || leg.getScheduledDeparture() == null);
 
 			super.state(datesNotNull, "scheduledDeparture", "acme.validation.leg.null-dates.message");
+		}
+		{
+			boolean isInFuture = true;
+
+			Date now = MomentHelper.getBaseMoment();
+
+			if (leg.getScheduledDeparture() != null)
+				isInFuture = leg.getScheduledDeparture().after(now);
+
+			super.state(isInFuture, "scheduledDeparture", "acme.validation.leg.not-in-future-date.message");
 		}
 		{
 			boolean aircraftNotNull = true;
@@ -132,6 +149,12 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 		airportArrivalChoices = SelectChoices.from(airports, "iataCode", leg.getArrivalAirport());
 
 		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "draftMode");
+
+		Aircraft aircraft = this.repository.findAircraftById(Integer.valueOf(aircraftChoices.getSelected().getKey()));
+		if (aircraft != null) {
+			String fNumber = leg.getFlightNumber().replace(aircraft.getAirline().getIataCode(), "");
+			dataset.put("flightNumber", fNumber);
+		}
 
 		dataset.put("status", statusChoices);
 		dataset.put("aircrafts", aircraftChoices);

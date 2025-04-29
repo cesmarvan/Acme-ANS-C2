@@ -32,10 +32,21 @@ public class ManagerLegShowService extends AbstractGuiService<Manager, Leg> {
 		boolean status;
 		int id;
 		Leg leg;
+		Manager manager;
 
 		id = super.getRequest().getData("id", int.class);
 		leg = this.repository.findLegById(id);
-		status = leg != null;
+		manager = leg.getFlight().getManager();
+		status = leg != null && super.getRequest().getPrincipal().hasRealm(manager);
+
+		super.getResponse().setAuthorised(status);
+
+		if (leg == null)
+			manager = null;
+		else
+			manager = leg.getFlight().getManager();
+
+		status = leg != null && super.getRequest().getPrincipal().hasRealm(manager);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -70,6 +81,12 @@ public class ManagerLegShowService extends AbstractGuiService<Manager, Leg> {
 		airportArrivalChoices = SelectChoices.from(airports, "iataCode", leg.getArrivalAirport());
 
 		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "draftMode");
+
+		Aircraft aircraft = this.repository.findAircraftById(Integer.valueOf(aircraftChoices.getSelected().getKey()));
+		if (aircraft != null) {
+			String fNumber = leg.getFlightNumber().replace(aircraft.getAirline().getIataCode(), "");
+			dataset.put("flightNumber", fNumber);
+		}
 
 		dataset.put("status", statusChoices);
 		dataset.put("travelHours", leg.getTravelHours());
