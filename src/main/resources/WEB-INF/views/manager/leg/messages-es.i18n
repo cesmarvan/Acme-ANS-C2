@@ -38,3 +38,4 @@ acme.validation.leg.no-correct-dates.message = Fechas incorrectas: El tramo i no
 acme.validation.leg.no-correct-airports.message  = Aeropuertos incorrectos: El aeropuerto de llegada del tramo i debe ser el aeropuerto de salida del tramo i+1
 acme.validation.leg.null-aircraft.message = Debe introducir un avión
 acme.validation.leg.wrong-IATA-code.message = Código IATA inválido
+acme.validation.leg.not-in-future-date.message = La salida programada debe ser futura

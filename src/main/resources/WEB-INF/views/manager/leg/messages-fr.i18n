@@ -38,3 +38,4 @@ acme.validation.flight.no-correct-dates.message = Dates incorrectes. La section 
 acme.validation.flight.no-correct-airports.message  = Aéroports incorrects : l'aéroport d'arrivée de l'étape i doit être l'aéroport de départ de l'étape i+1
 acme.validation.flight.null-aircraft.message = Vous devez entrer un avion
 acme.validation.leg.wrong-IATA-code.message = Code IATA invalide
+acme.validation.leg.not-in-future-date.message = Le départ prévu doit être futur

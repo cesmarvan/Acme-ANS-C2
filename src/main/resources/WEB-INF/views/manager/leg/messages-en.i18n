@@ -37,3 +37,4 @@ acme.validation.flight.no-correct-dates.message = Incorrect dates: Leg i cannot 
 acme.validation.flight.no-correct-airports.message  = Incorrect airports: The arrival airport of leg i must be the departure airport of leg i+1
 acme.validation.flight.null-aircraft.message = You must enter an aircraft
 acme.validation.leg.wrong-IATA-code.message = Invalid IATA code
+acme.validation.leg.not-in-future-date.message = Schedule departure must be future

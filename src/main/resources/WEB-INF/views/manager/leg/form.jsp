@@ -4,7 +4,8 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>	
-	<acme:input-textbox code="manager.leg.form.label.flightNumber" path="flightNumber" />
+	<!-- PONER placeholder con variable airline de manager pasado por unbind -->
+	<acme:input-textbox code="manager.leg.form.label.flightNumber" path="flightNumber" placeholder="0000" />
 	<acme:input-moment code="manager.leg.form.label.scheduledDeparture" path="scheduledDeparture" />
 	<acme:input-moment code="manager.leg.form.label.scheduledArrival" path="scheduledArrival" />
 	<acme:input-select code="manager.leg.form.label.status" path="status" choices="${status}" />
@@ -17,9 +18,9 @@
 		
 	<jstl:choose>	 
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
+		<acme:submit code="manager.leg.form.button.update" action="/manager/leg/update"/>
+		<acme:submit code="manager.leg.form.button.delete" action="/manager/leg/delete"/>
 			<acme:submit code="manager.leg.form.button.publish" action="/manager/leg/publish"/>
-			<acme:submit code="manager.leg.form.button.delete" action="/manager/leg/delete"/>
-			<acme:submit code="manager.leg.form.button.update" action="/manager/leg/update"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="manager.leg.form.button.create" action="/manager/leg/create?masterId=${masterId}"/> 

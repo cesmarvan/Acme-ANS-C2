@@ -1,3 +1,7 @@
 ﻿key,tag,self-transfer,cost,description,draft-mode,key:manager
 flight-01,tag1,true,EUR 50.00,description1,true,manager-01
-flight-02,tag2,true,EUR 560.00,description2,true,manager-02
+flight-02,tag2,true,EUR 560.00,description2,true,manager-01
+flight-03,tag3,true,EUR 561.00,description3,true,manager-01
+flight-04,tag4,true,EUR 562.00,description4,true,manager-02
+flight-05,tag5,true,EUR 563.00,description5,true,manager-02
+flight-06,tag6,true,EUR 564.00,description6,true,manager-02
