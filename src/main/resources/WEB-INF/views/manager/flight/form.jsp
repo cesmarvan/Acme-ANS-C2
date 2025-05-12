@@ -25,6 +25,9 @@
 			<acme:submit code="manager.flight.form.button.delete" action="/manager/flight/delete"/>
 			<acme:submit code="manager.flight.form.button.publish" action="/manager/flight/publish"/>
 		</jstl:when>
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == false}">
+		<acme:button code="manager.flight.list.button.legs" action="/manager/leg/list?masterId=${id}"/>
+		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="manager.flight.form.button.create" action="/manager/flight/create"/> 
 		</jstl:when>		
