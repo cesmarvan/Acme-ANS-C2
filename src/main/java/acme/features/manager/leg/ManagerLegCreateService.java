@@ -39,7 +39,7 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 		Manager manager;
 		manager = this.repository.findFlightById(masterId).getManager();
 
-		status = manager != null && super.getRequest().getPrincipal().hasRealm(manager);
+		status = super.getRequest().getPrincipal().hasRealm(manager);
 
 		super.getResponse().setAuthorised(status);
 	}

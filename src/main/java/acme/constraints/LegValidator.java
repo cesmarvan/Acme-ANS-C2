@@ -58,7 +58,7 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 
 				if (value.getScheduledDeparture() == null)
 					super.state(context, false, "scheduledDeparture", "acme.validation.leg.null-dates.message");
-				if (value.getScheduledArrival() == null)
+				else if (value.getScheduledArrival() == null)
 					super.state(context, false, "scheduledArrival", "acme.validation.leg.null-dates.message");
 				else {
 					rightDatesOrder = value.getScheduledArrival().after(value.getScheduledDeparture());

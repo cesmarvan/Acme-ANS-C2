@@ -30,15 +30,19 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 		int flightId;
 		Flight flight;
 
-		flightId = super.getRequest().getData("id", int.class);
-		flight = this.repository.findFlightById(flightId);
-
-		if (flight == null)
-			manager = null;
-		else
+		if (super.getRequest().hasData("id", int.class)) {
+			flightId = super.getRequest().getData("id", int.class);
+			flight = this.repository.findFlightById(flightId);
 			manager = flight.getManager();
+		}
+
+		else {
+			manager = null;
+			flight = null;
+		}
 
 		status = flight != null && flight.getDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
+
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -82,23 +86,23 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 
 			super.state(statusLegsPublished, "*", "acme.validation.flight.no-published-legs.message");
 		}
-		{
-			boolean correctDates = true;
-
-			List<Leg> flightLegs = this.repository.getFisrtLegOfFlight(flight.getId()); // Leg por orden de fecha de salida
-
-			for (int i = 0; i < flightLegs.size(); i++)
-				try {
-					if (flightLegs.get(i).getScheduledArrival().after(flightLegs.get(i + 1).getScheduledDeparture())) {
-						correctDates = false;
-						break;
-					}
-				} catch (Exception e) {
-					continue;
-				}
-
-			super.state(correctDates, "*", "acme.validation.flight.no-correct-dates.message");
-		}
+		//		{
+		//			boolean correctDates = true;
+		//
+		//			List<Leg> flightLegs = this.repository.getFisrtLegOfFlight(flight.getId()); // Leg por orden de fecha de salida
+		//
+		//			for (int i = 0; i < flightLegs.size(); i++)
+		//				try {
+		//					if (flightLegs.get(i).getScheduledArrival().after(flightLegs.get(i + 1).getScheduledDeparture())) {
+		//						correctDates = false;
+		//						break;
+		//					}
+		//				} catch (Exception e) {
+		//					continue;
+		//				}
+		//
+		//			super.state(correctDates, "*", "acme.validation.flight.no-correct-dates.message");
+		//		}
 		//		{
 		//			boolean correctAirport = true;
 		//
