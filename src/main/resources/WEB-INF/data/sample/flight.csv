@@ -5,3 +5,10 @@ flight-03,tag3,true,EUR 561.00,description3,true,manager-01
 flight-04,tag4,true,EUR 562.00,description4,true,manager-02
 flight-05,tag5,true,EUR 563.00,description5,true,manager-02
 flight-06,tag6,true,EUR 564.00,description6,true,manager-02
+flight-07,flightToDelete,true,EUR 564.00,flightToDelete,true,manager-01
+flight-08,flightToUpdate,true,EUR 564.00,flightToUpdate,true,manager-01
+flight-09,flightToPublish,true,EUR 564.00,flightToUpdate,true,manager-01
+flight-010,flightToNotPublishLegsNotPublished,true,EUR 564.00,flightToUpdate,true,manager-01
+flight-011,flightToNotPublishNoLegs,true,EUR 564.00,flightToUpdate,true,manager-01
+flight-012,flightWithLegsToTest,true,EUR 564.00,flightWithLegsToDelete,true,manager-01
+flight-013,flightWithLegsToPublish,true,EUR 564.00,flightWithLegsToPublish,true,manager-01
