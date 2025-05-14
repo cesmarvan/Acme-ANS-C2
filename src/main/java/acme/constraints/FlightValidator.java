@@ -35,7 +35,7 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 
 			int numberFlightLeg = this.repository.getNumberOfLegsOfFlight(value.getId());
 
-			if (value.getDraftMode())
+			if (Boolean.TRUE.equals(value.getDraftMode()))
 				statusNumberLegs = true;
 			else
 				statusNumberLegs = numberFlightLeg > 0;

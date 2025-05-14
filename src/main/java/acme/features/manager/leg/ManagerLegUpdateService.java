@@ -37,13 +37,14 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 		int legId;
 		Leg leg;
 
-		legId = super.getRequest().getData("id", int.class);
-		leg = this.repository.findLegById(legId);
-
-		if (leg == null)
-			manager = null;
-		else
+		if (super.getRequest().hasData("id", int.class)) {
+			legId = super.getRequest().getData("id", int.class);
+			leg = this.repository.findLegById(legId);
 			manager = leg.getFlight().getManager();
+		} else {
+			leg = null;
+			manager = null;
+		}
 
 		status = leg != null && super.getRequest().getPrincipal().hasRealm(manager) && leg.getDraftMode();
 
@@ -93,9 +94,9 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 		{
 			boolean datesNotNull = true;
 
-			datesNotNull = leg.getScheduledArrival() != null && leg.getScheduledDeparture() != null;
+			datesNotNull = !(leg.getScheduledArrival() == null || leg.getScheduledDeparture() == null);
 
-			super.state(datesNotNull, "*", "acme.validation.leg.null-dates.message");
+			super.state(datesNotNull, "scheduledDeparture", "acme.validation.leg.null-dates.message");
 		}
 		{
 			boolean isInFuture = true;
@@ -142,7 +143,6 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 			dataset.put("flightNumber", fNumber);
 		}
 
-		dataset.put("duration", leg.getTravelHours());
 		dataset.put("status", statusChoices);
 		dataset.put("aircrafts", aircraftChoices);
 		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
