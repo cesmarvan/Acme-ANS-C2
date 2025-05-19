@@ -124,17 +124,20 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 			Flight flight;
 			flight = leg.getFlight();
 
-			List<Leg> flightLegs = this.repository.getFisrtLegOfFlight(flight.getId()); // Leg por orden de fecha de salida
+			if (flight.getSelfTransfer() == false) {
 
-			for (int i = 0; i < flightLegs.size(); i++)
-				try {
-					if (!flightLegs.get(i).getArrivalAirport().equals(flightLegs.get(i + 1).getDepartureAirport())) {
-						correctAirport = false;
-						break;
+				List<Leg> flightLegs = this.repository.getFisrtLegOfFlight(flight.getId()); // Leg por orden de fecha de salida
+
+				for (int i = 0; i < flightLegs.size(); i++)
+					try {
+						if (!flightLegs.get(i).getArrivalAirport().equals(flightLegs.get(i + 1).getDepartureAirport())) {
+							correctAirport = false;
+							break;
+						}
+					} catch (Exception e) {
+						continue;
 					}
-				} catch (Exception e) {
-					continue;
-				}
+			}
 
 			super.state(correctAirport, "*", "acme.validation.leg.no-correct-airports.message");
 		}
