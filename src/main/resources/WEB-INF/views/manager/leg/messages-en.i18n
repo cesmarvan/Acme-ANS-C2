@@ -38,3 +38,4 @@ acme.validation.flight.no-correct-airports.message  = Incorrect airports: The ar
 acme.validation.flight.null-aircraft.message = You must enter an aircraft
 acme.validation.leg.wrong-IATA-code.message = Invalid IATA code
 acme.validation.leg.not-in-future-date.message = Schedule departure must be future
+acme.validation.leg.null-aircraft.message = Aircraft can't be null

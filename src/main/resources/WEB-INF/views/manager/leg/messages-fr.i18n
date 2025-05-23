@@ -39,3 +39,4 @@ acme.validation.flight.no-correct-airports.message  = Aéroports incorrects : l
 acme.validation.flight.null-aircraft.message = Vous devez entrer un avion
 acme.validation.leg.wrong-IATA-code.message = Code IATA invalide
 acme.validation.leg.not-in-future-date.message = Le départ prévu doit être futur
+acme.validation.leg.null-aircraft.message = L'avion ne peut pas être nul
