@@ -86,40 +86,6 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 
 			super.state(statusLegsPublished, "*", "acme.validation.flight.no-published-legs.message");
 		}
-		//		{
-		//			boolean correctDates = true;
-		//
-		//			List<Leg> flightLegs = this.repository.getFisrtLegOfFlight(flight.getId()); // Leg por orden de fecha de salida
-		//
-		//			for (int i = 0; i < flightLegs.size(); i++)
-		//				try {
-		//					if (flightLegs.get(i).getScheduledArrival().after(flightLegs.get(i + 1).getScheduledDeparture())) {
-		//						correctDates = false;
-		//						break;
-		//					}
-		//				} catch (Exception e) {
-		//					continue;
-		//				}
-		//
-		//			super.state(correctDates, "*", "acme.validation.flight.no-correct-dates.message");
-		//		}
-		//		{
-		//			boolean correctAirport = true;
-		//
-		//			List<Leg> flightLegs = this.repository.getFisrtLegOfFlight(flight.getId()); // Leg por orden de fecha de salida
-		//
-		//			for (int i = 0; i < flightLegs.size(); i++)
-		//				try {
-		//					if (flightLegs.get(i).getArrivalAirport().equals(flightLegs.get(i + 1).getDepartureAirport())) {
-		//						correctAirport = false;
-		//						break;
-		//					}
-		//				} catch (Exception e) {
-		//					continue;
-		//				}
-		//
-		//			super.state(correctAirport, "*", "acme.validation.flight.no-correct-airports.message");
-		//		}
 	}
 
 	@Override

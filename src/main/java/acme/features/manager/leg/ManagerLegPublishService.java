@@ -12,6 +12,7 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
+import acme.entities.aircraft.AircraftStatus;
 import acme.entities.airport.Airport;
 import acme.entities.flight.Flight;
 import acme.entities.leg.Leg;
@@ -36,15 +37,31 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 		int legId;
 		Leg leg;
 
-		legId = super.getRequest().getData("id", int.class);
-		leg = this.repository.findLegById(legId);
-
-		if (leg == null)
-			manager = null;
-		else
+		if (super.getRequest().hasData("id", int.class)) {
+			legId = super.getRequest().getData("id", int.class);
+			leg = this.repository.findLegById(legId);
 			manager = leg.getFlight().getManager();
+		} else {
+			leg = null;
+			manager = null;
+		}
 
 		status = leg != null && leg.getDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
+		if (status) {
+			int aircraftId, arrivalAirportId, departureAirportId;
+
+			aircraftId = super.getRequest().getData("aircraft", int.class);
+			arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
+			departureAirportId = super.getRequest().getData("departureAirport", int.class);
+
+			Aircraft aircraft;
+			Airport arrivalAirport;
+			Airport departureAirport;
+			aircraft = this.repository.findAircraftById(aircraftId);
+			arrivalAirport = this.repository.findAirportById(arrivalAirportId);
+			departureAirport = this.repository.findAirportById(departureAirportId);
+			status = (aircraftId == 0 || aircraft != null) && (arrivalAirportId == 0 || arrivalAirport != null) && (departureAirportId == 0 || departureAirport != null);
+		}
 		super.getResponse().setAuthorised(status);
 
 	}
@@ -166,7 +183,7 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 		statusChoices = SelectChoices.from(LegStatus.class, leg.getStatus());
 
 		SelectChoices aircraftChoices;
-		List<Aircraft> aircrafts = this.repository.findAllAircrafts();
+		List<Aircraft> aircrafts = this.repository.findActivesAircrafts(AircraftStatus.ACTIVE_SERVICE);
 		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", leg.getAircraft());
 
 		SelectChoices airportDepartureChoices;
@@ -189,6 +206,7 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 		dataset.put("departureAirports", airportDepartureChoices);
 		dataset.put("departureAirport", airportDepartureChoices.getSelected().getKey());
 		dataset.put("arrivalAirports", airportArrivalChoices);
+		dataset.put("arrivalAirport", airportArrivalChoices.getSelected().getKey());
 		dataset.put("flight", flight);
 
 		super.getResponse().addData(dataset);

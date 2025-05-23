@@ -30,3 +30,4 @@ manager.flight.form.button.create = Create
 
 acme.validation.flight.any-legs.message = Impossible to publish without legs
 acme.validation.flight.no-published-legs.message = Unable to publish with unpublished legs
+acme.validation.flight.published-legs.message = Unable to delete with published legs

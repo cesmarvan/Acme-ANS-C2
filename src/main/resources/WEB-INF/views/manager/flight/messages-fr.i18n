@@ -28,3 +28,4 @@ manager.flight.form.button.create = Créer
 
 acme.validation.flight.any-legs.message = Impossible de publier sans sections
 acme.validation.flight.no-published-legs.message = Impossible de publier avec des sections non publiées
+acme.validation.flight.published-legs.message = Impossible de supprimer avec les sections publiées

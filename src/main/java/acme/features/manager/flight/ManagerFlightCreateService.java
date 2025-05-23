@@ -26,6 +26,15 @@ public class ManagerFlightCreateService extends AbstractGuiService<Manager, Flig
 		Manager manager;
 		manager = (Manager) super.getRequest().getPrincipal().getActiveRealm();
 		status = super.getRequest().getPrincipal().hasRealm(manager);
+
+		if (super.getRequest().getMethod().equals("GET"))
+			status = super.getRequest().getPrincipal().hasRealm(manager);
+		else {
+			int flightId;
+			flightId = super.getRequest().getData("id", int.class);
+			status = flightId == 0;
+		}
+
 		super.getResponse().setAuthorised(status);
 	}
 
