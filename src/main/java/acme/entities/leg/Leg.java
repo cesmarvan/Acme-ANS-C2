@@ -7,7 +7,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -29,13 +31,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @ValidLeg
+@Table(indexes = {
+	@Index(columnList = "flight_number", unique = true)
+})
 public class Leg extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
 	@ValidString(pattern = "^[A-Z]{3}\\d{4}$")
-	@Column(unique = true)
+	@Column(name = "flight_number", unique = true)
 	private String				flightNumber;
 
 	@Mandatory

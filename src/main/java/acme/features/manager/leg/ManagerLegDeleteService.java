@@ -10,6 +10,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
+import acme.entities.aircraft.AircraftStatus;
 import acme.entities.airport.Airport;
 import acme.entities.flight.Flight;
 import acme.entities.leg.Leg;
@@ -34,13 +35,14 @@ public class ManagerLegDeleteService extends AbstractGuiService<Manager, Leg> {
 		int legId;
 		Leg leg;
 
-		legId = super.getRequest().getData("id", int.class);
-		leg = this.repository.findLegById(legId);
-
-		if (leg == null)
-			manager = null;
-		else
+		if (super.getRequest().hasData("id", int.class)) {
+			legId = super.getRequest().getData("id", int.class);
+			leg = this.repository.findLegById(legId);
 			manager = leg.getFlight().getManager();
+		} else {
+			leg = null;
+			manager = null;
+		}
 
 		status = leg != null && leg.getDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
 
@@ -88,7 +90,7 @@ public class ManagerLegDeleteService extends AbstractGuiService<Manager, Leg> {
 		statusChoices = SelectChoices.from(LegStatus.class, leg.getStatus());
 
 		SelectChoices aircraftChoices;
-		List<Aircraft> aircrafts = this.repository.findAllAircrafts();
+		List<Aircraft> aircrafts = this.repository.findActivesAircrafts(AircraftStatus.ACTIVE_SERVICE);
 		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", leg.getAircraft());
 
 		SelectChoices airportDepartureChoices;

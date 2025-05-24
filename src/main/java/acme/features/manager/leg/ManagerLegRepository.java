@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import acme.client.repositories.AbstractRepository;
 import acme.entities.aircraft.Aircraft;
+import acme.entities.aircraft.AircraftStatus;
 import acme.entities.airport.Airport;
 import acme.entities.flight.Flight;
 import acme.entities.leg.Leg;
@@ -29,8 +30,8 @@ public interface ManagerLegRepository extends AbstractRepository {
 	@Query("select l from Leg l where l.flight.manager.id = :id")
 	List<Leg> findAllLegsOfManagerById(int id);
 
-	@Query("select l from Leg l where l.flight.id = :flightId and l.flight.manager.id = :managerId")
-	List<Leg> findAllLegsByFlightAndManagerId(int flightId, int managerId);
+	@Query("select l from Leg l where l.flight.id = :flightId")
+	List<Leg> findAllLegsByFlight(int flightId);
 
 	@Query("select l from Leg l where l.aircraft.registrationNumber = :registrationNumber")
 	List<Leg> findAllLegsByAircraftRegistrationNumber(String registrationNumber);
@@ -47,8 +48,8 @@ public interface ManagerLegRepository extends AbstractRepository {
 	@Query("select a from Airport a where a.id = :id")
 	Airport findAirportById(int id);
 
-	@Query("select a from Aircraft a")
-	List<Aircraft> findAllAircrafts();
+	@Query("select a from Aircraft a where a.status = :status")
+	List<Aircraft> findActivesAircrafts(AircraftStatus status);
 
 	@Query("select a from Airport a")
 	List<Airport> findAllAirports();

@@ -45,22 +45,6 @@ public class ManagerLegShowService extends AbstractGuiService<Manager, Leg> {
 
 		status = leg != null && super.getRequest().getPrincipal().hasRealm(manager);
 		super.getResponse().setAuthorised(status);
-
-		//		id = super.getRequest().getData("id", int.class);
-		//		leg = this.repository.findLegById(id);
-		//		manager = leg.getFlight().getManager();
-		//		status = leg != null && super.getRequest().getPrincipal().hasRealm(manager);
-		//
-		//		super.getResponse().setAuthorised(status);
-		//
-		//		if (leg == null)
-		//			manager = null;
-		//		else
-		//			manager = leg.getFlight().getManager();
-		//
-		//		status = leg != null && super.getRequest().getPrincipal().hasRealm(manager);
-		//
-		//		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -82,7 +66,7 @@ public class ManagerLegShowService extends AbstractGuiService<Manager, Leg> {
 		statusChoices = SelectChoices.from(LegStatus.class, leg.getStatus());
 
 		SelectChoices aircraftChoices;
-		List<Aircraft> aircrafts = this.repository.findAllAircrafts();
+		List<Aircraft> aircrafts = this.repository.findActivesAircrafts(AircraftStatus.ACTIVE_SERVICE);
 		List<Aircraft> ableAircrafts = aircrafts.stream().filter(a -> a.getStatus().equals(AircraftStatus.ACTIVE_SERVICE)).toList();
 		aircraftChoices = SelectChoices.from(ableAircrafts, "registrationNumber", leg.getAircraft());
 

@@ -27,5 +27,6 @@ manager.flight.form.button.create = Crear
 
 acme.validation.flight.any-legs.message = Imposible publicar sin tramos
 acme.validation.flight.no-published-legs.message = Imposible publicar con tramos sin publicar
+acme.validation.flight.published-legs.message = Imposible eliminar con tramos publicados
 
  

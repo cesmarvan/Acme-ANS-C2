@@ -66,23 +66,6 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 				}
 
 			}
-			//			{
-			//				boolean overlappingAircraft = true;
-			//
-			//				if (value.getAircraft() != null && value.getScheduledArrival() != null && value.getScheduledDeparture() != null) {
-			//
-			//					List<Leg> legsSameAircraft = this.repository.findAllLegsByAircraftRegistrationNumber(value.getAircraft().getRegistrationNumber());
-			//
-			//					legsSameAircraft = legsSameAircraft.stream().filter(legs -> !Objects.equals(legs.getFlightNumber(), value.getFlightNumber())).collect(Collectors.toList());
-			//
-			//					overlappingAircraft = !legsSameAircraft.stream()
-			//						.anyMatch(x -> x.getScheduledDeparture().compareTo(value.getScheduledDeparture()) <= 0 && x.getScheduledArrival().compareTo(value.getScheduledDeparture()) >= 0
-			//							|| x.getScheduledDeparture().compareTo(value.getScheduledDeparture()) >= 0 && x.getScheduledArrival().compareTo(value.getScheduledArrival()) <= 0
-			//							|| x.getScheduledDeparture().compareTo(value.getScheduledArrival()) <= 0 && x.getScheduledArrival().compareTo(value.getScheduledArrival()) >= 0);
-			//
-			//				}
-			//				super.state(context, overlappingAircraft, "aircraft", "acme.validation.leg.overlapping-aircraft.message");
-			//			}
 			{
 				boolean sameAirport;
 
