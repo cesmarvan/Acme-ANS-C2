@@ -57,7 +57,17 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 			aircraft = this.repository.findAircraftById(aircraftId);
 			arrivalAirport = this.repository.findAirportById(arrivalAirportId);
 			departureAirport = this.repository.findAirportById(departureAirportId);
-			status = (aircraftId == 0 || aircraft != null) && (arrivalAirportId == 0 || arrivalAirport != null) && (departureAirportId == 0 || departureAirport != null) && legId == 0;
+			if (legId != 0) {
+				status = false;
+			}
+			else {
+				if (!(aircraftId == 0 || aircraft != null))
+					status = false;
+				else if (!(arrivalAirportId == 0 || arrivalAirport != null))
+					status = false;
+				else if (!(departureAirportId == 0 || departureAirport != null))
+					status = false;
+			}
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -117,7 +127,14 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 		{
 			boolean datesNotNull = true;
 
-			datesNotNull = !(leg.getScheduledArrival() == null || leg.getScheduledDeparture() == null);
+			if (leg.getScheduledArrival() == null) {
+				datesNotNull = false;
+				super.state(datesNotNull, "scheduledArrival", "acme.validation.leg.null-dates.message");
+			}
+			if (leg.getScheduledDeparture() == null) {
+				datesNotNull = false;
+				super.state(datesNotNull, "scheduledDeparture", "acme.validation.leg.null-dates.message");
+			}
 
 			super.state(datesNotNull, "scheduledDeparture", "acme.validation.leg.null-dates.message");
 		}
