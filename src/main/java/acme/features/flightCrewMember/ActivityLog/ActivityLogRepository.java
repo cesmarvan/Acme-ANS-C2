@@ -1,6 +1,7 @@
 
 package acme.features.flightCrewMember.ActivityLog;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
@@ -28,6 +29,9 @@ public interface ActivityLogRepository extends AbstractRepository {
 	List<FlightAssignment> findAllPublishedFlightAssignments();
 
 	@Query("SELECT fa FROM  FlightAssignment fa WHERE fa.flightCrewMember.id= :id")
-	FlightAssignment findFlightAssignmentByCrewMemberId(int id);
+	List<FlightAssignment> findFlightAssignmentByCrewMemberId(int id);
+
+	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.flightCrewMember.id = :id AND fa.leg.scheduledArrival < :currentDate")
+	List<FlightAssignment> findAssignmentsByMemberIdCompletedLegs(Date currentDate, int id);
 
 }

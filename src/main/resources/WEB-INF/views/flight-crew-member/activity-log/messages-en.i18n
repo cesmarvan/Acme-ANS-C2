@@ -13,7 +13,7 @@ flightCrewMember.activityLog.form.label.registrationMoment = Registration Moment
 flightCrewMember.activityLog.form.label.typeOfIncident = Type of Incident
 flightCrewMember.activityLog.form.label.description = Description
 flightCrewMember.activityLog.form.label.severity = Severity
-flightCrewMember.activityLog.list.label.flightAssignment = Flight Assignment
+flightCrewMember.activityLog.form.label.flightAssignment = Flight Assignment
 
 ################## BUTTONS ##########################
 flightCrewMember.activityLog.list.button.create = Create Activity Log
