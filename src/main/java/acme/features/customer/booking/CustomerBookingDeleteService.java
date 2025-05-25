@@ -12,45 +12,37 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
+import acme.entities.booking.BookingPassenger;
 import acme.entities.booking.TravelClass;
 import acme.entities.flight.Flight;
-import acme.entities.flight.FlightRepository;
+import acme.features.customer.bookingPassenger.CustomerBookingPassengerRepository;
 import acme.realms.Customer;
 
 @GuiService
-public class CustomerBookingUpdateService extends AbstractGuiService<Customer, Booking> {
+public class CustomerBookingDeleteService extends AbstractGuiService<Customer, Booking> {
+	// Internal state --------------------------------------------------------
 
 	@Autowired
-	private CustomerBookingRepository	repository;
+	private CustomerBookingRepository			repository;
 
 	@Autowired
-	private FlightRepository			flightRepository;
+	private CustomerBookingPassengerRepository	bpRepository;
+
+	// AbstractGuiService interfaced -----------------------------------------
 
 
 	@Override
 	public void authorise() {
-		int id = super.getRequest().getData("id", int.class);
-		Booking booking = this.repository.findBookingById(id);
-		boolean isFlightInList = true;
-		Flight flight;
-		Date today = MomentHelper.getCurrentMoment();
+		int id;
+		Booking booking;
+		int customerId = super.getRequest().getPrincipal().getActiveRealm().getUserAccount().getId();
 
+		id = super.getRequest().getData("id", int.class);
+		booking = this.repository.findBookingById(id);
 		boolean isCustomer = super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
-		boolean isOwner = booking != null && booking.getCustomer().getUserAccount().getId() == super.getRequest().getPrincipal().getAccountId();
-		boolean isNotPublished = booking != null && !Boolean.TRUE.equals(booking.getIsPublished());
+		boolean status = booking.getCustomer().getUserAccount().getId() == customerId;
 
-		// Validar que el vuelo asignado sigue siendo válido
-		if (super.getRequest().hasData("id")) {
-			int flightId = super.getRequest().getData("flight", int.class);
-			Collection<Flight> flights = this.repository.findAllPublishedFlightsWithFutureDeparture(today);
-
-			if (flightId != 0) {
-				flight = this.flightRepository.findFlightById(flightId);
-				isFlightInList = flights.contains(flight);
-			}
-		}
-
-		super.getResponse().setAuthorised(isCustomer && isOwner && isNotPublished);
+		super.getResponse().setAuthorised(status && !booking.getIsPublished() && isCustomer);
 	}
 
 	@Override
@@ -66,12 +58,8 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void bind(final Booking booking) {
-		int flightId = super.getRequest().getData("flight", int.class);
-		Flight flight = this.repository.findFlightById(flightId);
 
-		super.bindObject(booking, "locatorCode", "travelClass", "lastCreditCardNibble");
-		booking.setPurchaseMoment(MomentHelper.getCurrentMoment());
-		booking.setFlight(flight);
+		super.bindObject(booking, "locatorCode", "purchaseMoment", "price", "lastCreditCardNibble", "travelClass", "flight");
 	}
 
 	@Override
@@ -81,7 +69,9 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void perform(final Booking booking) {
-		this.repository.save(booking);
+		for (BookingPassenger bk : this.bpRepository.findBookingPassengerByBookingId(booking.getId()))
+			this.bpRepository.delete(bk);
+		this.repository.delete(booking);
 	}
 
 	@Override
@@ -96,7 +86,7 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		Collection<String> passengers = this.repository.findPassengersNameByBooking(booking.getId());
 
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "lastCreditCardNibble", "price", "isPublished");
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "price", "lastCreditCardNibble", "isPublished");
 		dataset.put("travelClass", choices);
 		dataset.put("passengers", passengers);
 		dataset.put("flight", flightChoices.getSelected().getKey());
@@ -104,5 +94,4 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 
 		super.getResponse().addData(dataset);
 	}
-
 }

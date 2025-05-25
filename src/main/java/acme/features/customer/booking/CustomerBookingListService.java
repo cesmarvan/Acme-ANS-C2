@@ -21,15 +21,9 @@ public class CustomerBookingListService extends AbstractGuiService<Customer, Boo
 	@Override
 	public void authorise() {
 
-		boolean status;
-		int customerId;
-		Collection<Booking> bookings;
+		boolean isCustomer = super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
 
-		customerId = super.getRequest().getPrincipal().getActiveRealm().getUserAccount().getId();
-		bookings = this.repository.findBookingByCustomer(customerId);
-		status = bookings.stream().allMatch(b -> b.getCustomer().getUserAccount().getId() == customerId);
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(isCustomer);
 	}
 
 	@Override

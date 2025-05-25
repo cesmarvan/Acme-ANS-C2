@@ -6,9 +6,11 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
+import acme.client.components.validation.Validator;
 import acme.entities.customer.CustomerRepository;
 import acme.realms.Customer;
 
+@Validator
 public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer> {
 
 	@Autowired

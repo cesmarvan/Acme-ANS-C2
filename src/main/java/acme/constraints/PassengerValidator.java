@@ -4,9 +4,11 @@ package acme.constraints;
 import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.validation.AbstractValidator;
+import acme.client.components.validation.Validator;
 import acme.client.helpers.MomentHelper;
 import acme.entities.passenger.Passenger;
 
+@Validator
 public class PassengerValidator extends AbstractValidator<ValidPassenger, Passenger> {
 
 	@Override

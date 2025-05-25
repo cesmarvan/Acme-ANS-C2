@@ -3,13 +3,20 @@ package acme.constraints;
 
 import javax.validation.ConstraintValidatorContext;
 
-import acme.client.components.validation.AbstractValidator;
-import acme.client.helpers.MomentHelper;
-import acme.client.helpers.SpringHelper;
-import acme.entities.booking.Booking;
-import acme.entities.booking.BookingRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import acme.client.components.validation.AbstractValidator;
+import acme.client.components.validation.Validator;
+import acme.client.helpers.MomentHelper;
+import acme.entities.booking.Booking;
+import acme.features.customer.booking.CustomerBookingRepository;
+
+@Validator
 public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
+
+	@Autowired
+	private CustomerBookingRepository repository;
+
 
 	@Override
 	protected void initialise(final ValidBooking constraintAnnotation) {
@@ -23,17 +30,14 @@ public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
 
 		boolean result = true;
 
-		// Validar que "locatorCode" sea válido con el patrón "^[A-Z0-9]{6,8}$"
-		if (booking.getLocatorCode() == null || !booking.getLocatorCode().matches("^[A-Z0-9]{6,8}$")) {
+		// Validar que "locatorCode" sea válido con el patrón "^[A-Z0-9]{6,8}$ o ya exista"
+		if (booking.getLocatorCode() == null || !booking.getLocatorCode().matches("^[A-Z0-9]{6,8}$"))
 			super.state(context, false, "locatorCode", "acme.validation.Booking.locatorCode.message");
-			result = false;
-		}
+		else {
+			Booking b = this.repository.findBookingByLocatorCode(booking.getLocatorCode());
+			if (b != null && b.getId() != booking.getId())
+				super.state(context, false, "locatorCode", "acme.validation.Booking.locatorCode.exists.message");
 
-		// Verificar si ya existe un "locatorCode" en la base de datos
-		BookingRepository bookingRepository = SpringHelper.getBean(BookingRepository.class);
-		if (bookingRepository != null && bookingRepository.existsByLocatorCode(booking.getLocatorCode())) {
-			super.state(context, false, "locatorCode", "acme.validation.Booking.locatorCode.exists.message");
-			result = false;
 		}
 
 		// Validar que "purchaseMoment" sea una fecha pasada

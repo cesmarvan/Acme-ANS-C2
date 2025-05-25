@@ -4,10 +4,12 @@ package acme.constraints;
 import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.validation.AbstractValidator;
+import acme.client.components.validation.Validator;
 import acme.client.helpers.SpringHelper;
 import acme.entities.airport.Airport;
 import acme.entities.airport.AirportRepository;
 
+@Validator
 public class AirportValidator extends AbstractValidator<ValidAirport, Airport> {
 
 	@Override

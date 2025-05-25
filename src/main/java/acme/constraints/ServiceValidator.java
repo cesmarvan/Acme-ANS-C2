@@ -4,8 +4,10 @@ package acme.constraints;
 import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.validation.AbstractValidator;
+import acme.client.components.validation.Validator;
 import acme.entities.service.Service;
 
+@Validator
 public class ServiceValidator extends AbstractValidator<ValidService, Service> {
 
 	@Override

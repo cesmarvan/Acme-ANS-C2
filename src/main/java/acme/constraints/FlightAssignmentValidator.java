@@ -6,10 +6,12 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
+import acme.client.components.validation.Validator;
 import acme.client.helpers.MomentHelper;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.features.flightCrewMember.flightAssignment.FlightAssignmentRepository;
 
+@Validator
 public class FlightAssignmentValidator extends AbstractValidator<ValidFlightAssignment, FlightAssignment> {
 
 	@Autowired

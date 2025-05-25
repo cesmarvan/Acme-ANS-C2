@@ -33,7 +33,24 @@ public class CustomerBookingPassengerCreateService extends AbstractGuiService<Cu
 	@Override
 	public void authorise() {
 		boolean isCustomer = super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
-		super.getResponse().setAuthorised(isCustomer);
+		boolean isInBookings = true;
+		boolean isInPassengers = true;
+
+		int customerId = super.getRequest().getPrincipal().getActiveRealm().getUserAccount().getId();
+
+		if (super.getRequest().hasData("booking")) {
+			int bookingId = super.getRequest().getData("booking", int.class);
+			Booking booking = this.bookingRepository.findBookingById(bookingId);
+			isInBookings = booking != null && booking.getCustomer().getUserAccount().getId() == customerId;
+		}
+
+		if (super.getRequest().hasData("passenger")) {
+			int passengerId = super.getRequest().getData("passenger", int.class);
+			Passenger passenger = this.passengerRepository.findPassengerById(passengerId);
+			isInPassengers = passenger != null && passenger.getCustomer().getUserAccount().getId() == customerId && Boolean.TRUE.equals(passenger.getIsPublished());
+		}
+
+		super.getResponse().setAuthorised(isCustomer && isInBookings && isInPassengers);
 	}
 
 	@Override
@@ -67,9 +84,13 @@ public class CustomerBookingPassengerCreateService extends AbstractGuiService<Cu
 
 	@Override
 	public void validate(final BookingPassenger bookingPassenger) {
-		BookingPassenger br = this.repository.findBookingPassengerById(bookingPassenger.getBooking().getId(), bookingPassenger.getPassenger().getId());
-		if (br != null)
-			super.state(false, "*", "acme.validation.confirmation.message.booking-passenger.create");
+		super.state(bookingPassenger.getBooking() != null, "booking", "acme.validation.confirmation.message.booking-record.create.booking");
+		super.state(bookingPassenger.getPassenger() != null, "passenger", "acme.validation.confirmation.message.booking-record.create.passenger");
+
+		if (bookingPassenger.getBooking() != null && bookingPassenger.getPassenger() != null) {
+			BookingPassenger existing = this.repository.findBookingRecordBybookingIdpassengerId(bookingPassenger.getBooking().getId(), bookingPassenger.getPassenger().getId());
+			super.state(existing == null, "*", "acme.validation.confirmation.message.booking-record.create");
+		}
 	}
 
 	@Override

@@ -18,14 +18,14 @@ public class CustomerPassengerUpdateService extends AbstractGuiService<Customer,
 
 	@Override
 	public void authorise() {
-		int id;
-		Passenger passenger;
-		int customerId = super.getRequest().getPrincipal().getActiveRealm().getUserAccount().getId();
+		int id = super.getRequest().getData("id", int.class);
+		Passenger passenger = this.repository.findPassengerById(id);
 
-		id = super.getRequest().getData("id", int.class);
-		passenger = this.repository.findPassengerById(id);
-		boolean status = passenger.getCustomer().getUserAccount().getId() == customerId && super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
-		super.getResponse().setAuthorised(status);
+		boolean isCustomer = super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
+		boolean isOwner = passenger != null && passenger.getCustomer().getUserAccount().getId() == super.getRequest().getPrincipal().getAccountId();
+		boolean isNotPublished = passenger != null && !Boolean.TRUE.equals(passenger.getIsPublished());
+
+		super.getResponse().setAuthorised(isCustomer && isOwner && isNotPublished);
 	}
 
 	@Override
@@ -36,20 +36,17 @@ public class CustomerPassengerUpdateService extends AbstractGuiService<Customer,
 		id = super.getRequest().getData("id", int.class);
 
 		passenger = this.repository.findPassengerById(id);
-		passenger.setIsPublished(false);
 		super.getBuffer().addData(passenger);
 	}
 
 	@Override
 	public void bind(final Passenger passenger) {
-
-		super.bindObject(passenger, "fullName", "email", "passportNumber", "isPublished", "dateOfBirth", "specialNeeds");
+		super.bindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds");
 	}
 
 	@Override
 	public void validate(final Passenger passenger) {
-		if (passenger.getIsPublished() == true)
-			super.state(false, "isPublished", "acme.validation.confirmation.message.update.passenger");
+		;
 	}
 
 	@Override

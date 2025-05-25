@@ -1,14 +1,11 @@
 
 package acme.features.customer.passenger;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.booking.Booking;
 import acme.entities.passenger.Passenger;
 import acme.features.customer.booking.CustomerBookingRepository;
 import acme.realms.Customer;
@@ -25,16 +22,13 @@ public class CustomerPassengerShowService extends AbstractGuiService<Customer, P
 
 	@Override
 	public void authorise() {
+		int passengerId = super.getRequest().getData("id", int.class);
+		Passenger passenger = this.repository.findPassengerById(passengerId);
 
-		boolean status;
-		int customerId;
-		Collection<Booking> bookings;
+		boolean isCustomer = super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
+		boolean isOwner = passenger != null && passenger.getCustomer().getUserAccount().getId() == super.getRequest().getPrincipal().getAccountId();
 
-		customerId = super.getRequest().getPrincipal().getActiveRealm().getUserAccount().getId();
-		bookings = this.cBookingRepository.findBookingByCustomer(customerId);
-		status = bookings.stream().allMatch(b -> b.getCustomer().getUserAccount().getId() == customerId);
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(isCustomer && isOwner);
 	}
 
 	@Override

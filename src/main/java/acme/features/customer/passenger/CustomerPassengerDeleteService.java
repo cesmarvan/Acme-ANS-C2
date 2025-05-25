@@ -10,10 +10,13 @@ import acme.entities.passenger.Passenger;
 import acme.realms.Customer;
 
 @GuiService
-public class CustomerPassengerPublishService extends AbstractGuiService<Customer, Passenger> {
+public class CustomerPassengerDeleteService extends AbstractGuiService<Customer, Passenger> {
+	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	private CustomerPassengerRepository repository;
+
+	// AbstractGuiService interfaced ------------------------------------------
 
 
 	@Override
@@ -25,7 +28,7 @@ public class CustomerPassengerPublishService extends AbstractGuiService<Customer
 		id = super.getRequest().getData("id", int.class);
 		passenger = this.repository.findPassengerById(id);
 		boolean status = passenger.getCustomer().getUserAccount().getId() == customerId && super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
-		super.getResponse().setAuthorised(status && !passenger.getIsPublished());
+		super.getResponse().setAuthorised(status && !Boolean.TRUE.equals(passenger.getIsPublished()));
 	}
 
 	@Override
@@ -41,26 +44,26 @@ public class CustomerPassengerPublishService extends AbstractGuiService<Customer
 
 	@Override
 	public void bind(final Passenger passenger) {
-		super.bindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "isPublished", "specialNeeds");
 
+		super.bindObject(passenger, "fullName", "email", "passport", "dateOfBirth", "specialNeeds");
 	}
 
 	@Override
 	public void validate(final Passenger passenger) {
 		;
+
 	}
 
 	@Override
 	public void perform(final Passenger passenger) {
-		passenger.setIsPublished(true);
-		this.repository.save(passenger);
+		this.repository.delete(passenger);
 	}
 
 	@Override
 	public void unbind(final Passenger passenger) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds");
+		dataset = super.unbindObject(passenger, "fullName", "email", "passport", "dateOfBirth", "isPublished", "specialNeeds");
 
 		super.getResponse().addData(dataset);
 	}
