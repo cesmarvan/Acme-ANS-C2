@@ -44,14 +44,12 @@ public class CustomerPassengerDeleteService extends AbstractGuiService<Customer,
 
 	@Override
 	public void bind(final Passenger passenger) {
-
-		super.bindObject(passenger, "fullName", "email", "passport", "dateOfBirth", "specialNeeds");
+		super.bindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds");
 	}
 
 	@Override
 	public void validate(final Passenger passenger) {
 		;
-
 	}
 
 	@Override
@@ -63,7 +61,7 @@ public class CustomerPassengerDeleteService extends AbstractGuiService<Customer,
 	public void unbind(final Passenger passenger) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(passenger, "fullName", "email", "passport", "dateOfBirth", "isPublished", "specialNeeds");
+		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "isPublished", "specialNeeds");
 
 		super.getResponse().addData(dataset);
 	}

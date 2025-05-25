@@ -33,24 +33,28 @@ public class CustomerBookingPassengerCreateService extends AbstractGuiService<Cu
 	@Override
 	public void authorise() {
 		boolean isCustomer = super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
+
+		int customerId = super.getRequest().getPrincipal().getActiveRealm().getUserAccount().getId();
+		Collection<Booking> bookings = this.bookingRepository.findBookingByCustomer(customerId);
+		Collection<Passenger> passengers = this.repository.findAllPublishedPassengersByCustomerId(customerId);
 		boolean isInBookings = true;
 		boolean isInPassengers = true;
 
-		int customerId = super.getRequest().getPrincipal().getActiveRealm().getUserAccount().getId();
-
-		if (super.getRequest().hasData("booking")) {
+		if (super.getRequest().hasData("id")) {
 			int bookingId = super.getRequest().getData("booking", int.class);
-			Booking booking = this.bookingRepository.findBookingById(bookingId);
-			isInBookings = booking != null && booking.getCustomer().getUserAccount().getId() == customerId;
-		}
+			if (bookingId != 0) {
+				Booking booking = this.bookingRepository.findBookingById(bookingId);
+				isInBookings = bookings.contains(booking);
+			}
 
-		if (super.getRequest().hasData("passenger")) {
 			int passengerId = super.getRequest().getData("passenger", int.class);
-			Passenger passenger = this.passengerRepository.findPassengerById(passengerId);
-			isInPassengers = passenger != null && passenger.getCustomer().getUserAccount().getId() == customerId && Boolean.TRUE.equals(passenger.getIsPublished());
-		}
+			if (passengerId != 0) {
+				Passenger passenger = this.passengerRepository.findPassengerById(passengerId);
+				isInPassengers = passengers.contains(passenger);
+			}
 
-		super.getResponse().setAuthorised(isCustomer && isInBookings && isInPassengers);
+		}
+		super.getResponse().setAuthorised(isCustomer && isInPassengers && isInBookings);
 	}
 
 	@Override
