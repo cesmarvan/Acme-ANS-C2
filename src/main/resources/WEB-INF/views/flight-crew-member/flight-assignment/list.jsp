@@ -9,6 +9,7 @@
 	<acme:list-column code="flightCrewMember.flightAssignment.list.label.flightCrewMember" path="flightCrewMember.employeeCode" width="13%"/>
 	<acme:list-column code="flightCrewMember.flightAssignment.list.label.lastUpdate" path="lastUpdate" width="13%"/>
 	<acme:list-column code="flightCrewMember.flightAssignment.list.label.remarks" path="remarks" width="13%"/>
+	<acme:list-column code="flightCrewMember.flightAssignment.list.label.departure" path="leg.scheduledDeparture" width="13%"/>
 	<acme:list-payload path="payload"/>
 </acme:list>
 

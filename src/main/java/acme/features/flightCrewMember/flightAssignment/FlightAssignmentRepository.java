@@ -1,6 +1,7 @@
 
 package acme.features.flightCrewMember.flightAssignment;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
@@ -13,11 +14,11 @@ import acme.realms.FlightCrewMember;
 
 public interface FlightAssignmentRepository extends AbstractRepository {
 
-	@Query("SELECT fa FROM FlightAssignment fa JOIN fa.leg l WHERE l.status = 'LANDED' AND fa.flightCrewMember.id = :id ")
-	List<FlightAssignment> findFlightAssignmentCompletedLeg(int id);
+	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.flightCrewMember.id= :id AND fa.leg.scheduledArrival < :now AND fa.leg.draftMode = false")
+	List<FlightAssignment> findFlightAssignmentCompletedLeg(int id, Date now);
 
-	@Query("SELECT fa FROM FlightAssignment fa JOIN fa.leg l WHERE l.status = 'ON_TIME' OR l.status='DELAYED' AND  fa.flightCrewMember.id= :id")
-	List<FlightAssignment> findPlannedFlightAssignment(int id);
+	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.flightCrewMember.id= :id AND fa.leg.scheduledArrival > :now AND fa.leg.draftMode = false")
+	List<FlightAssignment> findPlannedFlightAssignment(int id, Date now);
 
 	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.id = :id")
 	FlightAssignment findFlightAssignmentById(int id);
@@ -45,7 +46,7 @@ public interface FlightAssignmentRepository extends AbstractRepository {
 
 	@Query("SELECT fa.duty FROM FlightAssignment fa WHERE fa.leg.id= :id")
 	List<CrewDuties> findPilotsInLegByLegId(int id);
-	//
-	//	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.leg.id= :id AND fa.duty = 'COPILOT'")
-	//	List<FlightAssignment> findCopilotsInLegByLegId(int id);
+
+	@Query("SELECT fa.leg FROM FlightAssignment fa WHERE (fa.leg.scheduledDeparture < :legArrival AND fa.leg.scheduledArrival > :legDeparture) AND fa.leg.id <> :legId AND fa.flightCrewMember.id = :id and fa.draftMode = false")
+	List<Leg> findSimultaneousLegsByMember(Date legDeparture, Date legArrival, int legId, int id);
 }

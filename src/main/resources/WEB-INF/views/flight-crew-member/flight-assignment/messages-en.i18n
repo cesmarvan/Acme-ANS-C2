@@ -6,6 +6,7 @@ flightCrewMember.flightAssignment.list.label.leg = Leg
 flightCrewMember.flightAssignment.list.label.flightCrewMember = Crew Member
 flightCrewMember.flightAssignment.list.label.lastUpdate = Last Update
 flightCrewMember.flightAssignment.list.label.remarks = Remarks
+flightCrewMember.flightAssignment.list.label.departure = Departure
 
 
 ################## CREATE ##########################
