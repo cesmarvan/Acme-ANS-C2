@@ -9,6 +9,7 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
+import acme.entities.claim.IndicatorClaim;
 import acme.realms.assistanceAgent.AssistanceAgent;
 
 @GuiService
@@ -30,7 +31,8 @@ public class AssistanceAgentUndergoingClaimsListService extends AbstractGuiServi
 		int AssistanceAgentId;
 
 		AssistanceAgentId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		claims = this.claimRepository.findUndergoingClaimsByAgentId(AssistanceAgentId);
+		claims = this.claimRepository.findAllClaimsByAgentId(AssistanceAgentId);
+		claims = claims.stream().filter(c -> c.indicator().equals(IndicatorClaim.PENDING)).toList();
 
 		super.getBuffer().addData(claims);
 	}
@@ -39,8 +41,8 @@ public class AssistanceAgentUndergoingClaimsListService extends AbstractGuiServi
 	public void unbind(final Claim claim) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(claim, "registrationMoment", "email", "description", "type", "indicator", "leg");
-		dataset.put("leg", claim.getLeg().getId());
+		dataset = super.unbindObject(claim, "registrationMoment", "email", "type");
+		dataset.put("indicator", claim.indicator());
 
 		super.getResponse().addData(dataset);
 	}

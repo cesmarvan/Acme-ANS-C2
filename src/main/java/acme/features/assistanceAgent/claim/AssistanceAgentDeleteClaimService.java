@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
@@ -17,6 +18,9 @@ public class AssistanceAgentDeleteClaimService extends AbstractGuiService<Assist
 
 	@Autowired
 	private AssistanceAgentClaimRepository claimRepository;
+
+	// @Autowired
+	// private AssistanceAgentTrackingLogRepository	tLRepository;
 
 
 	@Override
@@ -67,14 +71,15 @@ public class AssistanceAgentDeleteClaimService extends AbstractGuiService<Assist
 	@Override
 	public void unbind(final Claim claim) {
 		Dataset dataset;
-		SelectChoices type = SelectChoices.from(ClaimType.class, claim.getType());
-		SelectChoices leg = SelectChoices.from(this.claimRepository.findAllLegs(), "id", claim.getLeg());
+		SelectChoices typeChoices = SelectChoices.from(ClaimType.class, claim.getType());
+		SelectChoices legChoices = SelectChoices.from(this.claimRepository.findAvailableLegs(MomentHelper.getCurrentMoment()), "flighNumber", claim.getLeg());
 
-		dataset = super.unbindObject(claim, "registrationMoment", "email", "description", "type", "indicator", "leg");
-		dataset.put("claimTypes", type);
-		dataset.put("getIndicator", claim.getIndicator());
-		dataset.put("leg", leg.getSelected().getKey());
-		dataset.put("legs", leg);
+		dataset = super.unbindObject(claim, "registrationMoment", "email", "description", "leg");
+		dataset.put("types", typeChoices);
+		dataset.put("type", typeChoices.getSelected().getKey());
+		dataset.put("getIndicator", claim.indicator());
+		dataset.put("leg", legChoices.getSelected().getKey());
+		dataset.put("legs", legChoices);
 
 		super.getResponse().addData(dataset);
 	}
