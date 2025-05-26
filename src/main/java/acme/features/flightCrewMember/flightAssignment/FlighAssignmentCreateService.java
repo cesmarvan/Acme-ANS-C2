@@ -29,15 +29,8 @@ public class FlighAssignmentCreateService extends AbstractGuiService<FlightCrewM
 	@Override
 	public void authorise() {
 		boolean status = true;
-		int flightAssignmentId;
-		FlightAssignment flightAssignment;
-		FlightCrewMember crewMember;
 		try {
-			flightAssignmentId = super.getRequest().getData("id", int.class);
-			flightAssignment = this.flightAssignmentRepository.findFlightAssignmentById(flightAssignmentId);
-			crewMember = flightAssignment == null ? null : flightAssignment.getFlightCrewMember();
-
-			status = flightAssignment != null && super.getRequest().getPrincipal().hasRealm(crewMember);
+			status = super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class);
 		} catch (Exception e) {
 			status = false;
 		}

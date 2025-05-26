@@ -22,16 +22,19 @@ public class ActivityLogPublishService extends AbstractGuiService<FlightCrewMemb
 
 	@Override
 	public void authorise() {
-		boolean status;
+		boolean status = true;
 		int activityLogId;
 		ActivityLog activityLog;
 		FlightCrewMember crewMember;
+		try {
+			activityLogId = super.getRequest().getData("id", int.class);
+			activityLog = this.repository.findActivityLogById(activityLogId);
+			crewMember = activityLog == null ? null : activityLog.getFlightAssignment().getFlightCrewMember();
 
-		activityLogId = super.getRequest().getData("id", int.class);
-		activityLog = this.repository.findActivityLogById(activityLogId);
-		crewMember = activityLog == null ? null : activityLog.getFlightAssignment().getFlightCrewMember();
-
-		status = super.getRequest().getPrincipal().hasRealm(crewMember) && activityLog.getDraftMode();
+			status = activityLog != null && super.getRequest().getPrincipal().hasRealm(crewMember) && crewMember.getId() == super.getRequest().getPrincipal().getActiveRealm().getId() && activityLog.getDraftMode();
+		} catch (Exception e) {
+			status = false;
+		}
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -59,8 +62,10 @@ public class ActivityLogPublishService extends AbstractGuiService<FlightCrewMemb
 	public void validate(final ActivityLog activityLog) {
 		boolean status;
 		FlightAssignment flightAssignment = activityLog.getFlightAssignment();
-		status = flightAssignment.getDraftMode();
-		super.state(!status, "flightAssignment", "validation.error.flightAssignmentNotPublished");
+		if (flightAssignment != null) {
+			status = flightAssignment.getDraftMode();
+			super.state(!status, "flightAssignment", "validation.error.flightAssignmentNotPublished");
+		}
 	}
 
 	@Override

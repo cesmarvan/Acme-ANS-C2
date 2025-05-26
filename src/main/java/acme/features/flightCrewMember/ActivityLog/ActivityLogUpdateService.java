@@ -22,16 +22,19 @@ public class ActivityLogUpdateService extends AbstractGuiService<FlightCrewMembe
 
 	@Override
 	public void authorise() {
-		boolean status;
+		boolean status = true;
 		int activityLogId;
 		ActivityLog activityLog;
 		FlightCrewMember crewMember;
+		try {
+			activityLogId = super.getRequest().getData("id", int.class);
+			activityLog = this.repository.findActivityLogById(activityLogId);
+			crewMember = activityLog == null ? null : activityLog.getFlightAssignment().getFlightCrewMember();
 
-		activityLogId = super.getRequest().getData("id", int.class);
-		activityLog = this.repository.findActivityLogById(activityLogId);
-		crewMember = activityLog == null ? null : activityLog.getFlightAssignment().getFlightCrewMember();
-
-		status = activityLog != null && super.getRequest().getPrincipal().hasRealm(crewMember);
+			status = activityLog != null && super.getRequest().getPrincipal().hasRealm(crewMember) && crewMember.getId() == super.getRequest().getPrincipal().getActiveRealm().getId() && activityLog.getDraftMode();
+		} catch (Exception e) {
+			status = false;
+		}
 		super.getResponse().setAuthorised(status);
 	}
 

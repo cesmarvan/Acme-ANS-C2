@@ -30,15 +30,12 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 		int flightAssignmentId;
 		FlightAssignment flightAssignment;
 		FlightCrewMember crewMember;
-		String method = super.getRequest().getMethod();
 		try {
-			if (method.equals("POST")) {
-				flightAssignmentId = super.getRequest().getData("id", int.class);
-				flightAssignment = this.flightAssignmentRepository.findFlightAssignmentById(flightAssignmentId);
-				crewMember = flightAssignment == null ? null : flightAssignment.getFlightCrewMember();
+			flightAssignmentId = super.getRequest().getData("id", int.class);
+			flightAssignment = this.flightAssignmentRepository.findFlightAssignmentById(flightAssignmentId);
+			crewMember = flightAssignment == null ? null : flightAssignment.getFlightCrewMember();
 
-				status = flightAssignment != null && super.getRequest().getPrincipal().hasRealm(crewMember) && flightAssignment.getDraftMode();
-			}
+			status = flightAssignment != null && super.getRequest().getPrincipal().hasRealm(crewMember) && crewMember.getId() == super.getRequest().getPrincipal().getActiveRealm().getId() && flightAssignment.getDraftMode();
 		} catch (Exception e) {
 			status = false;
 		}
@@ -58,7 +55,7 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 	@Override
 	public void bind(final FlightAssignment flightAssignment) {
 
-		super.bindObject(flightAssignment, "duty", "status", "leg");
+		super.bindObject(flightAssignment, "duty", "status", "leg", "remarks");
 
 	}
 
@@ -68,9 +65,19 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 
 		if (flightAssignment.getLeg() != null && flightAssignment.getLeg().getScheduledDeparture().before(now))
 			super.state(false, "leg", "acme.validation.legDate.message");
-
-		if (flightAssignment.getStatus() != AssignmentStatus.CANCELLED && flightAssignment.getStatus() != AssignmentStatus.CONFIRMED)
-			super.state(false, "status", "acme.validation.notPending.message");
+		{
+			if (flightAssignment.getLeg() != null && flightAssignment.getDuty() != null) {
+				List<CrewDuties> ls = this.flightAssignmentRepository.findPilotsInLegByLegId(flightAssignment.getLeg().getId());
+				boolean status = true;
+				if (flightAssignment.getDuty().equals(CrewDuties.PILOT))
+					if (ls.contains(CrewDuties.PILOT))
+						status = false;
+				if (flightAssignment.getDuty().equals(CrewDuties.COPILOT))
+					if (ls.contains(CrewDuties.COPILOT))
+						status = false;
+				super.state(status, "duty", "validation.error.messagemoreThanOnePilotOrCopilot");
+			}
+		}
 		if (flightAssignment.getFlightCrewMember() != null && flightAssignment.getLeg() != null) {
 			boolean onlyOneLeg;
 			onlyOneLeg = this.flightAssignmentRepository
