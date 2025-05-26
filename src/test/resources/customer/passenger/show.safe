@@ -1,0 +1,18 @@
+request-id,request-method,request-path,request-query,request-payload,response-status,response-content-type,response-payload,response-oops,pre-handle-timestamp,post-handle-timestamp,"after-completion-timestamp"
+"d2fffc81-b8b5-45b4-aa9c-9d60ff872021",GET,"/administrator/system/shut-down",,,500,text/html;charset=utf-8,,"Handler dispatch failed; nested exception is java.lang.AssertionError: Access is not authorised",103325840817300,null,103332620193500
+"a7d14db7-8fd1-4bb7-8c00-c1308cb58760",GET,"/libraries/fontawesome/5.2.0/css/all.min.css",,,200,text/css,,,103333039364800,103333058354300,103333061725000
+"dce60e2f-4ddf-4caa-a3dd-e3fb51cbb0ef",GET,"/libraries/bootstrap/4.1.3/css/bootstrap.min.css",,,200,text/css,,,103333075493800,103333081727900,103333083416000
+"fcd7a509-2ad6-4340-a908-bbc0398942c3",GET,"/libraries/areyousure/1.9.0/js/areyousure.min.js",,,200,application/javascript,,,103333095707900,103333100600900,103333103429200
+"1231c4f6-18a9-4281-be48-365057d4ddd9",GET,"/libraries/datatables/1.10.18/css/datatables.min.css",,,200,text/css,,,103333115860200,103333120802000,103333123376000
+"6a517e86-e59b-48d9-a04e-83dfd6f7161a",GET,"/libraries/jquery/3.3.1/js/jquery.min.js",,,200,application/javascript,,,103333136795300,103333141864200,103333143944400
+"d340fdca-92d3-4477-a68b-47ba746013d6",GET,"/libraries/popper.js/1.14.4/js/popper.min.js",,,200,application/javascript,,,103333157957400,103333163841400,103333167682200
+"b08b84a2-5921-4542-af5b-14f732e084a3",GET,"/libraries/bootstrap/4.1.3/js/bootstrap.min.js",,,200,application/javascript,,,103333181452900,103333186655200,103333189474100
+"95514151-d465-4aaf-aad2-090690ee3584",GET,"/libraries/chart.js/2.7.2/js/chart.bundle.min.js",,,200,application/javascript,,,103333202364600,103333208199300,103333210430300
+"b6758292-981e-4398-a94c-b78218f220a5",GET,"/libraries/datatables/1.10.18/js/jquery.datatables.min.js",,,200,application/javascript,,,103333220209900,103333224544900,103333226315200
+"65a85c0e-4d1c-4744-ad95-0605cd8a3866",GET,"/libraries/datatables/1.10.18/js/datatables.min.js",,,200,application/javascript,,,103333238720300,103333243767400,103333245986200
+"c2bc2dc5-352e-4c4d-94dd-1ea528d81960",GET,"/libraries/acme/css/acme.css",,,200,text/css,,,103333260376700,103333264481700,103333266145800
+"23b0f471-23a0-4102-96fb-1e3203003cdf",GET,"/libraries/acme/js/acme.js",,,200,application/javascript,,,103333275984600,103333279851000,103333281159100
+"99b0c4cc-6963-487b-912a-d3b550422767",GET,/images/banner.png,,,200,image/png,,,103333290399500,103333294977400,103333297039000
+"fdca82b9-b4df-4105-97ad-a545434de693",GET,/images/logo.png,,,200,image/png,,,103333318477700,103333324294500,103333325678500
+"5ea28ec9-e338-4a66-bc06-471a89b6e061",GET,"/libraries/fontawesome/5.2.0/webfonts/fa-solid-900.woff2",,,200,application/font-woff2,,,103333339275300,103333346159200,103333348271200
+"5a991c66-157e-412a-b91b-753d7e7ccbe8",GET,"/libraries/fontawesome/5.2.0/webfonts/fa-brands-400.woff2",,,200,application/font-woff2,,,103333361564800,103333366090800,103333368521800
