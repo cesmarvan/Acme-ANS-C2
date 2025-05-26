@@ -75,6 +75,9 @@ public class ManagerLegDeleteService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void perform(final Leg leg) {
+		List<Claim> claims = this.repository.findClaimByLegId(leg.getId());
+		for (Claim claim : claims)
+			this.repository.delete(claim);
 		this.repository.delete(leg);
 	}
 
