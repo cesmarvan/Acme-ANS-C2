@@ -14,6 +14,7 @@ import acme.entities.aircraft.AircraftStatus;
 import acme.entities.airport.Airport;
 import acme.entities.claim.Claim;
 import acme.entities.flight.Flight;
+import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Leg;
 import acme.entities.leg.LegStatus;
 import acme.realms.Manager;
@@ -83,6 +84,9 @@ public class ManagerLegDeleteService extends AbstractGuiService<Manager, Leg> {
 		List<Claim> claims = this.repository.findClaimByLegId(leg.getId());
 		for (Claim claim : claims)
 			this.repository.delete(claim);
+		List<FlightAssignment> flightAssignments = this.repository.findFAByLegId(leg.getId());
+		for (FlightAssignment f : flightAssignments)
+			this.repository.delete(f);
 		this.repository.delete(leg);
 	}
 
