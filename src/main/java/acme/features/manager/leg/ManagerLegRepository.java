@@ -56,4 +56,7 @@ public interface ManagerLegRepository extends AbstractRepository {
 
 	@Query("select m from Manager m where m.id = :id")
 	Manager findManagerById(int id);
+
+	@Query("select c from Claim c where c.leg.id = :id")
+	List<Claim> findClaimByLegId(int id);
 }
