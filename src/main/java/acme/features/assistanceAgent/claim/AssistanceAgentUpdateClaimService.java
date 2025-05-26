@@ -28,12 +28,13 @@ public class AssistanceAgentUpdateClaimService extends AbstractGuiService<Assist
 		boolean status;
 		int id;
 		Claim claim;
-		AssistanceAgent agent;
+		AssistanceAgent agent1;
 
 		id = super.getRequest().getData("id", int.class);
 		claim = this.claimRepository.findClaimById(id);
-		agent = claim == null ? null : claim.getAssistanceAgent();
-		status = super.getRequest().getPrincipal().hasRealm(agent) && claim != null;
+		agent1 = claim == null ? null : claim.getAssistanceAgent();
+		int agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		status = claim != null && agent1.getId() == agentId;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -77,12 +78,12 @@ public class AssistanceAgentUpdateClaimService extends AbstractGuiService<Assist
 		SelectChoices legChoices = SelectChoices.from(legs, "flightNumber", claim.getLeg());
 		boolean pending = claim.indicator().equals(IndicatorClaim.PENDING);
 
-		dataset = super.unbindObject(claim, "registrationMoment", "email", "description", "type", "indicator", "leg");
+		dataset = super.unbindObject(claim, "registrationMoment", "email", "description", "type");
 		dataset.put("types", typeChoices);
 		dataset.put("type", typeChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
 		dataset.put("leg", claim.getLeg());
-		dataset.put("indictor", claim.indicator());
+		dataset.put("indicator", claim.indicator());
 		dataset.put("pending", pending);
 
 		super.getResponse().addData(dataset);

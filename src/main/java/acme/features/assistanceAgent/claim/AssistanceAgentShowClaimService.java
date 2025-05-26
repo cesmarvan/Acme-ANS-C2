@@ -28,12 +28,13 @@ public class AssistanceAgentShowClaimService extends AbstractGuiService<Assistan
 		boolean status;
 		int id;
 		Claim claim;
-		AssistanceAgent agent;
+		AssistanceAgent agent1;
 
 		id = super.getRequest().getData("id", int.class);
 		claim = this.claimRepository.findClaimById(id);
-		agent = claim == null ? null : claim.getAssistanceAgent();
-		status = super.getRequest().getPrincipal().hasRealm(agent) || claim != null;
+		agent1 = claim == null ? null : claim.getAssistanceAgent();
+		int agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		status = claim != null && agent1.getId() == agentId;
 
 		super.getResponse().setAuthorised(status);
 	}

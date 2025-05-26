@@ -36,4 +36,13 @@ public interface AssistanceAgentClaimRepository extends AbstractRepository {
 
 	@Query("SELECT l FROM Leg l WHERE l.scheduledArrival < :currentMoment AND l.draftMode = false")
 	Collection<Leg> findAvailableLegs(@Param("currentMoment") Date currentMoment);
+
+	@Query("""
+			SELECT COUNT(c) > 0
+			FROM Claim c
+			WHERE c.id = :claimId
+			AND c.assistanceAgent.id = :agentId
+			AND c.draftMode = true
+		""")
+	boolean isDraftClaimOwnedByAgent(@Param("claimId") int claimId, @Param("agentId") int agentId);
 }
