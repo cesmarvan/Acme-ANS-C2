@@ -33,7 +33,10 @@ public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flig
 		if (super.getRequest().hasData("id", int.class)) {
 			flightId = super.getRequest().getData("id", int.class);
 			flight = this.repository.findFlightById(flightId);
-			manager = flight.getManager();
+			if (flight == null)
+				manager = null;
+			else
+				manager = flight.getManager();
 		}
 
 		else {
