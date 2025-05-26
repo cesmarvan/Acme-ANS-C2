@@ -35,7 +35,7 @@ public class ManagerLegListService extends AbstractGuiService<Manager, Leg> {
 		manager = flight.getManager();
 
 		//		manager = (Manager) super.getRequest().getPrincipal().getActiveRealm();
-		status = super.getRequest().getPrincipal().hasRealm(manager);
+		status = super.getRequest().getPrincipal().hasRealm(manager) && flight != null;
 		super.getResponse().setAuthorised(status);
 	}
 
