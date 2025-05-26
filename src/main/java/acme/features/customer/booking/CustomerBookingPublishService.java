@@ -12,6 +12,7 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
+import acme.entities.booking.BookingPassenger;
 import acme.entities.booking.TravelClass;
 import acme.entities.flight.Flight;
 import acme.entities.flight.FlightRepository;
@@ -104,8 +105,12 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		if (booking.getLastCreditCardNibble() == null || booking.getLastCreditCardNibble().isBlank() || booking.getLastCreditCardNibble().isEmpty()) {
 			String lastNibbleStored = this.repository.findBookingById(booking.getId()).getLastCreditCardNibble();
 			if (lastNibbleStored == null || lastNibbleStored.isBlank() || lastNibbleStored.isEmpty())
-				super.state(false, "lastCreditCardNibble", "acme.validation.confirmation.message.lastNibble");
+				super.state(false, "lastCreditCardNibble", "acme.validation.confirmation.message.lastCreditCardNibble");
 		}
+
+		Collection<BookingPassenger> br = this.bpRepository.findBookingPassengerByBookingId(booking.getId());
+		if (br.isEmpty())
+			super.state(false, "passengers", "acme.validation.confirmation.message.passenger");
 	}
 
 	@Override
