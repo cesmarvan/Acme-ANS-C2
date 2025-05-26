@@ -1,0 +1,14 @@
+﻿key,flight-number,scheduled-departure,scheduled-arrival,status,draftMode,key:departure-airport,key:arrival-airport,key:aircraft,key:flight
+leg-01,AGX0001,2026/09/01 10:00,2026/09/01 15:00,LANDED,false,airport-01,airport-02,aircraft-01,flight-01
+leg-02,AGX0002,2026/09/01 16:00,2026/09/01 17:00,LANDED,false,airport-02,airport-03,aircraft-01,flight-01
+leg-03,AGX0003,2026/09/01 17:30,2026/09/01 20:00,LANDED,true,airport-03,airport-04,aircraft-01,flight-01
+leg-04,BSX0004,2026/10/01 10:00,2026/10/01 15:00,LANDED,true,airport-01,airport-02,aircraft-02,flight-02
+leg-05,BSX0001,2026/10/01 10:00,2026/10/01 15:00,LANDED,false,airport-01,airport-02,aircraft-02,flight-09
+leg-06,BSX0002,2026/10/01 10:00,2026/10/01 15:00,LANDED,true,airport-01,airport-02,aircraft-02,flight-010
+leg-07,BSX0003,2026/10/01 10:00,2026/10/01 15:00,LANDED,true,airport-01,airport-02,aircraft-02,flight-010
+leg-08,BSX0005,2026/10/01 10:00,2026/10/01 15:00,LANDED,true,airport-01,airport-02,aircraft-02,flight-012
+leg-09,BSX0006,2026/10/01 10:00,2026/10/01 15:00,LANDED,true,airport-01,airport-02,aircraft-02,flight-012
+leg-010,BSX0007,2026/10/01 10:00,2026/10/01 15:00,LANDED,true,airport-01,airport-02,aircraft-02,flight-012
+leg-011,BSX4567,2019/10/01 10:00,2019/10/01 11:00,LANDED,false,airport-01,airport-02,aircraft-02,flight-05
+leg-012,BSX3257,2019/10/01 12:00,2019/10/01 13:00,LANDED,false,airport-02,airport-03,aircraft-02,flight-05
+leg-013,BSX4577,2019/10/01 14:00,2019/10/01 15:00,LANDED,false,airport-03,airport-04,aircraft-02,flight-05
