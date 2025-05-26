@@ -9,7 +9,9 @@ import acme.client.repositories.AbstractRepository;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.aircraft.AircraftStatus;
 import acme.entities.airport.Airport;
+import acme.entities.claim.Claim;
 import acme.entities.flight.Flight;
+import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Leg;
 import acme.realms.Manager;
 
@@ -56,4 +58,10 @@ public interface ManagerLegRepository extends AbstractRepository {
 
 	@Query("select m from Manager m where m.id = :id")
 	Manager findManagerById(int id);
+
+	@Query("select c from Claim c where c.leg.id = :id")
+	List<Claim> findClaimByLegId(int id);
+
+	@Query("select f from FlightAssignment f where f.leg.id =:id")
+	List<FlightAssignment> findFAByLegId(int id);
 }

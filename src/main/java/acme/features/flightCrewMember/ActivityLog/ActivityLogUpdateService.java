@@ -22,16 +22,29 @@ public class ActivityLogUpdateService extends AbstractGuiService<FlightCrewMembe
 
 	@Override
 	public void authorise() {
-		boolean status;
+		boolean status = true;
 		int activityLogId;
 		ActivityLog activityLog;
 		FlightCrewMember crewMember;
+		String method = super.getRequest().getMethod();
+		try {
+			activityLogId = super.getRequest().getData("id", int.class);
+			activityLog = this.repository.findActivityLogById(activityLogId);
+			crewMember = activityLog == null ? null : activityLog.getFlightAssignment().getFlightCrewMember();
 
-		activityLogId = super.getRequest().getData("id", int.class);
-		activityLog = this.repository.findActivityLogById(activityLogId);
-		crewMember = activityLog == null ? null : activityLog.getFlightAssignment().getFlightCrewMember();
+			status = activityLog != null && super.getRequest().getPrincipal().hasRealm(crewMember) && crewMember.getId() == super.getRequest().getPrincipal().getActiveRealm().getId() && activityLog.getDraftMode();
 
-		status = activityLog != null && super.getRequest().getPrincipal().hasRealm(crewMember);
+			if (method.equals("POST")) {
+				int flightAssignmentId = super.getRequest().getData("flightAssignment", int.class);
+				String flightAssignmentIdStr = super.getRequest().getData("flightAssignment", String.class);
+				FlightAssignment logFlightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
+				List<FlightAssignment> publishedFlightAssignments = this.repository.findFlightAssignmentByCrewMemberId(crewMember.getId());
+				if (!"0".equals(flightAssignmentIdStr) && (logFlightAssignment == null || !publishedFlightAssignments.contains(logFlightAssignment)))
+					status = false;
+			}
+		} catch (Exception e) {
+			status = false;
+		}
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -48,7 +61,7 @@ public class ActivityLogUpdateService extends AbstractGuiService<FlightCrewMembe
 	@Override
 	public void bind(final ActivityLog activityLog) {
 
-		int flightAssignmentId = activityLog.getFlightAssignment().getId();
+		int flightAssignmentId = super.getRequest().getData("flightAssignment", int.class);
 		FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
 		super.bindObject(activityLog, "registrationMoment", "typeOfIncident", "description", "severity");
 		activityLog.setFlightAssignment(flightAssignment);

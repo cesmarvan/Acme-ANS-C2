@@ -1,14 +1,12 @@
 
 package acme.features.flightCrewMember.ActivityLog;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
-import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.activityLog.ActivityLog;
@@ -24,29 +22,26 @@ public class ActivityLogCreateService extends AbstractGuiService<FlightCrewMembe
 
 	@Override
 	public void authorise() {
-		boolean authorised = true;
-
+		boolean status = true;
+		int activityLogId;
+		FlightCrewMember crewMember;
+		String method = super.getRequest().getMethod();
 		try {
-			String method = super.getRequest().getMethod();
-			if (method.equals("POST")) {
-				Date currentMoment = MomentHelper.getCurrentMoment();
-				int flightCrewMemberID = super.getRequest().getPrincipal().getActiveRealm().getId();
-				int flightAssignmentId = super.getRequest().getData("flightAssignment", int.class);
-				FlightAssignment fa = this.repository.findFlightAssignmentById(flightAssignmentId);
-				List<FlightAssignment> possibleAssignments = this.repository.findAssignmentsByMemberIdCompletedLegs(currentMoment, flightCrewMemberID);
-				String rawAssignment = super.getRequest().getData("flightAssignment", String.class);
+			status = super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class);
 
-				if (!"0".equals(rawAssignment))
-					if (fa == null || !possibleAssignments.contains(fa))
-						authorised = false;
+			if (method.equals("POST")) {
+				int flightAssignmentId = super.getRequest().getData("flightAssignment", int.class);
+				String flightAssignmentIdStr = super.getRequest().getData("flightAssignment", String.class);
+				FlightAssignment logFlightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
+				crewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
+				List<FlightAssignment> publishedFlightAssignments = this.repository.findFlightAssignmentByCrewMemberId(crewMember.getId());
+				if (!"0".equals(flightAssignmentIdStr) && (logFlightAssignment == null || !publishedFlightAssignments.contains(logFlightAssignment)))
+					status = false;
 			}
 		} catch (Exception e) {
-			authorised = false;
+			status = false;
 		}
-
-		super.getResponse().setAuthorised(authorised);
-
-		super.getResponse().setAuthorised(true);
+		super.getResponse().setAuthorised(status);
 
 	}
 

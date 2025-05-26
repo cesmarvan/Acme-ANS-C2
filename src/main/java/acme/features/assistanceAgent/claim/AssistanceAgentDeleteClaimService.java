@@ -77,7 +77,7 @@ public class AssistanceAgentDeleteClaimService extends AbstractGuiService<Assist
 		dataset = super.unbindObject(claim, "registrationMoment", "email", "description", "leg");
 		dataset.put("types", typeChoices);
 		dataset.put("type", typeChoices.getSelected().getKey());
-		dataset.put("getIndicator", claim.indicator());
+		dataset.put("indicator", claim.indicator());
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
 

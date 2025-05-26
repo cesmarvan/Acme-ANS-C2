@@ -37,7 +37,10 @@ public class ManagerLegShowService extends AbstractGuiService<Manager, Leg> {
 		if (super.getRequest().hasData("id", int.class)) {
 			id = super.getRequest().getData("id", int.class);
 			leg = this.repository.findLegById(id);
-			manager = leg.getFlight().getManager();
+			if (leg == null)
+				manager = null;
+			else
+				manager = leg.getFlight().getManager();
 		} else {
 			leg = null;
 			manager = null;

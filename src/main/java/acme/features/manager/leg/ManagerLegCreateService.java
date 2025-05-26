@@ -35,9 +35,14 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 		boolean status;
 		int masterId;
 		masterId = super.getRequest().getData("masterId", int.class);
+		Flight flight;
 
 		Manager manager;
-		manager = this.repository.findFlightById(masterId).getManager();
+		flight = this.repository.findFlightById(masterId);
+		if (flight == null)
+			manager = null;
+		else
+			manager = flight.getManager();
 
 		status = super.getRequest().getPrincipal().hasRealm(manager);
 
@@ -57,17 +62,14 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 			aircraft = this.repository.findAircraftById(aircraftId);
 			arrivalAirport = this.repository.findAirportById(arrivalAirportId);
 			departureAirport = this.repository.findAirportById(departureAirportId);
-			if (legId != 0) {
+			if (legId != 0)
 				status = false;
-			}
-			else {
-				if (!(aircraftId == 0 || aircraft != null))
-					status = false;
-				else if (!(arrivalAirportId == 0 || arrivalAirport != null))
-					status = false;
-				else if (!(departureAirportId == 0 || departureAirport != null))
-					status = false;
-			}
+			else if (!(aircraftId == 0 || aircraft != null))
+				status = false;
+			else if (!(arrivalAirportId == 0 || arrivalAirport != null))
+				status = false;
+			else if (!(departureAirportId == 0 || departureAirport != null))
+				status = false;
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -95,7 +97,6 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 	public void bind(final Leg leg) {
 		int masterId;
 		Flight flight;
-		String fNumber;
 
 		masterId = super.getRequest().getData("masterId", int.class);
 

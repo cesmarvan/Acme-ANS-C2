@@ -29,15 +29,17 @@ public class FlighAssignmentCreateService extends AbstractGuiService<FlightCrewM
 	@Override
 	public void authorise() {
 		boolean status = true;
-		int flightAssignmentId;
-		FlightAssignment flightAssignment;
-		FlightCrewMember crewMember;
+		String method = super.getRequest().getMethod();
 		try {
-			flightAssignmentId = super.getRequest().getData("id", int.class);
-			flightAssignment = this.flightAssignmentRepository.findFlightAssignmentById(flightAssignmentId);
-			crewMember = flightAssignment == null ? null : flightAssignment.getFlightCrewMember();
-
-			status = flightAssignment != null && super.getRequest().getPrincipal().hasRealm(crewMember);
+			status = super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class);
+			if (method.equals("POST")) {
+				int legId = super.getRequest().getData("leg", int.class);
+				String legIdStr = super.getRequest().getData("leg", String.class);
+				Leg assignmentLeg = this.flightAssignmentRepository.findLegById(legId);
+				List<Leg> publishedLegs = this.flightAssignmentRepository.findAllUpcomingPublishedLegs(MomentHelper.getCurrentMoment());
+				if (!"0".equals(legIdStr) && (assignmentLeg == null || !publishedLegs.contains(assignmentLeg)))
+					status = false;
+			}
 		} catch (Exception e) {
 			status = false;
 		}
@@ -116,7 +118,7 @@ public class FlighAssignmentCreateService extends AbstractGuiService<FlightCrewM
 		SelectChoices statusChoices;
 		SelectChoices legChoices;
 
-		List<Leg> legList = this.flightAssignmentRepository.findAllPublishedLegs();
+		List<Leg> legList = this.flightAssignmentRepository.findAllUpcomingPublishedLegs(MomentHelper.getCurrentMoment());
 		legChoices = SelectChoices.from(legList, "flightNumber", flightAssignment.getLeg());
 
 		dutyChoices = SelectChoices.from(CrewDuties.class, flightAssignment.getDuty());

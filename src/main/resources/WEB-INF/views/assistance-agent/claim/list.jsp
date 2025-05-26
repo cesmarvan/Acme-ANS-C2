@@ -9,6 +9,7 @@
 	<acme:list-column code="assistance-agent.claim.list.label.email" path="email" width="70%"/>
 	<acme:list-column code="assistance-agent.claim.list.label.type" path="type" width="10%"/>
 	<acme:list-column code="assistance-agent.claim.list.label.indicator" path="indicator" width="10%"/>
+	<acme:list-payload path="payload"/>
  </acme:list>
  
  <jstl:if test="${_command == 'list-pending'}">

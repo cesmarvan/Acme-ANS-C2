@@ -28,7 +28,7 @@ public interface ActivityLogRepository extends AbstractRepository {
 	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.draftMode = false")
 	List<FlightAssignment> findAllPublishedFlightAssignments();
 
-	@Query("SELECT fa FROM  FlightAssignment fa WHERE fa.flightCrewMember.id= :id")
+	@Query("SELECT fa FROM  FlightAssignment fa WHERE fa.flightCrewMember.id= :id AND fa.draftMode = false")
 	List<FlightAssignment> findFlightAssignmentByCrewMemberId(int id);
 
 	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.flightCrewMember.id = :id AND fa.leg.scheduledArrival < :currentDate")

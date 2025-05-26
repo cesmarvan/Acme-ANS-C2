@@ -12,7 +12,9 @@ import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.aircraft.AircraftStatus;
 import acme.entities.airport.Airport;
+import acme.entities.claim.Claim;
 import acme.entities.flight.Flight;
+import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Leg;
 import acme.entities.leg.LegStatus;
 import acme.realms.Manager;
@@ -38,7 +40,11 @@ public class ManagerLegDeleteService extends AbstractGuiService<Manager, Leg> {
 		if (super.getRequest().hasData("id", int.class)) {
 			legId = super.getRequest().getData("id", int.class);
 			leg = this.repository.findLegById(legId);
-			manager = leg.getFlight().getManager();
+			if (leg == null)
+				manager = null;
+			else
+				manager = leg.getFlight().getManager();
+
 		} else {
 			leg = null;
 			manager = null;
@@ -75,6 +81,12 @@ public class ManagerLegDeleteService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void perform(final Leg leg) {
+		List<Claim> claims = this.repository.findClaimByLegId(leg.getId());
+		for (Claim claim : claims)
+			this.repository.delete(claim);
+		List<FlightAssignment> flightAssignments = this.repository.findFAByLegId(leg.getId());
+		for (FlightAssignment f : flightAssignments)
+			this.repository.delete(f);
 		this.repository.delete(leg);
 	}
 

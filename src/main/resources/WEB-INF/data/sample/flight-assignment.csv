@@ -1,5 +1,6 @@
 key,duty,lastUpdate,status,remarks,draftMode,key:flight-crew-member,key:leg
-assigned-flight-01,PILOT,2020/01/01 14:30,CONFIRMED,aaaaa,false,member1,leg-01
-assigned-flight-02,COPILOT,2020/01/01 10:00,CONFIRMED,aaaaa,false,member2,leg-01
-assigned-flight-03,LEAD_ATTENDANT,2020/01/01 20:10,PENDING,aaaa,false,member3,leg-02
-assigned-flight-04,CABIN_ATTENDANT,2020/01/01 16:00,CANCELLED,aaa,false,member4,leg-03
+assigned-flight-01,PILOT,2020/01/01 14:30,CONFIRMED,Lorem Ipsum,false,member1,leg-011
+assigned-flight-02,PILOT,2020/01/01 14:30,CONFIRMED,Lorem Ipsum,true,member1,leg-01
+assigned-flight-03,COPILOT,2020/01/01 10:00,CONFIRMED,Lorem Ipsum,false,member2,leg-011
+assigned-flight-04,LEAD_ATTENDANT,2020/01/01 20:10,PENDING,Lorem Ipsum,false,member3,leg-013
+assigned-flight-05,CABIN_ATTENDANT,2020/01/01 16:00,CANCELLED,Lorem Ipsum,false,member4,leg-012
