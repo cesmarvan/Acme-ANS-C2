@@ -26,8 +26,16 @@ public class AdministratorAirportCreateService extends AbstractGuiService<Admini
 	public void authorise() {
 		boolean status;
 		Administrator administrator;
+		int airportId;
 		administrator = (Administrator) super.getRequest().getPrincipal().getActiveRealm();
 		status = super.getRequest().getPrincipal().hasRealm(administrator);
+		if (super.getRequest().getMethod().equals("GET"))
+			status = super.getRequest().getPrincipal().hasRealm(administrator);
+		else {
+			airportId = super.getRequest().getData("id", int.class);
+			if (airportId != 0)
+				status = false;
+		}
 		super.getResponse().setAuthorised(status);
 	}
 

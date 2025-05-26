@@ -3,6 +3,8 @@ package acme.entities.airport;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Index;
+import javax.persistence.Table;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
@@ -11,7 +13,6 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidUrl;
-import acme.constraints.ValidAirport;
 import acme.constraints.ValidIataCode;
 import acme.constraints.ValidPhoneNumber;
 import acme.constraints.ValidShortText;
@@ -21,7 +22,9 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@ValidAirport
+@Table(indexes = {
+	@Index(columnList = "iata_code", unique = true)
+})
 public class Airport extends AbstractEntity {
 
 	private static final long		serialVersionUID	= 1L;
@@ -33,7 +36,7 @@ public class Airport extends AbstractEntity {
 
 	@Mandatory
 	@ValidIataCode
-	@Column(unique = true)
+	@Column(name = "iata_code", unique = true)
 	private String					iataCode;
 
 	@Mandatory
