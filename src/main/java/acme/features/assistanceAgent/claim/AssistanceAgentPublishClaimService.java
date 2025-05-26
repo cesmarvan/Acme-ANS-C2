@@ -1,14 +1,18 @@
 
 package acme.features.assistanceAgent.claim;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
 import acme.entities.claim.ClaimType;
+import acme.entities.claim.IndicatorClaim;
 import acme.entities.leg.Leg;
 import acme.realms.assistanceAgent.AssistanceAgent;
 
@@ -69,14 +73,18 @@ public class AssistanceAgentPublishClaimService extends AbstractGuiService<Assis
 	@Override
 	public void unbind(final Claim claim) {
 		Dataset dataset;
-		SelectChoices type = SelectChoices.from(ClaimType.class, claim.getType());
-		SelectChoices leg = SelectChoices.from(this.claimRepository.findAllLegs(), "id", claim.getLeg());
+		SelectChoices typeChoices = SelectChoices.from(ClaimType.class, claim.getType());
+		Collection<Leg> legs = this.claimRepository.findAvailableLegs(MomentHelper.getCurrentMoment());
+		SelectChoices legChoices = SelectChoices.from(legs, "flightNumber", claim.getLeg());
+		boolean pending = claim.indicator().equals(IndicatorClaim.PENDING);
 
 		dataset = super.unbindObject(claim, "registrationMoment", "email", "description", "type", "indicator", "leg");
-		dataset.put("type", type);
-		dataset.put("indicator", claim.getIndicator());
-		dataset.put("legs", leg);
-		dataset.put("leg", leg.getSelected().getKey());
+		dataset.put("types", typeChoices);
+		dataset.put("type", typeChoices.getSelected().getKey());
+		dataset.put("legs", legChoices);
+		dataset.put("leg", claim.getLeg());
+		dataset.put("indictor", claim.indicator());
+		dataset.put("pending", pending);
 
 		super.getResponse().addData(dataset);
 	}

@@ -1,6 +1,7 @@
 
 package acme.features.assistanceAgent.claim;
 
+import java.util.Collection;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
 import acme.entities.claim.ClaimType;
-import acme.entities.claim.IndicatorClaim;
 import acme.entities.leg.Leg;
 import acme.realms.assistanceAgent.AssistanceAgent;
 
@@ -27,8 +27,22 @@ public class AssistanceAgentCreateClaimService extends AbstractGuiService<Assist
 
 	@Override
 	public void authorise() {
-		boolean isAssistanceAgent = super.getRequest().getPrincipal().hasRealmOfType(AssistanceAgent.class);
-		super.getResponse().setAuthorised(isAssistanceAgent);
+		boolean isAgent = super.getRequest().getPrincipal().hasRealmOfType(AssistanceAgent.class);
+		super.getResponse().setAuthorised(isAgent);
+
+		boolean status = true;
+		if (super.getRequest().hasData("leg", int.class)) {
+			int legId = super.getRequest().getData("leg", int.class);
+
+			Leg leg = this.claimRepository.findLegById(legId);
+			if (legId != 0) {
+				Collection<Leg> availableLegs = this.claimRepository.findAvailableLegs(MomentHelper.getCurrentMoment());
+				status = availableLegs.contains(leg);
+			}
+		}
+
+		super.getResponse().setAuthorised(isAgent && status);
+
 	}
 
 	@Override
@@ -44,7 +58,6 @@ public class AssistanceAgentCreateClaimService extends AbstractGuiService<Assist
 		assistanceAgent = this.claimRepository.findAssistanceAgentById(agentId);
 
 		claim = new Claim();
-		claim.setIndicator(IndicatorClaim.PENDING);
 		claim.setRegistrationMoment(moment);
 		claim.setDraftMode(true);
 		claim.setAssistanceAgent(assistanceAgent);
@@ -54,34 +67,41 @@ public class AssistanceAgentCreateClaimService extends AbstractGuiService<Assist
 
 	@Override
 	public void bind(final Claim claim) {
+		int legId;
 		Leg leg;
 
-		leg = this.claimRepository.findLegByClaim(claim.getId());
+		legId = super.getRequest().getData("leg", int.class);
+		leg = this.claimRepository.findLegById(legId);
 		claim.setLeg(leg);
 
-		super.bindObject(claim, "registrationMoment", "email", "description", "type", "indicator", "leg");
+		super.bindObject(claim, "registrationMoment", "email", "description", "type", "indicator");
+		claim.setLeg(leg);
 	}
 
 	@Override
 	public void validate(final Claim claim) {
-		;
+		if (this.claimRepository.findLegById(super.getRequest().getData("leg", int.class)) == null)
+			super.state(false, "leg", "acme.validation.confirmation.message.claim.leg");
 	}
 
 	@Override
 	public void perform(final Claim claim) {
+		claim.setRegistrationMoment(MomentHelper.getCurrentMoment());
+		claim.setDraftMode(true);
 		this.claimRepository.save(claim);
 	}
 
 	@Override
 	public void unbind(final Claim claim) {
 		Dataset dataset;
-		SelectChoices type = SelectChoices.from(ClaimType.class, claim.getType());
-		SelectChoices indicator = SelectChoices.from(IndicatorClaim.class, claim.getIndicator());
-		SelectChoices legChoices = SelectChoices.from(this.claimRepository.findAllLegs(), "id", claim.getLeg());
+		Collection<Leg> legs = this.claimRepository.findAvailableLegs(MomentHelper.getCurrentMoment());
+		SelectChoices typeChoices = SelectChoices.from(ClaimType.class, claim.getType());
+		SelectChoices legChoices = SelectChoices.from(legs, "flightNumber", claim.getLeg());
 
-		dataset = super.unbindObject(claim, "registrationMoment", "email", "description", "type", "indicator", "leg", "draftMode");
-		dataset.put("type", type);
-		dataset.put("indicator", indicator);
+		dataset = super.unbindObject(claim, "registrationMoment", "email", "description", "draftMode");
+		dataset.put("types", typeChoices);
+		dataset.put("type", typeChoices.getSelected().getKey());
+		dataset.put("indicator", claim.indicator());
 		dataset.put("legs", legChoices);
 		dataset.put("leg", legChoices.getSelected().getKey());
 

@@ -17,7 +17,9 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
+import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
+import acme.constraints.ValidAssistanceAgent;
 import acme.constraints.ValidIdentifier;
 import acme.constraints.ValidLongText;
 import acme.entities.airline.Airline;
@@ -27,6 +29,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@ValidAssistanceAgent
 public class AssistanceAgent extends AbstractRole {
 
 	// Version
@@ -47,6 +50,11 @@ public class AssistanceAgent extends AbstractRole {
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				moment;
+
+	@Optional
+	@ValidString
+	@Automapped
+	private String				bio;
 
 	@Optional
 	@ValidMoney(min = 0)

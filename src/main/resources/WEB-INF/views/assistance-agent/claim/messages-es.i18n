@@ -1,27 +1,28 @@
 # messages-es.i18n
  
  assistance-agent.claim.form.title = Formulario de reclamaciones
- assistance-agent.claim.list.title = Lista de reclamaciones completadas
+ assistance-agent.claim.list.title = Lista de reclamaciones 
  
- assistance-agent.claim.form.label.registrationMoment = Fecha de registro
- assistance-agent.claim.form.label.email = Email
- assistance-agent.claim.form.label.description = Descripcion
- assistance-agent.claim.form.label.type = Tipo
- assistance-agent.claim.form.label.indicator = Estado
- assistance-agent.claim.form.label.leg = Horario
+ assistance-agent.claim.list.label.registrationMoment = Fecha de registro
+ assistance-agent.claim.list.label.email = Email del pasajero
+ assistance-agent.claim.list.label.description = Descripción
+ assistance-agent.claim.list.label.type = Tipo
+ assistance-agent.claim.list.label.indicator = Indicador
  
- assistance-agent.claim.form.button.duties = Deberes
+ assistance-agent.claim.list.button.list-completed = Reclamaciones completas
+ assistance-agent.claim.list.button.list-pending = Reclamaciones pendientes
  assistance-agent.claim.form.button.update = Actualizar
  assistance-agent.claim.form.button.delete = Eliminar
  assistance-agent.claim.form.button.publish = Publicar
  assistance-agent.claim.form.button.create = Crear
+
  
- assistance-agent.claim.list-complete.label.registrationMoment = Fecha de registro
- assistance-agent.claim.list-complete.label.email = Email
- assistance-agent.claim.list-complete.label.description = Descripcion
- assistance-agent.claim.list-complete.label.type = Tipo
- assistance-agent.claim.list-complete.label.indicator = Estado
- assistance-agent.claim.list-complete.label.leg = Horario
+ assistance-agent.claim.form.label.registrationMoment = Fecha de registro
+ assistance-agent.claim.form.label.email = Email del pasajero
+ assistance-agent.claim.form.label.description = Descripción
+ assistance-agent.claim.form.label.type = Tipo
+ assistance-agent.claim.form.label.indicator = Indicador
+ assistance-agent.claim.form.label.leg = Escala
+ assistance-agent.claim.form.label.draftMode = Es borrador
  
- assistance-agent.claim.list-complete.button.create = Crear
  assistance-agent.claim.list-pending.button.create = Crear
