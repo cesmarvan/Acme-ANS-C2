@@ -22,16 +22,29 @@ public class ActivityLogPublishService extends AbstractGuiService<FlightCrewMemb
 
 	@Override
 	public void authorise() {
-		boolean status;
+		boolean status = true;
 		int activityLogId;
 		ActivityLog activityLog;
 		FlightCrewMember crewMember;
+		String method = super.getRequest().getMethod();
+		try {
+			activityLogId = super.getRequest().getData("id", int.class);
+			activityLog = this.repository.findActivityLogById(activityLogId);
+			crewMember = activityLog == null ? null : activityLog.getFlightAssignment().getFlightCrewMember();
 
-		activityLogId = super.getRequest().getData("id", int.class);
-		activityLog = this.repository.findActivityLogById(activityLogId);
-		crewMember = activityLog == null ? null : activityLog.getFlightAssignment().getFlightCrewMember();
+			status = activityLog != null && super.getRequest().getPrincipal().hasRealm(crewMember) && crewMember.getId() == super.getRequest().getPrincipal().getActiveRealm().getId() && activityLog.getDraftMode();
 
-		status = super.getRequest().getPrincipal().hasRealm(crewMember) && activityLog.getDraftMode();
+			if (method.equals("POST")) {
+				int flightAssignmentId = super.getRequest().getData("flightAssignment", int.class);
+				String flightAssignmentIdStr = super.getRequest().getData("flightAssignment", String.class);
+				FlightAssignment logFlightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
+				List<FlightAssignment> publishedFlightAssignments = this.repository.findFlightAssignmentByCrewMemberId(crewMember.getId());
+				if (!"0".equals(flightAssignmentIdStr) && (logFlightAssignment == null || !publishedFlightAssignments.contains(logFlightAssignment)))
+					status = false;
+			}
+		} catch (Exception e) {
+			status = false;
+		}
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -59,8 +72,10 @@ public class ActivityLogPublishService extends AbstractGuiService<FlightCrewMemb
 	public void validate(final ActivityLog activityLog) {
 		boolean status;
 		FlightAssignment flightAssignment = activityLog.getFlightAssignment();
-		status = flightAssignment.getDraftMode();
-		super.state(!status, "flightAssignment", "validation.error.flightAssignmentNotPublished");
+		if (flightAssignment != null) {
+			status = flightAssignment.getDraftMode();
+			super.state(!status, "flightAssignment", "validation.error.flightAssignmentNotPublished");
+		}
 	}
 
 	@Override

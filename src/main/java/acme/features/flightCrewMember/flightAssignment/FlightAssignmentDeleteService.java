@@ -29,15 +29,12 @@ public class FlightAssignmentDeleteService extends AbstractGuiService<FlightCrew
 		int flightAssignmentId;
 		FlightAssignment flightAssignment;
 		FlightCrewMember crewMember;
-		String method = super.getRequest().getMethod();
 		try {
-			if (method.equals("POST")) {
-				flightAssignmentId = super.getRequest().getData("id", int.class);
-				flightAssignment = this.flightAssignmentRepository.findFlightAssignmentById(flightAssignmentId);
-				crewMember = flightAssignment == null ? null : flightAssignment.getFlightCrewMember();
+			flightAssignmentId = super.getRequest().getData("id", int.class);
+			flightAssignment = this.flightAssignmentRepository.findFlightAssignmentById(flightAssignmentId);
+			crewMember = flightAssignment == null ? null : flightAssignment.getFlightCrewMember();
 
-				status = flightAssignment != null && super.getRequest().getPrincipal().hasRealm(crewMember) && flightAssignment.getDraftMode();
-			}
+			status = flightAssignment != null && super.getRequest().getPrincipal().hasRealm(crewMember) && crewMember.getId() == super.getRequest().getPrincipal().getActiveRealm().getId() && flightAssignment.getDraftMode();
 		} catch (Exception e) {
 			status = false;
 		}
