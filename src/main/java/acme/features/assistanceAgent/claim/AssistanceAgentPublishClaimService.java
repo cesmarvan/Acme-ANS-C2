@@ -25,16 +25,31 @@ public class AssistanceAgentPublishClaimService extends AbstractGuiService<Assis
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int claimId;
-		Claim claim;
-		AssistanceAgent agent;
+		int claimId = super.getRequest().getData("id", int.class);
+		int agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		claimId = super.getRequest().getData("id", int.class);
-		claim = this.claimRepository.findClaimById(claimId);
-		agent = claim == null ? null : claim.getAssistanceAgent();
+		boolean status = this.claimRepository.isDraftClaimOwnedByAgent(claimId, agentId);
 
-		status = claim != null && super.getRequest().getPrincipal().hasRealm(agent);
+		if (super.getRequest().hasData("leg", int.class)) {
+			int legId = super.getRequest().getData("leg", int.class);
+
+			if (legId != 0) {
+				Leg leg = this.claimRepository.findLegById(legId);
+				Collection<Leg> availableLegs = this.claimRepository.findAvailableLegs(MomentHelper.getCurrentMoment());
+				status = status && availableLegs.contains(leg);
+			}
+		}
+
+		if (super.getRequest().hasData("claimType", String.class)) {
+			String claimType = super.getRequest().getData("claimType", String.class);
+
+			if (!"0".equals(claimType))
+				try {
+					IndicatorClaim.valueOf(claimType);
+				} catch (IllegalArgumentException | NullPointerException e) {
+					status = false;
+				}
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -61,7 +76,14 @@ public class AssistanceAgentPublishClaimService extends AbstractGuiService<Assis
 
 	@Override
 	public void validate(final Claim claim) {
-		;
+		int legId;
+		Leg leg;
+
+		legId = super.getRequest().getData("leg", int.class);
+		leg = this.claimRepository.findLegById(legId);
+
+		if (leg == null)
+			super.state(false, "leg", "acme.validation.confirmation.message.claim.leg");
 	}
 
 	@Override
@@ -83,7 +105,7 @@ public class AssistanceAgentPublishClaimService extends AbstractGuiService<Assis
 		dataset.put("type", typeChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
 		dataset.put("leg", claim.getLeg());
-		dataset.put("indictor", claim.indicator());
+		dataset.put("indicator", claim.indicator());
 		dataset.put("pending", pending);
 
 		super.getResponse().addData(dataset);
