@@ -67,33 +67,27 @@ public class CustomerBookingPassengerCreateService extends AbstractGuiService<Cu
 	}
 
 	@Override
-	public void bind(final BookingPassenger bookingPassenger) {
-		int BookingId;
-		Booking booking;
+	public void bind(final BookingPassenger bp) {
 
-		int PassengerId;
-		Passenger passenger;
-
-		BookingId = super.getRequest().getData("booking", int.class);
-		booking = this.bookingRepository.findBookingById(BookingId);
-
-		PassengerId = super.getRequest().getData("passenger", int.class);
-		passenger = this.passengerRepository.findPassengerById(PassengerId);
-
-		super.bindObject(bookingPassenger);
-		bookingPassenger.setBooking(booking);
-		bookingPassenger.setPassenger(passenger);
+		super.bindObject(bp, "booking", "passenger");
 
 	}
 
 	@Override
-	public void validate(final BookingPassenger bookingPassenger) {
-		super.state(bookingPassenger.getBooking() != null, "booking", "acme.validation.confirmation.message.booking-record.create.booking");
-		super.state(bookingPassenger.getPassenger() != null, "passenger", "acme.validation.confirmation.message.booking-record.create.passenger");
+	public void validate(final BookingPassenger bp) {
 
-		if (bookingPassenger.getBooking() != null && bookingPassenger.getPassenger() != null) {
-			BookingPassenger existing = this.repository.findBookingRecordBybookingIdpassengerId(bookingPassenger.getBooking().getId(), bookingPassenger.getPassenger().getId());
-			super.state(existing == null, "*", "acme.validation.confirmation.message.booking-record.create");
+		if (bp.getBooking() == null && bp.getPassenger() == null) {
+			super.state(false, "booking", "acme.validation.confirmation.message.booking-record.create.booking");
+			super.state(false, "passenger", "acme.validation.confirmation.message.booking-record.create.passenger");
+
+		} else if (bp.getPassenger() == null)
+			super.state(false, "passenger", "acme.validation.confirmation.message.booking-record.create.passenger");
+		else if (bp.getBooking() == null)
+			super.state(false, "booking", "acme.validation.confirmation.message.booking-record.create.booking");
+		else {
+			BookingPassenger br = this.repository.findBookingPassengerBybookingIdpassengerId(bp.getBooking().getId(), bp.getPassenger().getId());
+			if (br != null)
+				super.state(false, "*", "acme.validation.confirmation.message.booking-record.create");
 		}
 	}
 

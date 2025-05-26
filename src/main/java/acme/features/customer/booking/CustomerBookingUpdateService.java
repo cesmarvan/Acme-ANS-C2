@@ -29,28 +29,47 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void authorise() {
-		int id = super.getRequest().getData("id", int.class);
-		Booking booking = this.repository.findBookingById(id);
+		int id;
+		Booking booking;
 		boolean isFlightInList = true;
-		Flight flight;
-		Date today = MomentHelper.getCurrentMoment();
-
+		boolean status = true;
+		boolean travelClass = true;
 		boolean isCustomer = super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
-		boolean isOwner = booking != null && booking.getCustomer().getUserAccount().getId() == super.getRequest().getPrincipal().getAccountId();
-		boolean isNotPublished = booking != null && !Boolean.TRUE.equals(booking.getIsPublished());
+		int customerId = super.getRequest().getPrincipal().getActiveRealm().getUserAccount().getId();
+		id = super.getRequest().getData("id", int.class);
+		booking = this.repository.findBookingById(id);
+		status = booking.getCustomer().getUserAccount().getId() == customerId;
 
-		// Validar que el vuelo asignado sigue siendo válido
-		if (super.getRequest().hasData("id")) {
-			int flightId = super.getRequest().getData("flight", int.class);
-			Collection<Flight> flights = this.repository.findAllPublishedFlightsWithFutureDeparture(today);
+		try {
 
-			if (flightId != 0) {
-				flight = this.flightRepository.findFlightById(flightId);
-				isFlightInList = flights.contains(flight);
+			if (!booking.getIsPublished() != false && status && isCustomer) {
+
+				Date today = MomentHelper.getCurrentMoment();
+				Integer flightId = super.getRequest().getData("flight", int.class);
+				Collection<Flight> flights = this.repository.findAllPublishedFlightsWithFutureDeparture(today);
+				Flight flight;
+
+				if (flightId != 0) {
+					flight = this.flightRepository.findFlightById(flightId);
+					isFlightInList = flights.contains(flight);
+				}
+
 			}
+
+			if (super.getRequest().hasData("travelClass", String.class)) {
+				String travelClassData = super.getRequest().getData("travelClass", String.class);
+				if (!"0".equals(travelClassData))
+					try {
+						TravelClass.valueOf(travelClassData);
+					} catch (IllegalArgumentException e) {
+						travelClass = false;
+					}
+			}
+		} catch (Throwable E) {
+			isFlightInList = false;
 		}
 
-		super.getResponse().setAuthorised(isCustomer && isOwner && isNotPublished);
+		super.getResponse().setAuthorised(status && !booking.getIsPublished() && isFlightInList && isCustomer && travelClass);
 	}
 
 	@Override
@@ -66,12 +85,7 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void bind(final Booking booking) {
-		int flightId = super.getRequest().getData("flight", int.class);
-		Flight flight = this.repository.findFlightById(flightId);
-
-		super.bindObject(booking, "locatorCode", "travelClass", "lastCreditCardNibble");
-		booking.setPurchaseMoment(MomentHelper.getCurrentMoment());
-		booking.setFlight(flight);
+		super.bindObject(booking, "locatorCode", "lastCreditCardNibble", "travelClass", "flight");
 	}
 
 	@Override

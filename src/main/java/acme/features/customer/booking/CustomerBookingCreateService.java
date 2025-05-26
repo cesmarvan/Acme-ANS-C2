@@ -2,6 +2,7 @@
 package acme.features.customer.booking;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -29,32 +30,52 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean isCustomer = super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
+		boolean travelClass = true;
+
+		Date today = MomentHelper.getCurrentMoment();
+		boolean isFlightInList = true;
+		Flight flight;
+
+		if (super.getRequest().hasData("id")) {
+			int flightId = super.getRequest().getData("flight", int.class);
+			Collection<Flight> flights = this.repository.findAllPublishedFlightsWithFutureDeparture(today);
+
+			if (flightId != 0) {
+				flight = this.flightRepository.findFlightById(flightId);
+				isFlightInList = flights.contains(flight);
+
+			}
+
+		}
+
+		if (super.getRequest().hasData("travelClass", String.class)) {
+			String travelClassData = super.getRequest().getData("travelClass", String.class);
+			if (!"0".equals(travelClassData))
+				try {
+					TravelClass.valueOf(travelClassData);
+				} catch (IllegalArgumentException e) {
+					travelClass = false;
+				}
+		}
+
+		super.getResponse().setAuthorised(isCustomer && isFlightInList && travelClass);
 	}
 
 	@Override
 	public void load() {
-
+		Booking booking;
 		AbstractRealm principal = super.getRequest().getPrincipal().getActiveRealm();
 		int customerId = principal.getId();
 		Customer customer = this.repository.findCustomerById(customerId);
+		Date today = MomentHelper.getCurrentMoment();
 
-		Booking booking = new Booking();
-		booking.setPurchaseMoment(MomentHelper.getCurrentMoment());
-		booking.setIsPublished(false);
+		booking = new Booking();
 		booking.setCustomer(customer);
+		booking.setPurchaseMoment(today);
+		booking.setIsPublished(false);
 
 		super.getBuffer().addData(booking);
-	}
-
-	@Override
-	public void bind(final Booking booking) {
-		int flightId;
-		Flight flight;
-		flightId = super.getRequest().getData("flight", int.class);
-		flight = this.flightRepository.findFlightById(flightId);
-		super.bindObject(booking, "locatorCode", "lastCreditCardNibble", "price", "travelClass");
-		booking.setFlight(flight);
 	}
 
 	@Override
@@ -67,6 +88,13 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 	@Override
 	public void perform(final Booking object) {
 		this.repository.save(object);
+	}
+
+	@Override
+	public void bind(final Booking booking) {
+
+		super.bindObject(booking, "locatorCode", "lastCreditCardNibble", "travelClass", "flight");
+
 	}
 
 	@Override

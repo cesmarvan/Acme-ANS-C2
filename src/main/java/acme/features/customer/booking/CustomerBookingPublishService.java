@@ -36,29 +36,44 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 	@Override
 	public void authorise() {
+		int id;
+		Booking booking;
+		boolean isFlightInList = true;
+		boolean status = true;
+		boolean travelClass = true;
 		boolean isCustomer = super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
-
 		int customerId = super.getRequest().getPrincipal().getActiveRealm().getUserAccount().getId();
-		Collection<Booking> bookings = this.bookingRepository.findBookingByCustomer(customerId);
-		Collection<Passenger> passengers = this.repository.findAllPublishedPassengersByCustomerId(customerId);
-		boolean isInBookings = true;
-		boolean isInPassengers = true;
+		id = super.getRequest().getData("id", int.class);
+		booking = this.repository.findBookingById(id);
+		status = booking.getCustomer().getUserAccount().getId() == customerId;
 
-		if (super.getRequest().hasData("id")) {
-			int bookingId = super.getRequest().getData("booking", int.class);
-			if (bookingId != 0) {
-				Booking booking = this.bookingRepository.findBookingById(bookingId);
-				isInBookings = bookings.contains(booking);
+		try {
+			if (booking.getIsPublished() == false && status && isCustomer) {
+				Date today = MomentHelper.getCurrentMoment();
+				Integer flightId = super.getRequest().getData("flight", int.class);
+				Collection<Flight> flights = this.repository.findAllPublishedFlightsWithFutureDeparture(today);
+				Flight flight;
+
+				if (flightId != 0) {
+					flight = this.flightRepository.findFlightById(flightId);
+					isFlightInList = flights.contains(flight);
+				}
 			}
 
-			int passengerId = super.getRequest().getData("passenger", int.class);
-			if (passengerId != 0) {
-				Passenger passenger = this.passengerRepository.findPassengerById(passengerId);
-				isInPassengers = passengers.contains(passenger);
+			if (super.getRequest().hasData("travelClass", String.class)) {
+				String travelClassData = super.getRequest().getData("travelClass", String.class);
+				if (!"0".equals(travelClassData))
+					try {
+						TravelClass.valueOf(travelClassData);
+					} catch (IllegalArgumentException | NullPointerException e) {
+						travelClass = false;
+					}
 			}
-
+		} catch (Throwable E) {
+			isFlightInList = false;
 		}
-		super.getResponse().setAuthorised(isCustomer && isInPassengers && isInBookings);
+
+		super.getResponse().setAuthorised(status && !booking.getIsPublished() && isFlightInList && isCustomer && travelClass);
 	}
 
 	@Override
@@ -82,7 +97,6 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		flight = this.flightRepository.findFlightById(flightId);
 		super.bindObject(booking, "locatorCode", "lastCreditCardNibble", "travelClass");
 		booking.setFlight(flight);
-
 	}
 
 	@Override
