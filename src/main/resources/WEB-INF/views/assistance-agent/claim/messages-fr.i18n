@@ -1,7 +1,7 @@
 # messages-fr.i18n
  
  assistance-agent.claim.form.title = Formulaire de réclamations
- assistance-agent.claim.list.title = Liste de déclarations complété
+ assistance-agent.claim.list.title = Liste de déclarations
  
  assistance-agent.claim.form.label.registrationMoment = Date d'inscription
  assistance-agent.claim.form.label.email = Email
@@ -9,19 +9,20 @@
  assistance-agent.claim.form.label.type = Type
  assistance-agent.claim.form.label.indicator = État
  assistance-agent.claim.form.label.leg = Étape
+ assistance-agent.claim.form.label.draftMode = mode Brouillon
  
- assistance-agent.claim.form.button.duties = Devoires
+ assistance-agent.claim.list.button.list-completed = Réclamations terminées
+ assistance-agent.claim.list.button.list-pending = Réclamations en attente
  assistance-agent.claim.form.button.update = Actualiser
  assistance-agent.claim.form.button.delete = Éliminer
  assistance-agent.claim.form.button.publish = Publier
  assistance-agent.claim.form.button.create = Créer
  
- assistance-agent.claim.list-complete.label.registrationMoment = Date d'inscription
- assistance-agent.claim.list-complete.label.email = Email
- assistance-agent.claim.list-complete.label.description = Description
- assistance-agent.claim.list-complete.label.type = Type
- assistance-agent.claim.list-complete.label.indicator = État
- assistance-agent.claim.list-complete.label.leg = Étape
+ assistance-agent.claim.list.label.registrationMoment = Date d'inscription
+ assistance-agent.claim.list.label.email = Email
+ assistance-agent.claim.list.label.description = Description
+ assistance-agent.claim.list.label.type = Type
+ assistance-agent.claim.list.label.indicator = État
+
  
- assistance-agent.claim.list-complete.button.create = Créer
  assistance-agent.claim.list-pending.button.create = Créer

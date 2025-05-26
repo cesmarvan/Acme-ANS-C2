@@ -15,8 +15,12 @@ import acme.realms.assistanceAgent.AssistanceAgentRepository;
 @Validator
 public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceAgent, AssistanceAgent> {
 
+	// Internal state ---------------------------------------------------------
+
 	@Autowired
-	private AssistanceAgentRepository agentRepository;
+	private AssistanceAgentRepository repository;
+
+	// ConstraintValidator interface ------------------------------------------
 
 
 	@Override
@@ -26,7 +30,7 @@ public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceA
 
 	@Override
 	public boolean isValid(final AssistanceAgent assistanceAgent, final ConstraintValidatorContext context) {
-		// HINT: job can be null
+
 		assert context != null;
 
 		boolean result;
@@ -35,14 +39,16 @@ public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceA
 			super.state(context, false, "*", "acme.validation.NotNull.message");
 		else {
 
-			boolean uniqueEmployeeCode = true;
-			List<AssistanceAgent> assistanceAgents = this.agentRepository.findAllAgents();
-			String employeeCode1 = assistanceAgent.getEmployeeCode();
-			for (AssistanceAgent a : assistanceAgents)
-				if (a.getEmployeeCode().equals(employeeCode1))
-					uniqueEmployeeCode = false;
+			boolean isEmployeeCodeUnique = true;
+			List<AssistanceAgent> assistanceAgents = this.repository.findAllAgents();
 
-			super.state(context, uniqueEmployeeCode, "employeeCode", "acme.validation.assistanceAgent.employeeCode.message");
+			assistanceAgents.removeIf(agent -> agent.getId() == assistanceAgent.getId());
+			String employeeCode = assistanceAgent.getEmployeeCode();
+			for (AssistanceAgent agent : assistanceAgents)
+				if (agent.getEmployeeCode().equals(employeeCode))
+					isEmployeeCodeUnique = false;
+
+			super.state(context, isEmployeeCodeUnique, "employeeCode", "acme.validation.assistanceAgent.employeeCode.message");
 
 		}
 
@@ -50,5 +56,4 @@ public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceA
 
 		return result;
 	}
-
 }

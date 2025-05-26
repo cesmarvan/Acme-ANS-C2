@@ -1,27 +1,27 @@
 # messages-en.i18n
  
  assistance-agent.claim.form.title = Claims form 
- assistance-agent.claim.list.title = Listing of claims
+ assistance-agent.claim.list.title = List of claims
  
- assistance-agent.claim.form.label.registrationMoment = Registration Moment
- assistance-agent.claim.form.label.email = Email
- assistance-agent.claim.form.label.description = Description
- assistance-agent.claim.form.label.type = Type
- assistance-agent.claim.form.label.indicator = Indicator
- assistance-agent.claim.form.label.leg = Leg
+ assistance-agent.claim.list.label.registrationMoment = Registration Moment
+ assistance-agent.claim.list.label.email = Passenger Email
+ assistance-agent.claim.list.label.description = Description
+ assistance-agent.claim.list.label.type = Type
+ assistance-agent.claim.list.label.indicator = Indicator
  
- assistance-agent.claim.form.button.duties = Duties
+ assistance-agent.claim.list.button.list-completed = Completed claims
+ assistance-agent.claim.list.button.list-pending = Pending claims
  assistance-agent.claim.form.button.update = Update
  assistance-agent.claim.form.button.delete = Delete
  assistance-agent.claim.form.button.publish = Publish
  assistance-agent.claim.form.button.create = Create
  
- assistance-agent.claim.list-complete.label.registrationMoment = Registration Moment
- assistance-agent.claim.list-complete.label.email = Email
- assistance-agent.claim.list-complete.label.description = Description
- assistance-agent.claim.list-complete.label.type = Type
- assistance-agent.claim.list-complete.label.indicator = Indicator
- assistance-agent.claim.list-complete.label.leg = Leg
+ assistance-agent.claim.form.label.registrationMoment = Registration Moment
+ assistance-agent.claim.form.label.email = Passenger Email
+ assistance-agent.claim.form.label.description = Description
+ assistance-agent.claim.form.label.type = Type
+ assistance-agent.claim.form.label.indicator = Indicator
+ assistance-agent.claim.form.label.leg = Leg
+ assistance-agent.claim.form.label.draftMode = DraftMode
  
- assistance-agent.claim.list-complete.button.create = Create
  assistance-agent.claim.list-pending.button.create = Create

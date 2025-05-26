@@ -1,0 +1,34 @@
+# messages-en.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+assistance-agent.tracking-log.list.title = Tracking log list
+assistance-agent.tracking-log.form.title = Tracking log data
+
+assistance-agent.tracking-log.list.label.updateMoment = Update Moment
+assistance-agent.tracking-log.list.label.step = Step
+assistance-agent.tracking-log.list.label.resolutionPercentage = Resolution Percentage
+assistance-agent.tracking-log.list.label.indicator = Is Accepted
+
+assistance-agent.tracking-log.form.label.updateMoment = Update Moment
+assistance-agent.tracking-log.form.label.step = Step
+assistance-agent.tracking-log.form.label.resolutionPercentage = Resolution Percentage
+assistance-agent.tracking-log.form.label.resolution = Resolution
+assistance-agent.tracking-log.form.label.indicator = Is Accepted
+assistance-agent.tracking-log.form.label.draftMode = DraftMode
+assistance-agent.tracking-log.form.label.claim = Claim
+
+
+assistance-agent.tracking-log.list.button.create = Create tracking log
+assistance-agent.tracking-log.list.button.list = List tracking logs
+assistance-agent.tracking-log.form.button.list = Tracking Logs
+assistance-agent.tracking-log.form.button.create = Create tracking log
+assistance-agent.tracking-log.form.button.update = Edit
+assistance-agent.tracking-log.form.button.delete = Delete
+assistance-agent.tracking-log.form.button.publish = Publish

@@ -1,4 +1,50 @@
-key,key:userAccount,employeeCode,spokenLanguages,moment,salary,photo,key:airline
-agent-01,user-account-agent-01,JAR012345,english;spanish,2012/07/2 0:00,EUR 2000.00,http://lorem.com/ipsum,airline1
-agent-02,user-account-agent-02,JL000000,french;italian,2019/12/31 23:59,EUR 0.01,http://example.org/a,airline2
-manager-3,user-account-manager-03,MM999999,russian;english,2000/01/01 0:01,EUR 999999.99,http://example.org/a/b?a&b,airline3
+key,key:userAccount,employeeCode,spokenLanguages,moment,bio,salary,photo,key:airline
+assistanceAgent-00,user-account-assistanceAgent-00,JAR123456,"English,Spanish",2022/07/10 00:00,Experienced agent,EUR 500000.00,https://example.com/photo1.jpg,airline1
+assistanceAgent-01,user-account-assistanceAgent-01,JL654321,"French,German",2019/10/30 23:59,Multilingual agent,EUR 3000.00,https://example.com/photo2.jpg,airline1
+# employeeCode - standard variations
+assistanceAgent-02,user-account-assistanceAgent-02,NS720838,"French,Spanish",2019/10/30 23:59,Multilingual agent,EUR 3000.00,https://example.com/photo2.jpg,airline1
+assistanceAgent-03,user-account-assistanceAgent-03,JV029705,"French,Spanish",2019/10/30 23:59,Multilingual agent,EUR 3000.00,https://example.com/photo2.jpg,airline1
+assistanceAgent-04,user-account-assistanceAgent-04,HEY631185,"French,Spanish",2019/10/30 23:59,Multilingual agent,EUR 3000.00,https://example.com/photo2.jpg,airline1
+assistanceAgent-05,user-account-assistanceAgent-05,HY598981,"French,Spanish",2019/10/30 23:59,Multilingual agent,EUR 3000.00,https://example.com/photo2.jpg,airline1
+assistanceAgent-06,user-account-assistanceAgent-06,CWO755095,"French,Spanish",2019/10/30 23:59,Multilingual agent,EUR 3000.00,https://example.com/photo2.jpg,airline1
+# employeeCode - no singular values
+# spokenLanguages - standard variations
+assistanceAgent-07,user-account-assistanceAgent-07,NS000000,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut",2019/10/30 23:59,Multilingual agent,EUR 3000.00,https://example.com/photo2.jpg,airline1
+assistanceAgent-08,user-account-assistanceAgent-08,NS000001,L,2019/10/30 23:59,Multilingual agent,EUR 3000.00,https://example.com/photo2.jpg,airline1
+assistanceAgent-09,user-account-assistanceAgent-09,NS000002,Lo,2019/10/30 23:59,Multilingual agent,EUR 3000.00,https://example.com/photo2.jpg,airline1
+assistanceAgent-10,user-account-assistanceAgent-10,NS000003,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolo",2019/10/30 23:59,Multilingual agent,EUR 3000.00,https://example.com/photo2.jpg,airline1
+# spokenLanguages - no singular values
+# moment - standard variations
+assistanceAgent-11,user-account-assistanceAgent-11,NS000004,"French,Spanish",2000/01/01 0:01,Multilingual agent,EUR 3000.00,https://example.com/photo2.jpg,airline1
+assistanceAgent-12,user-account-assistanceAgent-12,NS000005,"French,Spanish",2022/07/29 23:59,Multilingual agent,EUR 3000.00,https://example.com/photo2.jpg,airline1
+# moment - no singular values
+# briefBio - standard variations
+assistanceAgent-13,user-account-assistanceAgent-13,NS000006,"French,Spanish",2019/10/30 23:59,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut",EUR 3000.00,https://example.com/photo2.jpg,airline1
+assistanceAgent-14,user-account-assistanceAgent-14,NS000007,"French,Spanish",2019/10/30 23:59,L,EUR 3000.00,https://example.com/photo2.jpg,airline1
+assistanceAgent-15,user-account-assistanceAgent-15,NS000008,"French,Spanish",2019/10/30 23:59,Lo,EUR 3000.00,https://example.com/photo2.jpg,airline1
+assistanceAgent-16,user-account-assistanceAgent-16,NS000009,"French,Spanish",2019/10/30 23:59,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolo",EUR 3000.00,https://example.com/photo2.jpg,airline1
+assistanceAgent-17,user-account-assistanceAgent-17,NS000010,"French,Spanish",2019/10/30 23:59,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",EUR 3000.00,https://example.com/photo2.jpg,airline1
+assistanceAgent-18,user-account-assistanceAgent-18,NS000011,"French,Spanish",2019/10/30 23:59,โลเร็ม อิปซัม,EUR 3000.00,https://example.com/photo2.jpg,airline1
+assistanceAgent-19,user-account-assistanceAgent-19,NS000012,"French,Spanish",2019/10/30 23:59,لوريم إيبسوم,EUR 3000.00,https://example.com/photo2.jpg,airline1
+assistanceAgent-20,user-account-assistanceAgent-20,NS000013,"French,Spanish",2019/10/30 23:59,洛伦·伊普森,EUR 3000.00,https://example.com/photo2.jpg,airline1
+assistanceAgent-21,user-account-assistanceAgent-21,NS000014,"French,Spanish",2019/10/30 23:59,<marquee>Hacked</marquee>,EUR 3000.00,https://example.com/photo2.jpg,airline1
+assistanceAgent-22,user-account-assistanceAgent-22,NS000015,"French,Spanish",2019/10/30 23:59,<script>alert(‘Hacked!’);</script>,EUR 3000.00,https://example.com/photo2.jpg,airline1
+assistanceAgent-23,user-account-assistanceAgent-23,NS000016,"French,Spanish",2019/10/30 23:59,'' or 'A' = 'A,EUR 3000.00,https://example.com/photo2.jpg,airline1
+# briefBio - no singular values
+# salary - standard variations
+assistanceAgent-24,user-account-assistanceAgent-24,NS000017,"French,Spanish",2019/10/30 23:59,Multilingual agent,EUR 500.00,https://example.com/photo2.jpg,airline1
+assistanceAgent-25,user-account-assistanceAgent-25,NS000018,"French,Spanish",2019/10/30 23:59,Multilingual agent,EUR 0.00,https://example.com/photo2.jpg,airline1
+assistanceAgent-26,user-account-assistanceAgent-26,NS000019,"French,Spanish",2019/10/30 23:59,Multilingual agent,EUR 0.01,https://example.com/photo2.jpg,airline1
+assistanceAgent-27,user-account-assistanceAgent-27,NS000020,"French,Spanish",2019/10/30 23:59,Multilingual agent,EUR 999999.99,https://example.com/photo2.jpg,airline1
+assistanceAgent-28,user-account-assistanceAgent-28,NS000021,"French,Spanish",2019/10/30 23:59,Multilingual agent,EUR 1000000.00,https://example.com/photo2.jpg,airline1
+# salary - no singular values
+# photo - standard variations
+assistanceAgent-29,user-account-assistanceAgent-29,NS000022,"French,Spanish",2019/10/30 23:59,Multilingual agent,EUR 3000.00,http://lorem.com/ipsum,airline1
+assistanceAgent-32,user-account-assistanceAgent-32,NS000025,"French,Spanish",2019/10/30 23:59,Multilingual agent,EUR 3000.00,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/",airline1
+assistanceAgent-33,user-account-assistanceAgent-33,NS000026,"French,Spanish",2019/10/30 23:59,Multilingual agent,EUR 3000.00,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/X",airline1
+assistanceAgent-34,user-account-assistanceAgent-34,NS000027,"French,Spanish",2019/10/30 23:59,Multilingual agent,EUR 3000.00,https://www.lorem-ipsum.org,airline1
+assistanceAgent-36,user-account-assistanceAgent-36,NS000029,"French,Spanish",2019/10/30 23:59,Multilingual agent,EUR 3000.00,http://www.lorem-ipsum.org/dolor/sit.html,airline1
+assistanceAgent-37,user-account-assistanceAgent-37,NS000030,"French,Spanish",2019/10/30 23:59,Multilingual agent,EUR 3000.00,http://www.lorem-ipsum.org/dolor/sit.html#dolor,airline1
+assistanceAgent-38,user-account-assistanceAgent-38,NS000031,"French,Spanish",2019/10/30 23:59,Multilingual agent,EUR 3000.00,http://example.org?a=1&b=2,airline1
+assistanceAgent-39,user-account-assistanceAgent-39,NS000032,"French,Spanish",2019/10/30 23:59,Multilingual agent,EUR 3000.00,http://example.org?,airline1
+assistanceAgent-40,user-account-assistanceAgent-40,NS000033,"French,Spanish",2019/10/30 23:59,Multilingual agent,EUR 3000.00,http://example.org?a,airline1

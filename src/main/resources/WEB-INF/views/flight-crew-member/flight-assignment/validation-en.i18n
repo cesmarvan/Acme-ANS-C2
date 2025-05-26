@@ -2,6 +2,7 @@ validation.error.messagemoreThanOnePilotOrCopilot = This leg has already a Pilot
 validation.error.messagecrewMemberNotAvailable = This Crew Member is currently not available for assignment
 validation.error.messagecrewMemberAlreadyInLeg = This Crew Member is already assigned to another Leg
 validation.error.messageblankOrEmptyString = The remark cannot be empty
+validation.error.messagecrewMemberNull = Crew Member cannot be null
 
 acme.validation.flightAssignment.duty.message = Duty doesn't have a valid value
 acme.validation.flightAssignment.lastUpdate.message = Last Update doesn't have a valid value
@@ -9,3 +10,6 @@ acme.validation.flightAssignment.crewMember.message = Flight Crew Member doesn't
 acme.validation.flightAssignment.remarks.message = Remarks doesn't have a valid value
 acme.validation.flightAssignment.leg.message = Leg doesn't have a valid value
 acme.validation.flightAssignment.status.message= Status doesn't have a valid value
+acme.validation.notPending.message = You cannot publish a flight which is Pending
+acme.validation.legDate.message = This Leg has already taken place
+validation.error.publishedLeg = This Leg is not published yet

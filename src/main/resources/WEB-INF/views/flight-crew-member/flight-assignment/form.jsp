@@ -12,8 +12,6 @@
 	code="flightCrewMember.flightAssignment.form.label.remarks" path="remarks"/>
 	<acme:input-select
 	code="flightCrewMember.flightAssignment.form.label.leg" path="leg" choices="${legs}"/>
-	<acme:input-select 
-	code="flightCrewMember.flightAssignment.list.label.flightCrewMember" path="flightCrewMember" choices="${flightCrewMembers}"/>
 	
 	
 	<jstl:choose>

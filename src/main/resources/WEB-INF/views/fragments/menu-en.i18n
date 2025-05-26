@@ -44,8 +44,10 @@ master.menu.consumer.favourite-link = Favourite link
 
 # master.menu.assistance-agent ##################################################
 
-master.menu.assistance-agent = assistance-agent
-master.menu.assistance-agent.list-complete = Claim list
+master.menu.assistance-agent = Assistance Agent
+master.menu.assistance-agent.list-complete = Completed Claims
+master.menu.assistance-agent.list-pending = Pending Claims
+master.menu.assistance-agent.list
 
 # master.menu.manager ########################################################
  master.menu.manager = Manager

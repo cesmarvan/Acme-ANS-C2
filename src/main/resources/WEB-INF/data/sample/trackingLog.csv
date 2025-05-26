@@ -1,23 +1,45 @@
-﻿key,updateMoment,step,resolutionPercentage,indicator,resolution,key:claim
-trackingLog-00,2012/07/02 00:00,this is a test step,55,false,this is a test resolution,claim-01
-trackingLog-01,2000/01/01 00:00,this is a test step,55,false,this is a test resolution,claim-01
-trackingLog-02,2020/12/31 23:59,this is a test step,55,false,this is a test resolution,claim-01
-trackingLog-03,2021/01/01 00:00,this is a test step,55,false,this is a test resolution,claim-01
-trackingLog-04,2000/01/01 00:00,this is a test step,55,false,this is a test resolution,claim-01
-trackingLog-05,2000/01/01 00:01,this is a test step,55,false,this is a test resolution,claim-01
-trackingLog-06,2012/07/02 00:00,L,55,false,this is a test resolution,claim-01
-trackingLog-07,2012/07/02 00:00,Lo,55,false,this is a test resolution,claim-01
-trackingLog-08,2012/07/02 00:00,"The attribute name must be exactly fifty charac",55,false,this is a test resolution,claim-01
-trackingLog-09,2012/07/02 00:00,"The attribute name must be exactly fifty chara",55,false,this is a test resolution,claim-01
-trackingLog-10,2012/07/02 00:00,โลเร็ม อิปซัม,55,false,this is a test resolution,claim-01
-trackingLog-11,2012/07/02 00:00,洛伦·伊普森,55,false,this is a test resolution,claim-01
-trackingLog-12,2012/07/02 00:00,SAFE_STEP,55,false,this is a test resolution,claim-01
-trackingLog-13,2012/07/02 00:00,SECURE_ACTION,55,false,this is a test resolution,claim-01
-trackingLog-14,2012/07/02 00:00,VALIDATION_CHECK,55,false,this is a test resolution,claim-01
-trackingLog-15,2000/07/01 00:00,this is a test step,0.00,false,this is a test resolution,claim-01
-trackingLog-16,2021/12/31 23:59,this is a test step,0.01,false,this is a test resolution,claim-01
-trackingLog-17,2020/01/01 00:00,this is a test step,100,true,this is a test resolution,claim-01
-trackingLog-18,2000/01/01 00:00,this is a test step,99.99,false,this is a test resolution,claim-01
-trackingLog-19,2012/07/02 00:00,this is a test step,55,false,this is a test resolution,claim-01
-trackingLog-20,2012/07/02 00:00,this is a test step,100,true,this is a test resolution,claim-01
-trackingLog-21,2012/07/02 00:00,this is a test step,100,true,this is a test resolution,claim-01
+key,updateMoment,step,resolutionPercentage,indicator,draftMode,resolution,key:claim
+# base entity
+trackingLog-00,2012/07/02 0:00,Lorem ipsum dolor sit ame,50.00,PENDING,true,"",claim-00
+# lastUpdateMoment - standard variations
+trackingLog-01,2000/01/01 0:00,Lorem ipsum dolor sit ame,0.00,PENDING,true,"",claim-00
+trackingLog-02,2000/01/01 0:01,Lorem ipsum dolor sit ame,0.00,PENDING,true,"",claim-00
+# lastUpdateMoment - no singular values,""
+# step - standard variations
+trackingLog-03,2012/07/02 0:00,L,50.00,PENDING,true,"",claim-00
+trackingLog-04,2012/07/02 0:00,Lo,50.00,PENDING,true,"",claim-00
+trackingLog-05,2012/07/02 0:00,"Lorem ipsum dolor sit amet, consectetur adipiscin",50.00,PENDING,true,"",claim-00
+trackingLog-06,2012/07/02 0:00,"Lorem ipsum dolor sit amet, consectetur adipiscing",50.00,PENDING,true,"",claim-00
+trackingLog-07,2012/07/02 0:00,โลเร็ม อิปซัม,50.00,PENDING,true,"",claim-00
+trackingLog-08,2012/07/02 0:00,لوريم إيبسوم,50.00,PENDING,true,"",claim-00
+trackingLog-09,2012/07/02 0:00,洛伦·伊普森,50.00,PENDING,true,"",claim-00
+trackingLog-10,2012/07/02 0:00,<marquee>Hacked</marquee>,50.00,PENDING,true,"",claim-00
+trackingLog-11,2012/07/02 0:00,<script>alert(‘Hacked!’);</script>,50.00,PENDING,true,"",claim-00
+trackingLog-12,2012/07/02 0:00,'' or 'A' = 'A,50.00,PENDING,true,"",claim-00
+# step - no singular values
+# resolutionPercentage - standard variations
+trackingLog-13,2010/07/02 0:00,Lorem ipsum dolor sit ame,0.00,PENDING,true,"",claim-00
+trackingLog-14,2011/07/03 0:00,Lorem ipsum dolor sit ame,0.01,PENDING,true,"",claim-00
+trackingLog-15,2022/07/29 23:59,Lorem ipsum dolor sit ame,99.99,PENDING,true,"",claim-00
+trackingLog-16,2022/07/30 0:00,Lorem ipsum dolor sit ame,100.00,ACCEPTED,true,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut",claim-00
+trackingLog-17,2022/07/30 0:00,Lorem ipsum dolor sit ame,100.00,REJECTED,true,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut",claim-01
+# resolutionPercentage - no singular values,""
+# accepted - standard variations,"",""
+trackingLog-18,2022/07/30 0:00,Lorem ipsum dolor sit ame,100.00,ACCEPTED,true,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut",claim-00
+trackingLog-19,2022/07/30 0:00,Lorem ipsum dolor sit ame,100.00,REJECTED,true,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut",claim-01
+# accepted - no singular values
+# draftMode - standard variations
+trackingLog-20,2012/07/02 0:00,Lorem ipsum dolor sit ame,50.00,PENDING,false,"",claim-23
+# draftMode - no singular values
+# resolution - standard variations
+trackingLog-21,2012/07/02 0:00,Lorem ipsum dolor sit ame,100.00,ACCEPTED,true,L,claim-02
+trackingLog-22,2012/07/02 0:00,Lorem ipsum dolor sit ame,100.00,REJECTED,true,Lo,claim-03
+trackingLog-23,2012/07/02 0:00,Lorem ipsum dolor sit ame,100.00,ACCEPTED,true,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labor",claim-04
+trackingLog-24,2012/07/02 0:00,Lorem ipsum dolor sit ame,100.00,REJECTED,true,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore",claim-05
+trackingLog-25,2012/07/02 0:00,Lorem ipsum dolor sit ame,100.00,ACCEPTED,true,โลเร็ม อิปซัม,claim-06
+trackingLog-26,2012/07/02 0:00,Lorem ipsum dolor sit ame,100.00,REJECTED,true,لوريم إيبسوم,claim-07
+
+trackingLog-29,2012/07/02 0:00,Lorem ipsum dolor sit ame,100.00,ACCEPTED,true,<script>alert(‘Hacked!’);</script>,claim-10
+trackingLog-30,2012/07/02 0:00,Lorem ipsum dolor sit ame,100.00,REJECTED,true,'' or 'A' = 'A,claim-11
+# resolution - no singular values
+# claim - no singular values
