@@ -45,6 +45,60 @@ public class CustomerBookingDeleteService extends AbstractGuiService<Customer, B
 		super.getResponse().setAuthorised(status && !booking.getIsPublished() && isCustomer);
 	}
 
+	/*
+	 * 
+	 * @Override
+	 * public void load() {
+	 * Booking booking;
+	 * int id;
+	 * 
+	 * id = super.getRequest().getData("id", int.class);
+	 * booking = this.repository.findBookingById(id);
+	 * 
+	 * super.getBuffer().addData(booking);
+	 * }
+	 * 
+	 * @Override
+	 * public void bind(final Booking booking) {
+	 * 
+	 * super.bindObject(booking, "locatorCode", "purchaseMoment", "price", "lastCreditCardNibble", "travelClass", "flight");
+	 * }
+	 * 
+	 * @Override
+	 * public void validate(final Booking booking) {
+	 * ;
+	 * }
+	 * 
+	 * @Override
+	 * public void perform(final Booking booking) {
+	 * for (BookingPassenger bk : this.bpRepository.findBookingPassengerByBookingId(booking.getId()))
+	 * this.bpRepository.delete(bk);
+	 * this.repository.delete(booking);
+	 * }
+	 * 
+	 * @Override
+	 * public void unbind(final Booking booking) {
+	 * Dataset dataset;
+	 * SelectChoices choices;
+	 * SelectChoices flightChoices;
+	 * 
+	 * Date today = MomentHelper.getCurrentMoment();
+	 * Collection<Flight> flights = this.repository.findAllPublishedFlightsWithFutureDeparture(today);
+	 * flightChoices = SelectChoices.from(flights, "description", booking.getFlight());
+	 * choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
+	 * Collection<String> passengers = this.repository.findPassengersNameByBooking(booking.getId());
+	 * 
+	 * dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "price", "lastCreditCardNibble", "isPublished");
+	 * dataset.put("travelClass", choices);
+	 * dataset.put("passengers", passengers);
+	 * dataset.put("flight", flightChoices.getSelected().getKey());
+	 * dataset.put("flights", flightChoices);
+	 * 
+	 * super.getResponse().addData(dataset);
+	 * }
+	 * 
+	 */
+
 	@Override
 	public void load() {
 		Booking booking;
@@ -65,12 +119,13 @@ public class CustomerBookingDeleteService extends AbstractGuiService<Customer, B
 	@Override
 	public void validate(final Booking booking) {
 		;
+
 	}
 
 	@Override
 	public void perform(final Booking booking) {
-		for (BookingPassenger bk : this.bpRepository.findBookingPassengerByBookingId(booking.getId()))
-			this.bpRepository.delete(bk);
+		for (BookingPassenger bp : this.bpRepository.findBookingPassengerByBookingId(booking.getId()))
+			this.bpRepository.delete(bp);
 		this.repository.delete(booking);
 	}
 
@@ -82,7 +137,7 @@ public class CustomerBookingDeleteService extends AbstractGuiService<Customer, B
 
 		Date today = MomentHelper.getCurrentMoment();
 		Collection<Flight> flights = this.repository.findAllPublishedFlightsWithFutureDeparture(today);
-		flightChoices = SelectChoices.from(flights, "description", booking.getFlight());
+		flightChoices = SelectChoices.from(flights, "Destination", booking.getFlight());
 		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		Collection<String> passengers = this.repository.findPassengersNameByBooking(booking.getId());
 
@@ -94,4 +149,5 @@ public class CustomerBookingDeleteService extends AbstractGuiService<Customer, B
 
 		super.getResponse().addData(dataset);
 	}
+
 }

@@ -1,7 +1,6 @@
 
 package acme.features.customer.booking;
 
-import java.util.Collection;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,65 +21,57 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 
 	@Autowired
 	private CustomerBookingRepository	repository;
-
 	@Autowired
 	private FlightRepository			flightRepository;
 
 
+	// ---------------------------------------------------------------------
+	// Authorise
+	// ---------------------------------------------------------------------
 	@Override
 	public void authorise() {
-		int id;
-		Booking booking;
-		boolean isFlightInList = true;
-		boolean status = true;
-		boolean travelClass = true;
-		boolean isCustomer = super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
-		int customerId = super.getRequest().getPrincipal().getActiveRealm().getUserAccount().getId();
-		id = super.getRequest().getData("id", int.class);
-		booking = this.repository.findBookingById(id);
-		status = booking.getCustomer().getUserAccount().getId() == customerId;
-
+		boolean authorised = false;
 		try {
+			int bookingId = super.getRequest().getData("id", int.class);
+			Booking booking = this.repository.findBookingById(bookingId);
 
-			if (!booking.getIsPublished() != false && status && isCustomer) {
+			var principal = super.getRequest().getPrincipal();
+			boolean isOwner = principal.hasRealmOfType(Customer.class) && booking.getCustomer().getUserAccount().getId() == principal.getActiveRealm().getUserAccount().getId();
+			boolean isDraft = !booking.getIsPublished();
 
-				Date today = MomentHelper.getCurrentMoment();
-				Integer flightId = super.getRequest().getData("flight", int.class);
-				Collection<Flight> flights = this.repository.findAllPublishedFlightsWithFutureDeparture(today);
-				Flight flight;
-
+			boolean flightOk = true;
+			if (super.getRequest().hasData("flight", int.class)) {
+				int flightId = super.getRequest().getData("flight", int.class);
 				if (flightId != 0) {
-					flight = this.flightRepository.findFlightById(flightId);
-					isFlightInList = flights.contains(flight);
+					Date today = MomentHelper.getCurrentMoment();
+					Flight flight = this.flightRepository.findFlightById(flightId);
+					flightOk = this.repository.findAllPublishedFlightsWithFutureDeparture(today).contains(flight);
 				}
-
 			}
 
+			boolean classOk = true;
 			if (super.getRequest().hasData("travelClass", String.class)) {
-				String travelClassData = super.getRequest().getData("travelClass", String.class);
-				if (!"0".equals(travelClassData))
+				String tc = super.getRequest().getData("travelClass", String.class);
+				if (!"0".equals(tc))
 					try {
-						TravelClass.valueOf(travelClassData);
+						TravelClass.valueOf(tc);
 					} catch (IllegalArgumentException e) {
-						travelClass = false;
+						classOk = false;
 					}
 			}
-		} catch (Throwable E) {
-			isFlightInList = false;
-		}
 
-		super.getResponse().setAuthorised(status && !booking.getIsPublished() && isFlightInList && isCustomer && travelClass);
+			authorised = isOwner && isDraft && flightOk && classOk;
+		} catch (Throwable __) {
+			/* any failure ⇒ not authorised */ }
+		super.getResponse().setAuthorised(authorised);
 	}
 
+	// ---------------------------------------------------------------------
+	// Load / Bind / Validate / Perform
+	// ---------------------------------------------------------------------
 	@Override
 	public void load() {
-		Booking booking;
-		int id;
-
-		id = super.getRequest().getData("id", int.class);
-		booking = this.repository.findBookingById(id);
-
-		super.getBuffer().addData(booking);
+		super.getBuffer().addData(this.repository.findBookingById(super.getRequest().getData("id", int.class)));
 	}
 
 	@Override
@@ -96,27 +87,26 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 	@Override
 	public void perform(final Booking booking) {
 		this.repository.save(booking);
-	}
+		this.prepareDataset(booking);
 
+	}
 	@Override
 	public void unbind(final Booking booking) {
-		Dataset dataset;
-		SelectChoices choices;
-		SelectChoices flightChoices;
-
-		Date today = MomentHelper.getCurrentMoment();
-		Collection<Flight> flights = this.repository.findAllPublishedFlightsWithFutureDeparture(today);
-		flightChoices = SelectChoices.from(flights, "description", booking.getFlight());
-		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
-		Collection<String> passengers = this.repository.findPassengersNameByBooking(booking.getId());
-
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "lastCreditCardNibble", "price", "isPublished");
-		dataset.put("travelClass", choices);
-		dataset.put("passengers", passengers);
-		dataset.put("flight", flightChoices.getSelected().getKey());
-		dataset.put("flights", flightChoices);
-
-		super.getResponse().addData(dataset);
+		this.prepareDataset(booking);
 	}
 
+	private void prepareDataset(final Booking booking) {
+		Date today = MomentHelper.getCurrentMoment();
+
+		SelectChoices flightChoices = SelectChoices.from(this.repository.findAllPublishedFlightsWithFutureDeparture(today), "description", booking.getFlight());
+
+		Dataset data = super.unbindObject(booking, "locatorCode", "purchaseMoment", "price", "lastCreditCardNibble", "isPublished");           // campos que ya validan los tests
+
+		data.put("travelClass", SelectChoices.from(TravelClass.class, booking.getTravelClass()));
+		data.put("passengers", this.repository.findPassengersNameByBooking(booking.getId()));
+		data.put("flight", flightChoices.getSelected().getKey());
+		data.put("flights", flightChoices);
+
+		super.getResponse().addData(data);
+	}
 }

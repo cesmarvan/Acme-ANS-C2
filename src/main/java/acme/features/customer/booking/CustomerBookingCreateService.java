@@ -52,11 +52,9 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		if (super.getRequest().hasData("travelClass", String.class)) {
 			String travelClassData = super.getRequest().getData("travelClass", String.class);
 			if (!"0".equals(travelClassData))
-				try {
-					TravelClass.valueOf(travelClassData);
-				} catch (IllegalArgumentException e) {
-					travelClass = false;
-				}
+
+				TravelClass.valueOf(travelClassData);
+
 		}
 
 		super.getResponse().setAuthorised(isCustomer && isFlightInList && travelClass);
@@ -79,6 +77,13 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 	}
 
 	@Override
+	public void bind(final Booking booking) {
+
+		super.bindObject(booking, "locatorCode", "lastCreditCardNibble", "travelClass", "flight");
+
+	}
+
+	@Override
 	public void validate(final Booking booking) {
 		Booking b = this.repository.findBookingByLocatorCode(booking.getLocatorCode());
 		if (b != null)
@@ -88,13 +93,6 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 	@Override
 	public void perform(final Booking object) {
 		this.repository.save(object);
-	}
-
-	@Override
-	public void bind(final Booking booking) {
-
-		super.bindObject(booking, "locatorCode", "lastCreditCardNibble", "travelClass", "flight");
-
 	}
 
 	@Override
