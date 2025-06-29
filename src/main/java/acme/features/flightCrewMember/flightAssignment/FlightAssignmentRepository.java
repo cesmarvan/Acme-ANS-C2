@@ -17,6 +17,9 @@ public interface FlightAssignmentRepository extends AbstractRepository {
 	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.flightCrewMember.id= :id AND fa.leg.scheduledArrival < :now AND fa.leg.draftMode = false")
 	List<FlightAssignment> findFlightAssignmentCompletedLeg(int id, Date now);
 
+	@Query("SELECT fa.leg FROM FlightAssignment fa WHERE fa.flightCrewMember.id= :id AND fa.leg.scheduledArrival < :now AND fa.leg.draftMode = false")
+	List<Leg> findCompletedLegsOfCrewmember(int id, Date now);
+
 	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.flightCrewMember.id= :id AND fa.leg.scheduledArrival > :now AND fa.leg.draftMode = false")
 	List<FlightAssignment> findPlannedFlightAssignment(int id, Date now);
 
