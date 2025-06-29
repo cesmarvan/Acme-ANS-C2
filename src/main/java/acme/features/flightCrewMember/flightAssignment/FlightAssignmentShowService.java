@@ -58,8 +58,15 @@ public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMe
 		SelectChoices statusChoices;
 		SelectChoices legChoices;
 
-		List<Leg> legList = this.flightAssignmentRepository.findAllUpcomingPublishedLegs(MomentHelper.getCurrentMoment());
-		legChoices = SelectChoices.from(legList, "flightNumber", flightAssignment.getLeg());
+		{
+			if (flightAssignment.getDraftMode()) {
+				List<Leg> legList = this.flightAssignmentRepository.findAllUpcomingPublishedLegs(MomentHelper.getCurrentMoment());
+				legChoices = SelectChoices.from(legList, "flightNumber", flightAssignment.getLeg());
+			} else {
+				List<Leg> legList = this.flightAssignmentRepository.findCompletedLegsOfCrewmember(flightAssignment.getFlightCrewMember().getId(), MomentHelper.getCurrentMoment());
+				legChoices = SelectChoices.from(legList, "flightNumber", flightAssignment.getLeg());
+			}
+		}
 
 		dutyChoices = SelectChoices.from(CrewDuties.class, flightAssignment.getDuty());
 		statusChoices = SelectChoices.from(AssignmentStatus.class, flightAssignment.getStatus());

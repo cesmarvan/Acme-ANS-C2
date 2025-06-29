@@ -82,19 +82,6 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 	@Override
 	public void validate(final FlightAssignment flightAssignment) {
 		{
-			if (flightAssignment.getLeg() != null && flightAssignment.getDuty() != null) {
-				List<CrewDuties> ls = this.flightAssignmentRepository.findPilotsInLegByLegId(flightAssignment.getLeg().getId());
-				boolean status = true;
-				if (flightAssignment.getDuty().equals(CrewDuties.PILOT))
-					if (ls.contains(CrewDuties.PILOT))
-						status = false;
-				if (flightAssignment.getDuty().equals(CrewDuties.COPILOT))
-					if (ls.contains(CrewDuties.COPILOT))
-						status = false;
-				super.state(status, "duty", "validation.error.messagemoreThanOnePilotOrCopilot");
-			}
-		}
-		{
 			if (flightAssignment.getFlightCrewMember() != null) {
 				boolean crewMemberAvailable;
 				crewMemberAvailable = flightAssignment.getFlightCrewMember().getStatus() == AvailabilityStatus.AVAILABLE;
