@@ -62,6 +62,12 @@ public class AdministratorAirportUpdateService extends AbstractGuiService<Admini
 
 			super.state(uniqueAirport, "iataCode", "acme.validation.airport.duplicated-iata-code.message");
 		}
+		{
+			if (airport.getContactPhoneNumber() != null && !airport.getContactPhoneNumber().isBlank()) {
+				boolean validPhone = airport.getContactPhoneNumber().matches("^\\+?\\d{10,15}$");
+				super.state(validPhone, "contactPhoneNumber", "acme.validation.phone-number.message");
+			}
+		}
 	}
 
 	@Override
