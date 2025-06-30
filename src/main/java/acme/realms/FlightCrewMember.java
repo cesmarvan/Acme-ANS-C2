@@ -1,6 +1,7 @@
 
 package acme.realms;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -34,6 +35,7 @@ public class FlightCrewMember extends AbstractRole {
 	@Mandatory
 	@ValidIdentifier
 	@Automapped
+	@Column(name = "employeeCode", unique = true)
 	private String				employeeCode;
 
 	@Mandatory

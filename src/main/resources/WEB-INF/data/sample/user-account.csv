@@ -12,11 +12,11 @@ user-account-customer-01,true,"UserIdentity{name: 'Joaquín', surname: 'Gonzále
 user-account-customer-02,true,"UserIdentity{name: 'César', surname: 'Martinez', email: 'cesmarvan@acme.com'}",customer2,customer2
 user-account-customer-03,true,"UserIdentity{name: 'Alejandro', surname: 'Mantecón', email: 'alemanrod@acme.com'}",customer3,customer3
 user-account-customer-04,true,"UserIdentity{name: 'Germán', surname: 'Ojeda', email: 'manuel@acme.com'}",customer4,customer4
-user-account-fmember-01,true,"UserIdentity{name: 'FM1', surname: 'Man1', email: 'fmember1@acme.com'}",fmember1,fmember1
-user-account-fmember-02,true,"UserIdentity{name: 'FM2', surname: 'Man2', email: 'fmember2@acme.com'}",fmember2,fmember2
-user-account-fmember-03,true,"UserIdentity{name: 'FM3', surname: 'Man3', email: 'fmember3@acme.com'}",fmember3,fmember3
-user-account-fmember-04,true,"UserIdentity{name: 'FM1', surname: 'Man4', email: 'fmember4@acme.com'}",fmember4,fmember4
-user-account-fmember-05,true,"UserIdentity{name: 'FM2', surname: 'Man5', email: 'fmember5@acme.com'}",fmember5,fmember5
+user-account-member-01,true,"UserIdentity{name: 'FM1', surname: 'Man1', email: 'member1@acme.com'}",member1,member1
+user-account-member-02,true,"UserIdentity{name: 'FM2', surname: 'Man2', email: 'member2@acme.com'}",member2,member2
+user-account-member-03,true,"UserIdentity{name: 'FM3', surname: 'Man3', email: 'member3@acme.com'}",member3,member3
+user-account-member-04,true,"UserIdentity{name: 'FM1', surname: 'Man4', email: 'member4@acme.com'}",member4,member4
+user-account-member,true,"UserIdentity{name: 'FM2', surname: 'Man5', email: 'member@acme.com'}",member,member
 user-account-assistanceAgent-00,true,"UserIdentity{name: 'Isabel', surname: 'Romero', email: 'agent0@acme.com'}",agent0,agent0
 user-account-assistanceAgent-01,true,"UserIdentity{name: 'Mario', surname: 'Coronel', email: 'agent1@acme.com'}",agent1,agent1
 user-account-assistanceAgent-02,true,"UserIdentity{name: 'Luis', surname: 'Martín', email: 'agent2@acme.com'}",agent2,agent2

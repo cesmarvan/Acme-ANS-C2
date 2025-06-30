@@ -5,9 +5,7 @@ import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.client.helpers.MomentHelper;
-import acme.client.helpers.SpringHelper;
 import acme.entities.booking.Booking;
-import acme.entities.booking.BookingRepository;
 
 public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
 
@@ -29,12 +27,14 @@ public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
 			result = false;
 		}
 
-		// Verificar si ya existe un "locatorCode" en la base de datos
-		BookingRepository bookingRepository = SpringHelper.getBean(BookingRepository.class);
-		if (bookingRepository != null && bookingRepository.existsByLocatorCode(booking.getLocatorCode())) {
-			super.state(context, false, "locatorCode", "acme.validation.Booking.locatorCode.exists.message");
-			result = false;
-		}
+		//		// Verificar si ya existe un "locatorCode" en la base de datos
+		//		BookingRepository bookingRepository = SpringHelper.getBean(BookingRepository.class);
+		//		if (booking.getLocatorCode() == null)
+		//			result = true;
+		//		if (booking.getLocatorCode() != null && !bookingRepository.existsByLocatorCode(booking.getLocatorCode()).isEmpty()) {
+		//			super.state(context, false, "locatorCode", "acme.validation.Booking.locatorCode.exists.message");
+		//			result = false;
+		//		}
 
 		// Validar que "purchaseMoment" sea una fecha pasada
 		if (booking.getPurchaseMoment() == null || booking.getPurchaseMoment().after(MomentHelper.getCurrentMoment())) {

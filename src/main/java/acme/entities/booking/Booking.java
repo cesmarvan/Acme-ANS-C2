@@ -44,7 +44,7 @@ public class Booking extends AbstractEntity {
 
 	@Mandatory
 	@ValidLocatorCode
-	@Column(unique = true)
+	@Column(name = "locatorCode", unique = true)
 	private String				locatorCode;
 
 	@Mandatory
