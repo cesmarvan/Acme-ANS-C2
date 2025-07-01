@@ -1,6 +1,6 @@
 key,registrationMoment,typeOfIncident,description,severity,draftMode,key:flight-assignment
-log-01,2019/10/01 10:13,weather-related disruption,heavy rain and electric storm,7,true,assigned-flight-01
-log-02,2019/10/01 10:30,route desviation,strong winds in the actual route,3,true,assigned-flight-03
-log-03,2019/10/01 10:26,passenger issues,a passanger has started smoking in the airplane,7,true,assigned-flight-01
-log-04,2019/10/01 14:39,mechanical failure,motor failure,7,true,assigned-flight-04
-log-05,2019/10/01 10:41,weather-related disruption,heavy rain and winds,4,true,assigned-flight-01
+log-01,2019/10/01 11:13,weather-related disruption,heavy rain and electric storm,7,true,assigned-flight-01
+log-02,2019/10/01 12:30,route desviation,strong winds in the actual route,3,true,assigned-flight-03
+log-03,2019/10/01 11:26,passenger issues,a passanger has started smoking in the airplane,7,true,assigned-flight-01
+log-04,2019/10/01 15:39,mechanical failure,motor failure,7,true,assigned-flight-04
+log-05,2019/10/01 14:41,weather-related disruption,heavy rain and winds,4,true,assigned-flight-01

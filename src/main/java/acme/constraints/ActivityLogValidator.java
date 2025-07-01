@@ -29,13 +29,13 @@ public class ActivityLogValidator extends AbstractValidator<ValidActivityLog, Ac
 		if (activityLog.getFlightAssignment() != null)
 			leg = this.repository.findLegById(activityLog.getFlightAssignment().getLeg().getId());
 
-		if (activityLog.getTypeOfIncident().isBlank() || activityLog.getTypeOfIncident().isEmpty() || activityLog.getTypeOfIncident().length() > 255) {
+		if (activityLog.getTypeOfIncident().isBlank() || activityLog.getTypeOfIncident().isEmpty() || activityLog.getTypeOfIncident().length() > 50) {
 			super.state(context, false, "typeOfIncident", "acme.validation.activityLog.typeOfIncident.message");
 			result = false;
 		} else if (activityLog.getDescription().isBlank() || activityLog.getDescription().isEmpty() || activityLog.getDescription().length() > 255) {
 			super.state(context, false, "description", "acme.validation.activityLog.description.message");
 			result = false;
-		} else if (leg != null && (activityLog.getRegistrationMoment() == null || activityLog.getRegistrationMoment().before(leg.getScheduledDeparture()) || activityLog.getRegistrationMoment().after(leg.getScheduledArrival()))) {
+		} else if (leg != null && (activityLog.getRegistrationMoment() == null || activityLog.getRegistrationMoment().before(leg.getScheduledArrival()))) {
 			super.state(context, false, "registrationMoment", "acme.validation.activityLog.registrationMoment.message");
 			result = false;
 		} else if (activityLog.getSeverity() == null || activityLog.getSeverity() < 0 || activityLog.getSeverity() > 10) {

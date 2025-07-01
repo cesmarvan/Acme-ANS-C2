@@ -1,15 +1,15 @@
 # validation-en.i18n
 
 
-acme.validation.header.message = This value cannot be empty.
+acme.validation.header.message = This value cannot be empty
 acme.validation.identifier.message = This identifier is incorrect, it must follow the structure: "^[A-Z]{2,3}\\d{6}$"
-acme.validation.long-text.message = It does not follow the format, it must be between 1 and 255 characters.
-acme.validation.short-text.message = It does not follow the format, it must be between 1 and 50 characters.
+acme.validation.long-text.message = It does not follow the format, it must be between 1 and 255 characters
+acme.validation.short-text.message = It does not follow the format, it must be between 1 and 50 characters
 acme.validation.phone-number.message = This phone number is incorrect, it must follow the structure: "^\\+?\\d{10,15}$"
 acme.validation.iata-code.message = This IATA code is incorrect, it must follow the structure: "^\\+?\\d{6,15}$"
 
-acme.validation.Service.name.message = The service name cannot be empty.
-acme.validation.Service.pictureLink.message = The picture link cannot be empty.
-acme.validation.Service.avgDwellTime.message = The average dwell time must be greater than or equal to 0.
-acme.validation.Service.promoCode.message = The promo code must follow the correct format (e.g. ABCD-12).
-acme.validation.Service.discount.message = The discount cannot be negative.
+acme.validation.Service.name.message = The service name cannot be empty
+acme.validation.Service.pictureLink.message = The picture link cannot be empty
+acme.validation.Service.avgDwellTime.message = The average dwell time must be greater than or equal to 0
+acme.validation.Service.promoCode.message = The promo code must follow the correct format (e.g. ABCD-12)
+acme.validation.Service.discount.message = The discount cannot be negative
