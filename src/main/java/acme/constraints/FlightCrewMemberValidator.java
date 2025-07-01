@@ -46,7 +46,7 @@ public class FlightCrewMemberValidator extends AbstractValidator<ValidFlightCrew
 			context.disableDefaultConstraintViolation();
 			context.buildConstraintViolationWithTemplate("acme.validation.flightCrewMember.status.message").addPropertyNode("status").addConstraintViolation();
 			result = false;
-		} else if (crewMember.getYearsOfExperience() == null || crewMember.getYearsOfExperience() < 0 || crewMember.getYearsOfExperience() > 40) {
+		} else if (crewMember.getYearsOfExperience() != null && (crewMember.getYearsOfExperience() < 0 || crewMember.getYearsOfExperience() > 40)) {
 			context.disableDefaultConstraintViolation();
 			context.buildConstraintViolationWithTemplate("acme.validation.flightCrewMember.yearsOfExperience.message").addPropertyNode("yearsOfExperience").addConstraintViolation();
 			result = false;

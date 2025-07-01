@@ -35,7 +35,7 @@ public class FlightAssignmentValidator extends AbstractValidator<ValidFlightAssi
 		} else if (flightAssignment.getFlightCrewMember() == null) {
 			super.state(context, false, "flightCrewMember", "acme.validation.flightAssignment.crewMember.message");
 			result = false;
-		} else if (flightAssignment.getRemarks().isBlank() || flightAssignment.getRemarks().isEmpty() || flightAssignment.getRemarks().length() > 255 || flightAssignment.getRemarks().length() < 0) {
+		} else if (!flightAssignment.getRemarks().isBlank() && (flightAssignment.getRemarks().length() > 255 || flightAssignment.getRemarks().length() < 0)) {
 			super.state(context, false, "remarks", "acme.validation.flightAssignment.remarks.message");
 			result = false;
 		} else if (flightAssignment.getLeg() == null) {

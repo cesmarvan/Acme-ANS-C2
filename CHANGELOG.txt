@@ -12,3 +12,4 @@
 25.2.0	This version focuses on the development of data models.
 25.3.0	This version is dedicated to the implementation of functionalities.
 25.4.0	This version is dedicated to testing.
+25.5.0  This version is dedicated to correct the requirements that were not fulfilled.
