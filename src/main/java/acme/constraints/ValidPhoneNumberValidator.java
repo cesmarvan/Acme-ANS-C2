@@ -6,7 +6,7 @@ import javax.validation.ConstraintValidatorContext;
 
 public class ValidPhoneNumberValidator implements ConstraintValidator<ValidPhoneNumber, String> {
 
-	private static final String PHONE_PATTERN = "^\\+?\\d{10,15}$";
+	private static final String PHONE_PATTERN = "^\\+?\\d{6,15}$";
 
 
 	@Override

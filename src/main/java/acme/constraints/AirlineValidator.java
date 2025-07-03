@@ -59,7 +59,7 @@ public class AirlineValidator extends AbstractValidator<ValidAirline, Airline> {
 		}
 
 		// Validar que "phoneNumber" tenga un formato adecuado si está presente
-		if (airline.getPhoneNumber() != null && !airline.getPhoneNumber().matches("^\\+?\\d{10,15}$")) {
+		if (airline.getPhoneNumber() != null && !airline.getPhoneNumber().matches("^\\+?\\d{6,15}$")) {
 			super.state(context, false, "phoneNumber", "acme.validation.Airline.phoneNumber.message");
 			result = false;
 		}

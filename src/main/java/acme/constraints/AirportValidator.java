@@ -65,7 +65,7 @@ public class AirportValidator extends AbstractValidator<ValidAirport, Airport> {
 		}
 
 		// Validar que "contactPhoneNumber" tenga un formato adecuado si está presente
-		if (airport.getContactPhoneNumber() != null && !airport.getContactPhoneNumber().isBlank() && !airport.getContactPhoneNumber().matches("^\\+?\\d{10,15}$")) {
+		if (airport.getContactPhoneNumber() != null && !airport.getContactPhoneNumber().isBlank() && !airport.getContactPhoneNumber().matches("^\\+?\\d{6,15}$")) {
 			super.state(context, false, "contactPhoneNumber", "acme.validation.Airport.contactPhoneNumber.message");
 			result = false;
 		}
