@@ -11,6 +11,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.crewMember.AvailabilityStatus;
 import acme.entities.flightAssignment.AssignmentStatus;
 import acme.entities.flightAssignment.CrewDuties;
 import acme.entities.flightAssignment.FlightAssignment;
@@ -76,6 +77,13 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 		if (flightAssignment.getLeg() != null && flightAssignment.getLeg().getScheduledDeparture().before(now))
 			super.state(false, "leg", "acme.validation.legDate.message");
 		{
+			if (flightAssignment.getFlightCrewMember() != null) {
+				boolean crewMemberAvailable;
+				crewMemberAvailable = flightAssignment.getFlightCrewMember().getStatus() == AvailabilityStatus.AVAILABLE;
+				super.state(crewMemberAvailable, "*", "validation.error.messagecrewMemberNotAvailable");
+			}
+		}
+		{
 			if (flightAssignment.getLeg() != null && flightAssignment.getDuty() != null) {
 				List<CrewDuties> ls = this.flightAssignmentRepository.findPilotsInLegByLegId(flightAssignment.getLeg().getId());
 				boolean status = true;
@@ -92,7 +100,7 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 			boolean onlyOneLeg;
 			onlyOneLeg = this.flightAssignmentRepository
 				.findSimultaneousLegsByMember(flightAssignment.getLeg().getScheduledDeparture(), flightAssignment.getLeg().getScheduledArrival(), flightAssignment.getLeg().getId(), flightAssignment.getFlightCrewMember().getId()).isEmpty();
-			super.state(onlyOneLeg, "leg", "validation.error.messagecrewMemberAlreadyInLeg");
+			super.state(onlyOneLeg, "*", "validation.error.messagecrewMemberAlreadyInLeg");
 		}
 		super.state(flightAssignment.getLeg() != null && !flightAssignment.getLeg().getDraftMode(), "leg", "validation.error.publishedLeg");
 	}

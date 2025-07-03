@@ -85,7 +85,7 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 			if (flightAssignment.getFlightCrewMember() != null) {
 				boolean crewMemberAvailable;
 				crewMemberAvailable = flightAssignment.getFlightCrewMember().getStatus() == AvailabilityStatus.AVAILABLE;
-				super.state(crewMemberAvailable, "flightCrewMember", "validation.error.messagecrewMemberNotAvailable");
+				super.state(crewMemberAvailable, "*", "validation.error.messagecrewMemberNotAvailable");
 			}
 		}
 		{
@@ -93,7 +93,7 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 				boolean onlyOneLeg;
 				onlyOneLeg = this.flightAssignmentRepository
 					.findSimultaneousLegsByMember(flightAssignment.getLeg().getScheduledDeparture(), flightAssignment.getLeg().getScheduledArrival(), flightAssignment.getLeg().getId(), flightAssignment.getFlightCrewMember().getId()).isEmpty();
-				super.state(onlyOneLeg, "flightCrewMember", "validation.error.messagecrewMemberAlreadyInLeg");
+				super.state(onlyOneLeg, "*", "validation.error.messagecrewMemberAlreadyInLeg");
 			}
 		}
 	}
