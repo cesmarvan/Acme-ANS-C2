@@ -64,7 +64,7 @@ public class AdministratorAirportUpdateService extends AbstractGuiService<Admini
 		}
 		{
 			if (airport.getContactPhoneNumber() != null && !airport.getContactPhoneNumber().isBlank()) {
-				boolean validPhone = airport.getContactPhoneNumber().matches("^\\+?\\d{10,15}$");
+				boolean validPhone = airport.getContactPhoneNumber().matches("^\\+?\\d{6,15}$");
 				super.state(validPhone, "contactPhoneNumber", "acme.validation.phone-number.message");
 			}
 		}
